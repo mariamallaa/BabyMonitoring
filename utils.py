@@ -51,6 +51,7 @@ def boxes_iou(box1, box2):
     return iou
 
 
+
 def nms(boxes, iou_thresh):
     
     # If there are no bounding boxes do nothing
@@ -171,6 +172,15 @@ def print_objects(boxes, class_names):
             cls_id = box[6]
             print('%i. %s: %f' % (i + 1, class_names[cls_id], cls_conf))
 
+def getcorr(box,width,height):
+    
+    # Get the (x,y) pixel coordinates of the lower-left and lower-right corners
+    # of the bounding box relative to the size of the image. 
+    x1 = int(np.around((box[0] - box[2]/2.0) * width))
+    y1 = int(np.around((box[1] - box[3]/2.0) * height))
+    x2 = int(np.around((box[0] + box[2]/2.0) * width))
+    y2 = int(np.around((box[1] + box[3]/2.0) * height))
+    return x1,y1,x2,y2
             
 def plot_boxes(img, boxes, class_names, plot_labels, color = None):
     
