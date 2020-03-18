@@ -134,7 +134,7 @@ for i in range(signals.shape[1]):
     #plt.show()
     #plt.plot(signals[:, i, 0, 0], signals[:, i, 0, 1],range(signals.shape[0]))
    
-  
+interactive(False)  
 plt.show()
 cap.release()
 cv.destroyAllWindows()
