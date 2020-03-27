@@ -12,6 +12,8 @@ from matplotlib import interactive
 from scipy import fftpack
 from sklearn import preprocessing
 import datetime
+from sklearn.linear_model import LinearRegression
+from scipy import signal
 #####################################################################################################################################
 #####################################################################################################################################
 #####################################################################################################################################
@@ -86,7 +88,7 @@ face_cascade = cv2.CascadeClassifier(
 eye_cascade = cv2.CascadeClassifier(
     'C:\\Users\\Maram\\Anaconda3\\Lib\\site-packages\\cv2\data\\haarcascade_eye.xml')
 cap = cv2.VideoCapture(
-    "C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\28 zwh3\\rgb.avi")
+    "C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\27 zwh2\\rgb.avi")
 # C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\2 dhy\\newfile.avi
 # C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\3 dhy\\rgb.avi
 # D:\\breathing2\\breathing2.mp4
@@ -204,8 +206,19 @@ for i in range(disp2.shape[0]):
     plt.plot(range(disp2.shape[1]), disp2[i])
     print(signals[0, i])
     plt.show()
-    # fourier transform to check priodicity
+    # detrending
+
+    # regressor = LinearRegression()
+    # regressor.fit(np.asarray(range(disp2.shape[1])).reshape(-1, 1), disp2[i])
+
     X = disp2[i]-np.mean(disp2[i])
+    #X = (1-regressor.coef_)*disp2[i]-regressor.intercept_
+    X = signal.detrend(X)
+    plt.plot(range(disp2.shape[1]), X)
+
+    plt.show()
+
+    # fourier transform to check priodicity
     X = fftpack.fft(X)
     freqs = fftpack.fftfreq(len(disp2[i])) * f_s
     psd = np.abs(X)**2
@@ -214,7 +227,11 @@ for i in range(disp2.shape[0]):
     fig, ax = plt.subplots()
     ax.stem(freqs, np.abs(norm_psd))
     plt.show()
-    rate = 60*freqs[np.argmax(norm_psd[freqs > 0.1])]
+    offset = next((i for i, x in enumerate(freqs) if x > 0.1), None)
+    print(offset)
+    print(freqs)
+    print(freqs[np.argmax(norm_psd[freqs > 0.1])+offset])
+    rate = 60*freqs[np.argmax(norm_psd[freqs > 0.1])+offset]
     print("rate=", rate)
 
 cap.release()
