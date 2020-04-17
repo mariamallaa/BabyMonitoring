@@ -30,8 +30,82 @@ def calcdisplacement(signals, currentframe, p1):
     return disp
 
 
+def remove_noise(signals):
+    filtered_signals = []
+    for i in range(signals.shape[0]):
+        nsamples = len(signals[i])
+        #t = np.linspace(0, nsamples/2, nsamples, endpoint=False)
+        # plt.plot(t, signals[i], label="Noisy")
+
+        b, a = butter(5, [0.2, 0.6], btype='band')
+        filtered = lfilter(b, a, signals[i])
+        # plt.plot(t, filtered, label="filtered")
+        # plt.legend(loc='upper left')
+        # plt.show()
+        filtered_signals.append(filtered)
+
+    filtered_signals = np.asarray(filtered_signals)
+    filtered_signals = np.transpose(filtered_signals)
+    return filtered_signals
+
+
+def get_components_pca(signals):
+    pca = PCA(n_components=5)
+    pca_components = pca.fit_transform(signals)
+    return pca_components
+
+
+def get_components_ica(signals):
+    ica = FastICA(n_components=5)
+    ica_components = ica.fit_transform(signals)
+    return ica_components
+
+
+def get_rates(disp):
+    disp2 = disp.transpose()
+    print(disp2.shape)
+    f_s = 2
+    differences = []
+    for i in range(disp2.shape[0]):
+        differences.append(np.max(np.diff(disp2[i])))
+    differences = np.asarray(differences)
+    differences = np.argsort(differences)
+    length = len(differences)
+    differences = differences[int(0.25*length):int(0.75*length)+1]
+    disp2 = disp2[differences]
+    print(disp2.shape)
+
+    filtered_signals = remove_noise(disp2)
+    components = get_components_pca(filtered_signals)
+    #components = get_components_ica(filterd_signals)
+    # for i in range(components.shape[1]):
+    #     plt.plot(components[:, i])
+    #     plt.show()
+
+    rates = []
+    for i in range(components.shape[1]):
+
+        X = fftpack.fft(components[:, i])
+        freqs = fftpack.fftfreq(len(components[:, i])) * f_s
+        psd = np.abs(X)**2
+        psd = psd/np.sum(psd)
+        uncertainty = entropy(psd, base=2)
+        #uncertainty = np.max(psd)/np.sum(psd)
+        variance = np.var(psd)
+
+        offset = next((i for i, x in enumerate(freqs) if x > 0.15), None)
+        rate = 60*freqs[np.argmax(psd[freqs > 0.15])+offset]
+        # if uncertainty < 2 and rate > 9:
+        rates.append([rate, uncertainty, variance])
+
+    rates = np.asarray(rates)
+    # print(rates.shape)
+    rates = rates[rates[:, 1].argsort()]
+    print(rates)
+
+
 cap = cv.VideoCapture(
-    "C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\27 zwh2\\rgb.avi")
+    "C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\15 ljw\\rgb.avi")
 # C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\1 cyc\\rgb.avi
 # C:\\Users\\Maram\\Desktop\\GP2\\Dataset\\Breathing\\sample breathing.mp4
 # C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\1 cyc\\rgb.avi
@@ -52,15 +126,13 @@ frameId = cap.get(1)  # current frame number
 
 frameRate = cap.get(5)  # frame rate
 
-dimensions = [348, 219, 1084, 1949]
 ret, old_frame = cap.read()
-# old_frame=old_frame[dimensions[0]:dimensions[2],dimensions[1]+400:dimensions[3]]
-# show_images(old_frame)
 old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
 p0 = []
 
 p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
 
+print(p0.shape)
 
 signals = []
 disp = []
@@ -68,6 +140,7 @@ signals.append(p0)
 signals = np.asarray(signals)
 currentframe = 1
 mask = np.zeros_like(old_frame)
+frames_count = 0
 while(ret):
 
     frameId = cap.get(1)  # current frame number
@@ -76,12 +149,21 @@ while(ret):
         break
     if(frameId % math.floor(frameRate) == 0 or frameId % math.floor(frameRate) == math.floor(frameRate/2)):
         # frame=frame[dimensions[0]:dimensions[2],dimensions[1]+400:dimensions[3]]
+        frames_count += 1
         frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
         p1, st, err = cv.calcOpticalFlowPyrLK(
             old_gray, frame_gray, p0, None, **lk_params)
+        if frames_count == 1:
+            disp.append(calcdisplacement(signals, currentframe, p1))
+            disp = np.asarray(disp)
+        else:
+            disp = np.vstack((disp, calcdisplacement(
+                signals, currentframe, p1)))
+        if frames_count >= 60 and frames_count % 2 == 0:
+            get_rates(disp)
+            disp = disp[2:, :]
 
-        disp.append(calcdisplacement(signals, currentframe, p1))
         currentframe += 1
         good_new = p1[st == 1]
         good_old = p0[st == 1]
@@ -101,63 +183,6 @@ while(ret):
         if cv.waitKey(10) & 0xFF == ord('q'):
             break
 
-
-disp = np.asarray(disp)
-
-
-disp2 = disp.transpose()
-
-# show_images([old_frame])
-f_s = 2
-filtered_signals = []
-
-for i in range(disp2.shape[0]):
-    nsamples = len(disp2[i])
-    #t = np.linspace(0, nsamples/2, nsamples, endpoint=False)
-    # plt.plot(t, disp2[i], label="Noisy")
-
-    b, a = butter(5, [0.2, 0.6], btype='band')
-    filtered = lfilter(b, a, disp2[i])
-    # plt.plot(t, filtered, label="filtered")
-    # plt.legend(loc='upper left')
-    # plt.show()
-    filtered_signals.append(filtered)
-
-filtered_signals = np.asarray(filtered_signals)
-filtered_signals = np.transpose(filtered_signals)
-
-# ica = FastICA(n_components=5)
-# ica_components = ica.fit_transform(filtered_signals)
-
-# for i in range(ica_components.shape[1]):
-#     plt.plot(ica_components[:, i])
-#     plt.show()
-
-pca = PCA(n_components=5)
-pca_components = pca.fit_transform(filtered_signals)
-for i in range(pca_components.shape[1]):
-    plt.plot(pca_components[:, i])
-    plt.show()
-
-rates = []
-for i in range(pca_components.shape[1]):
-
-    X = fftpack.fft(pca_components[:, i])
-    freqs = fftpack.fftfreq(len(pca_components[:, i])) * f_s
-    psd = np.abs(X)**2
-    psd = psd/np.sum(psd)
-    uncertainty = entropy(psd, base=2)
-    variance = np.var(psd)
-
-    offset = next((i for i, x in enumerate(freqs) if x > 0.15), None)
-    rate = 60*freqs[np.argmax(psd[freqs > 0.15])+offset]
-    # if uncertainty < 2 and rate > 9:
-    rates.append([rate, uncertainty, variance])
-
-rates = np.asarray(rates)
-# print(rates.shape)
-rates = rates[rates[:, 1].argsort()]
-print(rates)
 
 cap.release()
 cv.destroyAllWindows()
