@@ -28,8 +28,13 @@ def optical_flow_harris( nxt,prev,p0):
     #nxt = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
     #fig, ax = plt.subplots()
     prev2 = np.zeros(prev.shape)
+    j=0
+    
     for i in range(len(p0)):
-        prev2[int(p0[i][0][0]),int(p0[i][0][1])]=1
+        j=j+1
+        
+        prev2[int(p0[i][0][1]),int(p0[i][0][0])]=1
+    
     kernel_x = np.array([[-1., 1.], [-1., 1.]])
     kernel_y = np.array([[-1., -1.], [1., 1.]])
     kernel_t = np.array([[1., 1.], [1., 1.]])
@@ -44,6 +49,7 @@ def optical_flow_harris( nxt,prev,p0):
     p1=[]
     p2=[]
     h=0
+    y=0
     for i in range(w, prev.shape[0]-w):
         for j in range(w, prev.shape[1]-w):
             #i=frame1[k,2]
@@ -51,6 +57,7 @@ def optical_flow_harris( nxt,prev,p0):
            # if frame[i,j]==1:
             
              if(prev2[i,j]==1):
+                
                 Ix = fx[i-w:i+w+1, j-w:j+w+1]
                 Iy = fy[i-w:i+w+1, j-w:j+w+1]
                 It = ft[i-w:i+w+1, j-w:j+w+1]
@@ -74,41 +81,42 @@ def optical_flow_harris( nxt,prev,p0):
                 np_arr1 = np.array([u[i,j]*math.cos(v[i,j])])
                 np_arr2= np.array(u[i,j]*math.sin(v[i,j]))
                 p1.append([[u[i,j]*math.cos(v[i,j])],[u[i,j]*math.sin(v[i,j])]])
-                p2.append([[u[i,j]*math.cos(v[i,j])+p0[h][0][0]],[u[i,j]*math.sin(v[i,j])+ p0[h][0][1]]])
+                y=y+1
+                p2.append([[u[i,j]*math.cos(v[i,j])+p0[h][0][1]],[u[i,j]*math.sin(v[i,j])+ p0[h][0][0]]])
                 h=h+1
                
    
         
+  
     
-    print(p2)
     return (u,v,p2)
 
 
 cap = cv2.VideoCapture('E:\\senior 2\\Dataset\\Dataset\\breathing2.mp4')
-feature_params = dict(maxCorners=8, qualityLevel=0.01,
-                      minDistance=0, blockSize=3)
+
+ret, frame1 = cap.read()
+prev = cv2.cvtColor(frame1,cv2.COLOR_BGR2GRAY)
+p0 = []
+
+feature_params = dict(maxCorners=50, qualityLevel=0.05,
+                      minDistance=30, blockSize=3)
 
 lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
     cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
 
 color = (0, 255, 0)
-ret, frame1 = cap.read()
-prev = cv2.cvtColor(frame1,cv2.COLOR_BGR2GRAY)
-p0 = []
-for i in range(int(prev.shape[0]/40)):
-    for j in range(int(prev.shape[1]/40)):
-        gridP = cv2.goodFeaturesToTrack(
-            prev[i*40: i*41, j*40:j*41], mask=None, **feature_params)
-        if gridP is None:
-            print("empty")
-        else:
-            gridP = np.asarray(gridP)
-            gridP[:, :, 0] += 40*i
-            gridP[:, :, 1] += 40*j
-            p0.extend(gridP)
 
-p0 = np.asarray(p0)
-print(len(p0))
+# Take first frame and find corners in it
+frameId = cap.get(1)  # current frame number
+
+frameRate = cap.get(5)  # frame rate
+
+ret, old_frame = cap.read()
+old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
+p0 = []
+
+p0 = cv2.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
+
 
 
 
@@ -136,12 +144,13 @@ while(1):
     p2=[]
     u,v,p2=optical_flow_harris(nxt,prev,p0)
 
-    
+    print("p0",len(p0))
+    print("p2",len(p2))
 
 
-    # with open('outfile.txt','w') as f:
-    #     for line in p0:
-    #         np.savetxt(f, line, fmt='%.2f')
+    with open('outfile.txt','w') as f:
+        for line in p0:
+            np.savetxt(f, line, fmt='%.2f')
     # hsv[...,0] = v*180/np.pi/2
     # hsv[...,2] = cv2.normalize(u,None,0,255,cv2.NORM_MINMAX)
     # bgr = cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
