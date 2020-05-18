@@ -1,0 +1,121 @@
+import cv2 as cv
+import numpy as np
+from collections import namedtuple
+
+def getImageDifference(first, second):
+    return cv.absdiff(first, second)
+
+def drawRectangle(contour, frame):
+        (x, y, w, h) = cv.boundingRect(contour)
+        cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        return [x,y,x+w,y+h]
+    
+def bb_intersection_over_union(boxA, boxB):
+    # determine the (x, y)-coordinates of the intersection rectangle
+    xA = max(boxA[0], boxB[0])
+    yA = max(boxA[1], boxB[1])
+    xB = min(boxA[2], boxB[2])
+    yB = min(boxA[3], boxB[3])
+    # compute the area of intersection rectangle
+    interArea = max(0, xB - xA + 1) * max(0, yB - yA + 1)
+    # compute the area of both the prediction and ground-truth
+    # rectangles
+    boxAArea = (boxA[2] - boxA[0] + 1) * (boxA[3] - boxA[1] + 1)
+    boxBArea = (boxB[2] - boxB[0] + 1) * (boxB[3] - boxB[1] + 1)
+    # compute the intersection over union by taking the intersection
+    # area and dividing it by the sum of prediction + ground-truth
+    # areas - the interesection area
+    iou = interArea / float(boxAArea + boxBArea - interArea)
+    # return the intersection over union value
+    return iou
+
+#We need to identify the borders of the danger zone box
+DangerZone_pt1= (350,250)
+DangerZone_pt2= (780,500)
+
+
+# cap = cv.VideoCapture(
+#     "C:\\Users\\Maram\\Desktop\\GP2\\youssef trimmed\\side cover.mp4")
+
+cap = cv.VideoCapture("zizi roll.mp4")
+
+# cap = cv.VideoCapture(
+#     "C:\\Users\\Maram\\Downloads\\highway.mp4")
+
+# ret, old_frame = cap.read()
+# old_frame = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
+# while(ret):
+
+#     ret, frame = cap.read()
+#     if(ret == False):
+#         break
+#     frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+#     subtraction = frame-old_frame
+#     # print(subtraction)
+#     old_frame = frame
+#     cv.imshow("frame subtraction", subtraction)
+#     if cv.waitKey(10) & 0xFF == ord('q'):
+#         break
+
+
+fgbg = cv.createBackgroundSubtractorMOG2()
+old_fg = 0
+output= 0
+#camera = cv.VideoCapture(0)
+while(1):
+    #ret, frame=camera.read()
+    ret, frame = cap.read()
+    
+    if not ret:
+        break
+   
+    fgmask = fgbg.apply(frame)
+    output = cv.GaussianBlur(fgmask, (21, 21), 0)
+    
+    if old_fg is None:
+        old_fg = fgmask
+        continue
+
+    diff = cv.absdiff(old_fg,output)
+    # print(diff)
+    # check adaptive thresholding
+   # _, diff = cv.threshold(diff, 50, 255, cv.THRESH_BINARY)
+   # diff = cv.medianBlur(fgmask, 3)
+   # diff = cv.medianBlur(diff, 3)
+    #old_fg = fgmask
+    #cv.imshow('frame', diff)
+    ##fgmask = backgroundSubtractor.apply(frame, learningRate = 1.0/10)
+    ##diff = cv.GaussianBlur(fgmask, (21, 21), 0)
+    
+    #frameDelta = getImageDifference(old_fg ,diff )
+    maskRGB = cv.cvtColor(fgmask,cv.COLOR_GRAY2BGR)
+    #frameDela = maskRGB
+#    frameDelta = cv2.cvtColor(fgMask, cv2.COLOR_BGR2GRAY)
+    threshold = cv.threshold(fgmask, 21, 255, cv.THRESH_BINARY)[1]
+
+    threshold = cv.dilate(threshold, None, iterations = 2)
+
+    _, contours, _= cv.findContours(threshold.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+    sortedContours = sorted(contours, key = cv.contourArea, reverse = True)[:2] #this will track two objects simultaneously. If I want more, I'd have to come and change this value to whatever I want
+
+    for contour in sortedContours:
+
+        ObjCoordinates=drawRectangle(contour, frame)
+        cv.rectangle(frame,DangerZone_pt1,DangerZone_pt2,(255, 0, 0), 2)
+        iou = bb_intersection_over_union(ObjCoordinates, [DangerZone_pt1[0],DangerZone_pt1[1],DangerZone_pt2[0],DangerZone_pt2[1]])
+        cv.putText(frame, "IoU: {:.4f}".format(iou), (10, 30),
+            cv.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        old_fg  = diff
+
+    draw = frame & maskRGB
+
+    cv.imshow('Main',frame)
+    cv.imshow('Background Subtraction', fgmask)
+    cv.imshow('Background Subtraction with color', draw)
+    k = cv.waitKey(30) & 0xff
+    if k == 27:
+        break
+
+cap.release()
+cv.destroyAllWindows()
