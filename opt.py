@@ -7,7 +7,7 @@ import math
 
 import matplotlib.pyplot as plt
 
-def optical_flow_harris(frame, nxt,prev,p0):
+def optical_flow_harris( nxt,prev,p0):
     
 #cap = cv2.VideoCapture('E:\\senior 2\\Dataset\\Dataset\\motion1.mp4')
 #ret, frame1 = cap.read()
@@ -27,6 +27,9 @@ def optical_flow_harris(frame, nxt,prev,p0):
     #ret, frame2 = cap.read()
     #nxt = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
     #fig, ax = plt.subplots()
+    prev2 = np.zeros(prev.shape)
+    for i in range(len(p0)):
+        prev2[int(p0[i][0][0]),int(p0[i][0][1])]=1
     kernel_x = np.array([[-1., 1.], [-1., 1.]])
     kernel_y = np.array([[-1., -1.], [1., 1.]])
     kernel_t = np.array([[1., 1.], [1., 1.]])
@@ -47,7 +50,7 @@ def optical_flow_harris(frame, nxt,prev,p0):
             #j=frame1[k,1]
            # if frame[i,j]==1:
             
-             if(frame[i,j]==1):
+             if(prev2[i,j]==1):
                 Ix = fx[i-w:i+w+1, j-w:j+w+1]
                 Iy = fy[i-w:i+w+1, j-w:j+w+1]
                 It = ft[i-w:i+w+1, j-w:j+w+1]
@@ -65,8 +68,7 @@ def optical_flow_harris(frame, nxt,prev,p0):
                 #if np.min(abs(np.linalg.eigvals(np.matmul(A.T, A)))) >= 1e-2:
                 nu = np.matmul(np.linalg.pinv(A), b)
                 
-                print(i,j)
-                print(nu.shape)
+                
                 u[i,j]=nu[0]
                 v[i,j]=nu[1]
                 np_arr1 = np.array([u[i,j]*math.cos(v[i,j])])
@@ -75,7 +77,7 @@ def optical_flow_harris(frame, nxt,prev,p0):
                 p2.append([[u[i,j]*math.cos(v[i,j])+p0[h][0][0]],[u[i,j]*math.sin(v[i,j])+ p0[h][0][1]]])
                 h=h+1
                
-    print(u.shape)
+   
         
     
     print(p2)
@@ -108,10 +110,7 @@ for i in range(int(prev.shape[0]/40)):
 p0 = np.asarray(p0)
 print(len(p0))
 
-prev2 = np.zeros(prev.shape)
-for i in range(len(p0)):
-    print(p0[i][0][0])
-    prev2[int(p0[i][0][0]),int(p0[i][0][1])]=1
+
 
 
 #gray = np.float32(prev)
@@ -135,14 +134,14 @@ while(1):
     u = np.zeros(prev.shape)
     v = np.zeros(prev.shape)
     p2=[]
-    u,v,p2=optical_flow_harris(prev2, nxt,prev,p0)
+    u,v,p2=optical_flow_harris(nxt,prev,p0)
 
     
 
 
-    with open('outfile.txt','w') as f:
-        for line in p0:
-            np.savetxt(f, line, fmt='%.2f')
+    # with open('outfile.txt','w') as f:
+    #     for line in p0:
+    #         np.savetxt(f, line, fmt='%.2f')
     # hsv[...,0] = v*180/np.pi/2
     # hsv[...,2] = cv2.normalize(u,None,0,255,cv2.NORM_MINMAX)
     # bgr = cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
