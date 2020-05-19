@@ -37,7 +37,7 @@ def optical_flow_harris( nxt,prev,p0):
     
     for i in range(len(p0)):
         j=j+1
-        prev2[int(p0[i][0][0]),int(p0[i][0][1])]=1
+        prev2[int(p0[i][0][1]),int(p0[i][0][0])]=1
         prev2
     
     kernel_x = np.array([[-1., 1.], [-1., 1.]])
