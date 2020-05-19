@@ -27,13 +27,18 @@ def optical_flow_harris( nxt,prev,p0):
     #ret, frame2 = cap.read()
     #nxt = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
     #fig, ax = plt.subplots()
+    print(prev.shape)
+    borderType = cv2.BORDER_CONSTANT
+    prev = cv2.copyMakeBorder( prev, 14, 14, 14, 14, borderType)
+    nxt = cv2.copyMakeBorder( nxt, 14, 14, 14, 14, borderType)
+    #print(prev.shape)
     prev2 = np.zeros(prev.shape)
     j=0
     
     for i in range(len(p0)):
         j=j+1
-        
         prev2[int(p0[i][0][1]),int(p0[i][0][0])]=1
+        prev2
     
     kernel_x = np.array([[-1., 1.], [-1., 1.]])
     kernel_y = np.array([[-1., -1.], [1., 1.]])
@@ -54,10 +59,12 @@ def optical_flow_harris( nxt,prev,p0):
         for j in range(w, prev.shape[1]-w):
             #i=frame1[k,2]
             #j=frame1[k,1]
-           # if frame[i,j]==1:
-            
-             if(prev2[i,j]==1):
-                
+            # if frame[i,j]==1:
+           
+            if(prev2[i-w,j-w]==1):
+                print("p")
+                print(i,j)
+                y=y+1
                 Ix = fx[i-w:i+w+1, j-w:j+w+1]
                 Iy = fy[i-w:i+w+1, j-w:j+w+1]
                 It = ft[i-w:i+w+1, j-w:j+w+1]
@@ -76,19 +83,20 @@ def optical_flow_harris( nxt,prev,p0):
                 nu = np.matmul(np.linalg.pinv(A), b)
                 
                 
-                u[i,j]=nu[0]
-                v[i,j]=nu[1]
+                u[i-w,j-w]=nu[0]
+                v[i-w,j-w]=nu[1]
                 np_arr1 = np.array([u[i,j]*math.cos(v[i,j])])
                 np_arr2= np.array(u[i,j]*math.sin(v[i,j]))
-                p1.append([[u[i,j]*math.cos(v[i,j])],[u[i,j]*math.sin(v[i,j])]])
-                y=y+1
-                p2.append([[u[i,j]*math.cos(v[i,j])+p0[h][0][1]],[u[i,j]*math.sin(v[i,j])+ p0[h][0][0]]])
+                p1.append([[u[i-w,j-w]*math.cos(v[i-w,j-w])],[u[i-w,j-w]*math.sin(v[i-w,j-w])]])
+               
+                p2.append([[u[i-w,j-w]*math.cos(v[i-w,j-w])+p0[h][0][1]],[u[i-w,j-w]*math.sin(v[i-w,j-w])+ p0[h][0][0]]])
                 h=h+1
                
    
         
-  
-    
+    print(i-w,j-w)
+    print(w)
+    print("y",y)
     return (u,v,p2)
 
 
