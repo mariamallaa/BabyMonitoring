@@ -37,7 +37,7 @@ def optical_flow_harris( nxt,prev,p0):
     
     for i in range(len(p0)):
         j=j+1
-        prev2[int(p0[i][0][1]),int(p0[i][0][0])]=1
+        prev2[int(p0[i][0][0]),int(p0[i][0][1])]=1
         prev2
     
     kernel_x = np.array([[-1., 1.], [-1., 1.]])
@@ -88,8 +88,10 @@ def optical_flow_harris( nxt,prev,p0):
                 np_arr1 = np.array([u[i,j]*math.cos(v[i,j])])
                 np_arr2= np.array(u[i,j]*math.sin(v[i,j]))
                 p1.append([[u[i-w,j-w]*math.cos(v[i-w,j-w])],[u[i-w,j-w]*math.sin(v[i-w,j-w])]])
-               
-                p2.append([[u[i-w,j-w]*math.cos(v[i-w,j-w])+p0[h][0][1]],[u[i-w,j-w]*math.sin(v[i-w,j-w])+ p0[h][0][0]]])
+                if(u[i-w,j-w]*math.cos(v[i-w,j-w])+p0[h][0][1]<prev.shape[0] and u[i-w,j-w]*math.sin(v[i-w,j-w])+ p0[h][0][0]<prev.shape[1]):
+                    p2.append([[u[i-w,j-w]*math.cos(v[i-w,j-w])+p0[h][0][1]],[u[i-w,j-w]*math.sin(v[i-w,j-w])+ p0[h][0][0]]])
+                else:
+                    p2.append([0,0])
                 h=h+1
                
    
