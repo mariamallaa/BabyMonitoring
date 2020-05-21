@@ -215,14 +215,94 @@ def pca_pattern(X):
     return pca_components
 
 
-cap = cv.VideoCapture(
-    "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-
 # C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\1 cyc\\rgb.avi
 # C:\\Users\\Maram\\Desktop\\GP2\\Dataset\\Breathing\\sample breathing.mp4
 # C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\1 cyc\\rgb.avi
 # D:\breathing2
 # D:\\GP\\good.mp4
+
+
+def breathing_rate(video, feature_params, lk_params, results_file):
+    output_file = open(results_file, "w+")
+    cap = cv.VideoCapture(video)
+    # Take first frame and find corners in it
+    frameId = cap.get(1)  # current frame number
+
+    frameRate = cap.get(5)  # frame rate
+
+    ret, old_frame = cap.read()
+
+    old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
+    print(old_gray.shape)
+    p0 = []
+
+    p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
+
+    # print(p0[0])
+    p0 = np.flip(p0, axis=2)
+    # print(p0[0])
+
+    signals = []
+    disp = []
+    signals.append(p0)
+    signals = np.asarray(signals)
+    currentframe = 1
+    mask = np.zeros_like(old_frame)
+    frames_count = 0
+    calculated = 0
+    prev_rates = []
+    while(ret):
+
+        frameId = cap.get(1)  # current frame number
+        ret, frame = cap.read()
+        if(ret == False):
+            break
+        if(frameId % math.floor(frameRate) == 0 or frameId % math.floor(frameRate) == math.floor(frameRate/2)):
+            # frame=frame[dimensions[0]:dimensions[2],dimensions[1]+400:dimensions[3]]
+            frames_count += 1
+            frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+
+            p1, st, err = cv.calcOpticalFlowPyrLK(
+                old_gray, frame_gray, p0, None, **lk_params)
+
+            # u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
+            # p1 = np.asarray(p1)
+            # print("new positions", p1.shape)
+            if frames_count == 1:
+                disp.append(calcdisplacement(signals, currentframe, p1))
+                disp = np.asarray(disp)
+            else:
+                disp = np.vstack((disp, calcdisplacement(
+                    signals, currentframe, p1)))
+            if frames_count >= 60 and frames_count % 2 == 0:
+                # print(frameId)
+                components_rates = get_rates(disp)
+                if frames_count == 60:
+                    prev_rates.append(components_rates[0, 0])
+                    output_file.write(str(components_rates[0, 0])+"\n")
+                else:
+                    rates_diff = np.absolute(
+                        components_rates[:, 0]-prev_rates[-1])
+                    prev_rates.append(
+                        components_rates[np.argmin(rates_diff), 0])
+                    output_file.write(str(components_rates[np.argmin(rates_diff), 0])+"\n"
+                                      )
+                disp = disp[2:, :]
+                calculated += 1
+
+            currentframe += 1
+
+            output = cv.add(frame, mask)
+            old_gray = frame_gray.copy()
+            p0 = p1
+            cv.imshow("sparse optical flow", output)
+
+            if cv.waitKey(10) & 0xFF == ord('q'):
+                break
+
+    print(prev_rates)
+    cap.release()
+    cv.destroyAllWindows()
 
 
 feature_params = dict(maxCorners=50, qualityLevel=0.05,
@@ -231,90 +311,7 @@ feature_params = dict(maxCorners=50, qualityLevel=0.05,
 lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
     cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03))
 
-color = (0, 255, 0)
-
-# Take first frame and find corners in it
-frameId = cap.get(1)  # current frame number
-
-frameRate = cap.get(5)  # frame rate
-
-ret, old_frame = cap.read()
-
-old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
-print(old_gray.shape)
-p0 = []
-
-p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
-
-# print(p0[0])
-p0 = np.flip(p0, axis=2)
-# print(p0[0])
-
-signals = []
-disp = []
-signals.append(p0)
-signals = np.asarray(signals)
-currentframe = 1
-mask = np.zeros_like(old_frame)
-frames_count = 0
-calculated = 0
-prev_rates = []
-while(ret):
-
-    frameId = cap.get(1)  # current frame number
-    ret, frame = cap.read()
-    if(ret == False):
-        break
-    if(frameId % math.floor(frameRate) == 0 or frameId % math.floor(frameRate) == math.floor(frameRate/2)):
-        # frame=frame[dimensions[0]:dimensions[2],dimensions[1]+400:dimensions[3]]
-        frames_count += 1
-        frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-
-        # p1, st, err = cv.calcOpticalFlowPyrLK(
-        #     old_gray, frame_gray, p0, None, **lk_params)
-
-        p1 = optical_flow_harris(frame_gray, old_gray, p0)
-        p1 = np.asarray(p1)
-        print("new positions", p1.shape)
-        if frames_count == 1:
-            disp.append(calcdisplacement(signals, currentframe, p1))
-            disp = np.asarray(disp)
-        else:
-            disp = np.vstack((disp, calcdisplacement(
-                signals, currentframe, p1)))
-        if frames_count >= 60 and frames_count % 2 == 0:
-            # print(frameId)
-            components_rates = get_rates(disp)
-            if frames_count == 60:
-                prev_rates.append(components_rates[0, 0])
-            else:
-                rates_diff = np.absolute(
-                    components_rates[:, 0]-prev_rates[-1])
-                prev_rates.append(
-                    components_rates[np.argmin(rates_diff), 0])
-            disp = disp[2:, :]
-            calculated += 1
-
-        currentframe += 1
-        # good_new = p1[st == 1]
-        # st = np.ones((len(p0)))
-        # good_old = p0[st == 1]
-
-        # for k, (new, old) in enumerate(zip(good_new, good_old)):
-
-        #     a, b = new.ravel()
-        #     c, d = old.ravel()
-        #     mask = cv.line(mask, (a, b), (c, d), color, 2)
-        #     frame = cv.circle(frame, (b, a), 5, color, -1)
-
-        output = cv.add(frame, mask)
-        old_gray = frame_gray.copy()
-        p0 = p1
-        cv.imshow("sparse optical flow", output)
-
-        if cv.waitKey(10) & 0xFF == ord('q'):
-            break
-
-print(prev_rates)
-cap.release()
-cv.destroyAllWindows()
+# cap = cv.VideoCapture(
+#     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi",
+               feature_params, lk_params, "results.txt")
