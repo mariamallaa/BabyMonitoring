@@ -87,15 +87,15 @@ def optical_flow_harris(nxt, prev, p0):
                     p2.append([[u[i-w, j-w]*math.cos(v[i-w, j-w])+p0[h][0][0],
                                 u[i-w, j-w]*math.sin(v[i-w, j-w]) + p0[h][0][1]]])
                 else:
-                    print("out of range")
+                    #print("out of range")
                     p2.append([[p0[h][0][0], p0[h][0][1]]])
                 h = h+1
-    print("z", z)
-    print("negative:", p2[-3])
-    if z < 28:
-        print("p0", p0)
-        print(l, m
-              )
+    # print("z", z)
+    # print("negative:", p2[-3])
+    # if z < 28:
+    #     print("p0", p0)
+    #     print(l, m
+    #           )
     return u, v, p2
 
 
@@ -157,12 +157,12 @@ def get_rates(disp):
     length = len(differences)
     differences = differences[int(0.25*length):int(0.75*length)+1]
     disp2 = disp2[differences]
-    print(disp2.shape)
+    # print(disp2.shape)
 
     filtered_signals = remove_noise(disp2)
     components = get_components_pca(filtered_signals)
     #components = pca_pattern(filtered_signals)
-    print(components.shape)
+    # print(components.shape)
     #components = get_components_ica(filterd_signals)
     # for i in range(components.shape[1]):
     #     plt.plot(components[:, i])
@@ -187,7 +187,7 @@ def get_rates(disp):
     rates = np.asarray(rates)
     # print(rates.shape)
     rates = rates[rates[:, 1].argsort()]
-    print(rates)
+    # print(rates)
     return rates
 
 
@@ -220,11 +220,11 @@ def projectData(X, U, K):
 
 def pca_pattern(X):
     normalized_X, mu = featureNormalize(X)
-    print("shape=", X.shape, "normalized=", normalized_X.shape)
+    #print("shape=", X.shape, "normalized=", normalized_X.shape)
     u, s = pca(normalized_X)
-    print("eigenvectors=", u.shape)
+    #print("eigenvectors=", u.shape)
     pca_components = projectData(normalized_X, u, 5)
-    print("components", pca_components.shape)
+    #print("components", pca_components.shape)
     return pca_components
 
 
@@ -246,7 +246,7 @@ def breathing_rate(video, feature_params, lk_params, results_file):
     ret, old_frame = cap.read()
 
     old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
-    print(old_gray.shape)
+    # print(old_gray.shape)
     p0 = []
 
     p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
@@ -275,12 +275,12 @@ def breathing_rate(video, feature_params, lk_params, results_file):
             frames_count += 1
             frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
-            p1, st, err = cv.calcOpticalFlowPyrLK(
-                old_gray, frame_gray, p0, None, **lk_params)
+            # p1, st, err = cv.calcOpticalFlowPyrLK(
+            #     old_gray, frame_gray, p0, None, **lk_params)
 
-            # u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
-            # p1 = np.asarray(p1)
-            # print("new positions", p1.shape)
+            u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
+            p1 = np.asarray(p1)
+
             if frames_count == 1:
                 disp.append(calcdisplacement(signals, currentframe, p1))
                 disp = np.asarray(disp)
@@ -326,5 +326,5 @@ lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
 
 # cap = cv.VideoCapture(
 #     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi",
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\baby.mp4",
                feature_params, lk_params, "results.txt")
