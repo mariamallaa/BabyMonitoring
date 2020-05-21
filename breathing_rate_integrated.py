@@ -54,49 +54,36 @@ def optical_flow_harris(nxt, prev, p0):
     h = 0
     y = 0
     z = 0
-    for i in range(w, prev.shape[0]):
-        for j in range(w, prev.shape[1]):
+    for u in range(len(p0)):
+        
+            
+        i=int(p0[u][0][1])
+        j=int(p0[u][0][0])
+         
+        if(i-w<0 or j-w<0):
+            p2.append[[[p0[u][0][0], p0[u][0][1]]]]
+            continue
+        Ix = fx[i-w:i+w+1, j-w:j+w+1]
+        Iy = fy[i-w:i+w+1, j-w:j+w+1]
+        It = ft[i-w:i+w+1, j-w:j+w+1]
+        Ix = np.reshape(Ix, 225).T
+        Iy = np.reshape(Iy, 225).T
+        It = np.reshape(It, 225).T
 
-            if(prev2[i-w, j-w] == 1):
-                # print("p")
-                # print(i, j)
-                l = i-w
-                m = j-w
-                z += 1
+        b = -It
+        A = np.array([Ix, Iy]).T
 
-                y = y+1
-                Ix = fx[i-w:i+w+1, j-w:j+w+1]
-                Iy = fy[i-w:i+w+1, j-w:j+w+1]
-                It = ft[i-w:i+w+1, j-w:j+w+1]
-                Ix = np.reshape(Ix, 225).T
-                Iy = np.reshape(Iy, 225).T
-                It = np.reshape(It, 225).T
-
-                b = -It
-                A = np.array([Ix, Iy]).T
-
-                nu = np.matmul(np.linalg.pinv(A), b)
-
-                u[i-w, j-w] = nu[0]
-                v[i-w, j-w] = nu[1]
-                np_arr1 = np.array([u[i, j]*math.cos(v[i, j])])
-                np_arr2 = np.array(u[i, j]*math.sin(v[i, j]))
-                p1.append([[u[i-w, j-w]*math.cos(v[i-w, j-w])],
-                           [u[i-w, j-w]*math.sin(v[i-w, j-w])]])
-                if(u[i-w, j-w]*math.cos(v[i-w, j-w])+p0[h][0][0] < shapex and u[i-w, j-w]*math.cos(v[i-w, j-w])+p0[h][0][0] >= 0 and u[i-w, j-w]*math.sin(v[i-w, j-w]) + p0[h][0][1] < shapey and u[i-w, j-w]*math.sin(v[i-w, j-w]) + p0[h][0][1] >= 0):
-                    p2.append([[u[i-w, j-w]*math.cos(v[i-w, j-w])+p0[h][0][0],
-                                u[i-w, j-w]*math.sin(v[i-w, j-w]) + p0[h][0][1]]])
-                else:
-                    print("out of range")
-                    p2.append([[p0[h][0][0], p0[h][0][1]]])
-                h = h+1
-    print("z", z)
-    print("negative:", p2[-3])
-    if z < 28:
-        print("p0", p0)
-        print(l, m
-              )
-    return u, v, p2
+        nu = np.matmul(np.linalg.pinv(A), b)
+       
+        if(nu[0]*math.cos(nu[1])+p0[h][0][0] < shapex and nu[0]*math.cos(nu[1])+p0[h][0][0] >= 0 and nu[0]*math.sin(nu[1]) + p0[h][0][1] < shapey and nu[0]*math.sin(nu[1]) + p0[h][0][1] >= 0):
+            p2.append([[nu[0]*math.cos(nu[1])+p0[h][0][0],
+                        nu[0]*math.sin(nu[1]) + p0[h][0][1]]])
+        else:
+            print("out of range")
+            p2.append([[p0[h][0][0], p0[h][0][1]]])
+        h = h+1
+  
+    return  p2
 
 
 def calcdisplacement(signals, currentframe, p1):
@@ -286,7 +273,7 @@ while(ret):
         # p1, st, err = cv.calcOpticalFlowPyrLK(
         #     old_gray, frame_gray, p0, None, **lk_params)
 
-        u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
+        p1 = optical_flow_harris(frame_gray, old_gray, p0)
         p1 = np.asarray(p1)
         print("new positions", p1.shape)
         if frames_count == 1:
