@@ -57,8 +57,8 @@ def optical_flow_harris(nxt, prev, p0):
     for u in range(len(p0)):
         
             
-        i=int(p0[u][0][1])
-        j=int(p0[u][0][0])
+        i=int(p0[u][0][0])
+        j=int(p0[u][0][1])
          
         if(i-w<0 or j-w<0):
             p2.append[[[p0[u][0][0], p0[u][0][1]]]]
