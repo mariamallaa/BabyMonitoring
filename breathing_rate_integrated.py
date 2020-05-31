@@ -55,13 +55,12 @@ def optical_flow_harris(nxt, prev, p0):
     y = 0
     z = 0
     for u in range(len(p0)):
-        
-            
-        i=int(p0[u][0][0])
-        j=int(p0[u][0][1])
-         
-        if(i-w<0 or j-w<0):
-            p2.append[[[p0[u][0][0], p0[u][0][1]]]]
+
+        i = int(p0[u][0][0])
+        j = int(p0[u][0][1])
+
+        if(i-w < 0 or j-w < 0):
+            p2.append([[p0[u][0][0], p0[u][0][1]]])
             continue
         Ix = fx[i-w:i+w+1, j-w:j+w+1]
         Iy = fy[i-w:i+w+1, j-w:j+w+1]
@@ -74,7 +73,7 @@ def optical_flow_harris(nxt, prev, p0):
         A = np.array([Ix, Iy]).T
 
         nu = np.matmul(np.linalg.pinv(A), b)
-       
+
         if(nu[0]*math.cos(nu[1])+p0[h][0][0] < shapex and nu[0]*math.cos(nu[1])+p0[h][0][0] >= 0 and nu[0]*math.sin(nu[1]) + p0[h][0][1] < shapey and nu[0]*math.sin(nu[1]) + p0[h][0][1] >= 0):
             p2.append([[nu[0]*math.cos(nu[1])+p0[h][0][0],
                         nu[0]*math.sin(nu[1]) + p0[h][0][1]]])
@@ -82,8 +81,8 @@ def optical_flow_harris(nxt, prev, p0):
             print("out of range")
             p2.append([[p0[h][0][0], p0[h][0][1]]])
         h = h+1
-  
-    return  p2
+
+    return p2
 
 
 def calcdisplacement(signals, currentframe, p1):
@@ -262,11 +261,12 @@ def breathing_rate(video, feature_params, lk_params, results_file):
             frames_count += 1
             frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
-            p1, st, err = cv.calcOpticalFlowPyrLK(
-                old_gray, frame_gray, p0, None, **lk_params)
+            # p1, st, err = cv.calcOpticalFlowPyrLK(
+            #     old_gray, frame_gray, p0, None, **lk_params)
 
-            # u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
-            # p1 = np.asarray(p1)
+            p1 = optical_flow_harris(frame_gray, old_gray, p0)
+            p1 = np.asarray(p1)
+
             # print("new positions", p1.shape)
             if frames_count == 1:
                 disp.append(calcdisplacement(signals, currentframe, p1))
@@ -313,5 +313,5 @@ lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
 
 # cap = cv.VideoCapture(
 #     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi",
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\6.avi",
                feature_params, lk_params, "results.txt")
