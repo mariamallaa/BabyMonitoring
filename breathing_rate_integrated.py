@@ -54,6 +54,143 @@ def optical_flow_harris(nxt, prev, p0):
     h = 0
     y = 0
     z = 0
+    for u in range(len(p0)):
+        
+            
+        i=int(p0[u][0][0])
+        j=int(p0[u][0][1])
+         
+        if(i-w<0 or j-w<0):
+            p2.append[[[p0[u][0][0], p0[u][0][1]]]]
+            continue
+        Ix = fx[i-w:i+w+1, j-w:j+w+1]
+        Iy = fy[i-w:i+w+1, j-w:j+w+1]
+        It = ft[i-w:i+w+1, j-w:j+w+1]
+        Ix = np.reshape(Ix, 225).T
+        Iy = np.reshape(Iy, 225).T
+        It = np.reshape(It, 225).T
+
+        b = -It
+        A = np.array([Ix, Iy]).T
+
+        nu = np.matmul(np.linalg.pinv(A), b)
+       
+        if(nu[0]*math.cos(nu[1])+p0[h][0][0] < shapex and nu[0]*math.cos(nu[1])+p0[h][0][0] >= 0 and nu[0]*math.sin(nu[1]) + p0[h][0][1] < shapey and nu[0]*math.sin(nu[1]) + p0[h][0][1] >= 0):
+            p2.append([[nu[0]*math.cos(nu[1])+p0[h][0][0],
+                        nu[0]*math.sin(nu[1]) + p0[h][0][1]]])
+        else:
+            print("out of range")
+            p2.append([[p0[h][0][0], p0[h][0][1]]])
+        h = h+1
+  
+    return  p2
+
+
+def calcdisplacement(signals, currentframe, p1):
+    disp = []
+    # print(p1.shape)
+    for i in range(p1.shape[0]):
+        dispxy = []
+        x = p1[i, 0, 0]-signals[0, i, 0, 0]
+        y = p1[i, 0, 1]-signals[0, i, 0, 1]
+        dist = math.sqrt((x)**2 + (y)**2)
+        # dispxy.append([dist])
+        disp.append(dist)
+    print("displacement done")
+
+    return disp
+
+
+def remove_noise(signals):
+    filtered_signals = []
+    for i in range(signals.shape[0]):
+        nsamples = len(signals[i])
+        #t = np.linspace(0, nsamples/2, nsamples, endpoint=False)
+        # plt.plot(t, signals[i], label="Noisy")
+
+        b, a = butter(5, [0.2, 0.6], btype='band')
+        filtered = lfilter(b, a, signals[i])
+        # plt.plot(t, filtered, label="filtered")
+        # plt.legend(loc='upper left')
+        # plt.show()
+        filtered_signals.append(filtered)
+
+    filtered_signals = np.asarray(filtered_signals)
+    filtered_signals = np.transpose(filtered_signals)
+    return filtered_signals
+
+
+def get_components_pca(signals):
+    pca = PCA(n_components=5)
+    pca_components = pca.fit_transform(signals)
+    return pca_components
+
+
+def get_components_ica(signals):
+    ica = FastICA(n_components=5)
+    ica_components = ica.fit_transform(signals)
+    return ica_components
+
+
+def get_rates(disp):
+    disp2 = disp.transpose()
+    print(disp2.shape)
+    f_s = 2
+    differences = []
+    for i in range(disp2.shape[0]):
+        differences.append(np.max(np.diff(disp2[i])))
+    differences = np.asarray(differences)
+    differences = np.argsort(differences)
+    length = len(differences)
+    differences = differences[int(0.25*length):int(0.75*length)+1]
+    disp2 = disp2[differences]
+    print(disp2.shape)
+
+    filtered_signals = remove_noise(disp2)
+    components = get_components_pca(filtered_signals)
+    #components = pca_pattern(filtered_signals)
+    print(components.shape)
+    #components = get_components_ica(filterd_signals)
+    # for i in range(components.shape[1]):
+    #     plt.plot(components[:, i])
+    #     plt.show()
+
+    rates = []
+    for i in range(components.shape[1]):
+
+        X = fftpack.fft(components[:, i])
+        freqs = fftpack.fftfreq(len(components[:, i])) * f_s
+        psd = np.abs(X)**2
+        psd = psd/np.sum(psd)
+        uncertainty = entropy(psd, base=2)
+        #uncertainty = np.max(psd)/np.sum(psd)
+        variance = np.var(psd)
+
+        offset = next((i for i, x in enumerate(freqs) if x > 0.15), None)
+        rate = 60*freqs[np.argmax(psd[freqs > 0.15])+offset]
+        # if uncertainty < 2 and rate > 9:
+        rates.append([rate, uncertainty, variance])
+
+    rates = np.asarray(rates)
+    # print(rates.shape)
+    rates = rates[rates[:, 1].argsort()]
+    print(rates)
+    return rates
+
+
+def featureNormalize(X):
+    normalized_X = X
+    mu = 0
+    # TODO 1: Fill the function featureNormalize(X)
+    mu = np.mean(X, axis=0)
+    normalized_X = X-mu
+
+    return normalized_X, mu
+
+
+def pca(X):
+    # TODO 2: Fill the function PCA(X)
+    covariance = np.cov(X.transpose())
     # print(covariance)
     u, s, vh = np.linalg.svd(covariance, full_matrices=True)
     return u, s
@@ -70,11 +207,11 @@ def projectData(X, U, K):
 
 def pca_pattern(X):
     normalized_X, mu = featureNormalize(X)
-    #print("shape=", X.shape, "normalized=", normalized_X.shape)
+    print("shape=", X.shape, "normalized=", normalized_X.shape)
     u, s = pca(normalized_X)
-    #print("eigenvectors=", u.shape)
+    print("eigenvectors=", u.shape)
     pca_components = projectData(normalized_X, u, 5)
-    #print("components", pca_components.shape)
+    print("components", pca_components.shape)
     return pca_components
 
 
@@ -83,6 +220,7 @@ def pca_pattern(X):
 # C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\1 cyc\\rgb.avi
 # D:\breathing2
 # D:\\GP\\good.mp4
+
 
 def breathing_rate(video, feature_params, lk_params, results_file):
     output_file = open(results_file, "w+")
@@ -95,7 +233,7 @@ def breathing_rate(video, feature_params, lk_params, results_file):
     ret, old_frame = cap.read()
 
     old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
-    # print(old_gray.shape)
+    print(old_gray.shape)
     p0 = []
 
     p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
@@ -124,12 +262,12 @@ def breathing_rate(video, feature_params, lk_params, results_file):
             frames_count += 1
             frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
-            # p1, st, err = cv.calcOpticalFlowPyrLK(
-            #     old_gray, frame_gray, p0, None, **lk_params)
+            p1, st, err = cv.calcOpticalFlowPyrLK(
+                old_gray, frame_gray, p0, None, **lk_params)
 
-            u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
-            p1 = np.asarray(p1)
-
+            # u, v, p1 = optical_flow_harris(frame_gray, old_gray, p0)
+            # p1 = np.asarray(p1)
+            # print("new positions", p1.shape)
             if frames_count == 1:
                 disp.append(calcdisplacement(signals, currentframe, p1))
                 disp = np.asarray(disp)
@@ -175,5 +313,5 @@ lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
 
 # cap = cv.VideoCapture(
 #     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\baby.mp4",
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi",
                feature_params, lk_params, "results.txt")
