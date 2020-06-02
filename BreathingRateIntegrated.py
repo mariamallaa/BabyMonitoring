@@ -107,7 +107,7 @@ def optical_flow_harris(nxt, prev, p0):
 
     for i in range(len(p0)):
         j = j+1
-        prev2[int(p0[i][0][0]), int(p0[i][0][1])] = 1
+        prev2[int(round(p0[i][0][0])), int(round(p0[i][0][1]))] = 1
         # prev2
     # print("Sum:",np.sum(prev2))
     kernel_x = np.array([[-1., 1.], [-1., 1.]])
@@ -129,8 +129,8 @@ def optical_flow_harris(nxt, prev, p0):
     z = 0
     for u in range(len(p0)):
 
-        i = int(p0[u][0][0])
-        j = int(p0[u][0][1])
+        i = int(p0[u][0][0])-w
+        j = int(p0[u][0][1])-w
 
         if(i-w < 0 or j-w < 0):
             p2.append([[p0[u][0][0], p0[u][0][1]]])
@@ -147,14 +147,12 @@ def optical_flow_harris(nxt, prev, p0):
 
         nu = np.matmul(np.linalg.pinv(A), b)
 
-        if(nu[0]*math.cos(nu[1])+p0[h][0][0] < shapex and nu[0]*math.cos(nu[1])+p0[h][0][0] >= 0 and nu[0]*math.sin(nu[1]) + p0[h][0][1] < shapey and nu[0]*math.sin(nu[1]) + p0[h][0][1] >= 0):
-            p2.append([[nu[0]*math.cos(nu[1])+p0[h][0][0],
-                        nu[0]*math.sin(nu[1]) + p0[h][0][1]]])
+        if(nu[0]*math.cos(nu[1])+p0[u][0][0] < shapex and nu[0]*math.cos(nu[1])+p0[u][0][0] >= 0 and nu[0]*math.sin(nu[1]) + p0[u][0][1] < shapey and nu[0]*math.sin(nu[1]) + p0[u][0][1] >= 0):
+            p2.append([[nu[0]*math.cos(nu[1])+p0[u][0][0],
+                        nu[0]*math.sin(nu[1]) + p0[u][0][1]]])
         else:
             print("out of range")
-            p2.append([[p0[h][0][0], p0[h][0][1]]])
-        h = h+1
-
+            p2.append([[p0[u][0][0], p0[u][0][1]]])
     return p2
 
 
@@ -168,7 +166,7 @@ def calcdisplacement(signals, currentframe, p1):
         dist = math.sqrt((x)**2 + (y)**2)
         # dispxy.append([dist])
         disp.append(dist)
-    print("displacement done")
+    #print("displacement done")
 
     return disp
 
@@ -207,7 +205,7 @@ def get_components_ica(signals):
 
 def get_rates(disp, lower, upper):
     disp2 = disp.transpose()
-    print(disp2.shape)
+    # print(disp2.shape)
     f_s = 2
     differences = []
     for i in range(disp2.shape[0]):
@@ -217,16 +215,10 @@ def get_rates(disp, lower, upper):
     length = len(differences)
     differences = differences[int(0.25*length):int(0.75*length)+1]
     disp2 = disp2[differences]
-    print(disp2.shape)
+    # print(disp2.shape)
 
     filtered_signals = remove_noise(disp2, lower, upper)
     components = get_components_pca(filtered_signals)
-    #components = pca_pattern(filtered_signals)
-    print(components.shape)
-    #components = get_components_ica(filterd_signals)
-    # for i in range(components.shape[1]):
-    #     plt.plot(components[:, i])
-    #     plt.show()
 
     rates = []
     for i in range(components.shape[1]):
@@ -247,7 +239,7 @@ def get_rates(disp, lower, upper):
     rates = np.asarray(rates)
     # print(rates.shape)
     rates = rates[rates[:, 1].argsort()]
-    print(rates)
+   # print(rates)
     return rates
 
 
@@ -288,13 +280,6 @@ def pca_pattern(X):
     return pca_components
 
 
-# C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\1 cyc\\rgb.avi
-# C:\\Users\\Maram\\Desktop\\GP2\\Dataset\\Breathing\\sample breathing.mp4
-# C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\1 cyc\\rgb.avi
-# D:\breathing2
-# D:\\GP\\good.mp4
-
-
 def breathing_rate(video, feature_params, lk_params, results_file, age):
     minRate = 0
     maxRate = 0
@@ -324,12 +309,10 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
     ret, old_frame = cap.read()
 
     old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
-    print(old_gray.shape)
-    p0 = []
+    # print(old_gray.shape)
+    #p0 = []
 
     p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
-
-    #p0 = np.flip(p0, axis=2)
 
     signals = []
     disp = []
@@ -351,14 +334,12 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
             frames_count += 1
             frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
-            p1, st, err = cv.calcOpticalFlowPyrLK(
-                old_gray, frame_gray, p0, None, **lk_params)
+            # p1, st, err = cv.calcOpticalFlowPyrLK(
+            #     old_gray, frame_gray, p0, None, **lk_params)
 
-            #p1 = optical_flow_harris(frame_gray, old_gray, p0)
-            # p1 = optical_flow_harris_old(frame_gray, old_gray, p0)
-            # p1 = np.asarray(p1)
-
-            # print("new positions", p1.shape)
+            p0 = np.flip(p0, axis=2)
+            p1 = optical_flow_harris(frame_gray, old_gray, p0)
+            p1 = np.asarray(p1)
             if frames_count == 1:
                 disp.append(calcdisplacement(signals, currentframe, p1))
                 disp = np.asarray(disp)
@@ -366,20 +347,26 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
                 disp = np.vstack((disp, calcdisplacement(
                     signals, currentframe, p1)))
             if frames_count >= 60 and frames_count % 2 == 0:
-                # print(frameId)
+
                 components_rates = get_rates(
                     disp, (minRate)/60, (maxRate+7)/60)
                 if frames_count == 60:
                     prev_rates.append(components_rates[0, 0])
                     output_file.write(str(components_rates[0, 0])+"\n")
+                    print("current breathing rate=", components_rates[0, 0])
+                    if components_rates[0, 0] < minRate or components_rates[0, 0] > maxRate:
+                        print("DANGER")
+
                 else:
                     rates_diff = np.absolute(
                         components_rates[:, 0]-prev_rates[-1])
                     current_rate = components_rates[np.argmin(rates_diff), 0]
                     prev_rates.append(current_rate)
-                    if current_rate<minRate or current_rate>maxRate:
+                    print("current breathing rate=", current_rate)
+                    if current_rate < minRate or current_rate > maxRate:
                         print("DANGER")
                     output_file.write(str(current_rate)+"\n")
+
                 disp = disp[2:, :]
                 calculated += 1
 
@@ -406,5 +393,5 @@ lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
 
 # cap = cv.VideoCapture(
 #     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\22.avi",
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\6.avi",
                feature_params, lk_params, "results.txt", 30)
