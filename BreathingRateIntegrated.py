@@ -313,7 +313,7 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
     #p0 = []
 
     p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
-
+    p0 = np.flip(p0, axis=2)
     signals = []
     disp = []
     signals.append(p0)
@@ -337,7 +337,6 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
             # p1, st, err = cv.calcOpticalFlowPyrLK(
             #     old_gray, frame_gray, p0, None, **lk_params)
 
-            p0 = np.flip(p0, axis=2)
             p1 = optical_flow_harris(frame_gray, old_gray, p0)
             p1 = np.asarray(p1)
             if frames_count == 1:
