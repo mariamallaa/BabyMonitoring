@@ -166,7 +166,6 @@ def calcdisplacement(signals, currentframe, p1):
         dist = math.sqrt((x)**2 + (y)**2)
         # dispxy.append([dist])
         disp.append(dist)
-    print("displacement done")
 
     return disp
 
@@ -194,7 +193,7 @@ def remove_noise(signals, lower, upper):
 def get_components_pca(signals):
     pca = PCA(n_components=5)
     pca_components = pca.fit_transform(signals)
-    return pca_components
+    return pca.explained_variance_, pca_components
 
 
 def get_components_ica(signals):
@@ -218,13 +217,10 @@ def get_rates(disp, lower, upper):
     print(disp2.shape)
 
     filtered_signals = remove_noise(disp2, lower, upper)
-    components = get_components_pca(filtered_signals)
+    #("filtered", filtered_signals.shape)
+    explained_variance, components = get_components_pca(filtered_signals)
+
     #components = pca_pattern(filtered_signals)
-    print(components.shape)
-    #components = get_components_ica(filterd_signals)
-    # for i in range(components.shape[1]):
-    #     plt.plot(components[:, i])
-    #     plt.show()
 
     rates = []
     for i in range(components.shape[1]):
@@ -239,8 +235,11 @@ def get_rates(disp, lower, upper):
 
         offset = next((i for i, x in enumerate(freqs) if x > 0.15), None)
         rate = 60*freqs[np.argmax(psd[freqs > 0.15])+offset]
-        # if uncertainty < 2 and rate > 9:
-        rates.append([rate, uncertainty, variance])
+        #uncertaintyModified = np.max(psd[freqs > 0.15])/np.sum(psd)
+
+        rates.append([rate, uncertainty, variance,
+                      explained_variance[i]]
+                     )
 
     rates = np.asarray(rates)
     # print(rates.shape)
@@ -284,13 +283,6 @@ def pca_pattern(X):
     pca_components = projectData(normalized_X, u, 5)
     print("components", pca_components.shape)
     return pca_components
-
-
-# C:\\Users\\Maram\\Desktop\\GP2\\5518996\\sleep dataset\\1 cyc\\rgb.avi
-# C:\\Users\\Maram\\Desktop\\GP2\\Dataset\\Breathing\\sample breathing.mp4
-# C:\\Users\\Mariam Alaa\\Downloads\\5518996\\sleep dataset\\sleep dataset\\1 cyc\\rgb.avi
-# D:\breathing2
-# D:\\GP\\good.mp4
 
 
 def breathing_rate(video, feature_params, lk_params, results_file, age):
@@ -352,13 +344,13 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
             # p1, st, err = cv.calcOpticalFlowPyrLK(
             #     old_gray, frame_gray, p0, None, **lk_params)
 
-            # p1 = optical_flow_harris_old(frame_gray, old_gray, p0)
             p1 = optical_flow_harris(frame_gray, old_gray, p0)
             p1 = np.asarray(p1)
 
             # print("new positions", p1.shape)
             if frames_count == 1:
-                disp.append(calcdisplacement(signals, currentframe, p1))
+                disp.append(calcdisplacement(
+                    signals, currentframe, p1))
                 disp = np.asarray(disp)
             else:
                 disp = np.vstack((disp, calcdisplacement(
@@ -367,19 +359,35 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
                 # print(frameId)
                 components_rates = get_rates(
                     disp, (minRate)/60, (maxRate+7)/60)
+
                 if frames_count == 60:
-                    components_rates = components_rates[components_rates[:, 2].argsort()[
+                    components_rates = components_rates[components_rates[:, 3].argsort()[
                         ::-1]]
-                    prev_rates.append(components_rates[0, 0])
-                    output_file.write(str(components_rates[0, 0])+"\n")
+                    current_rate = components_rates[0, 0]
+                    #prev_rates.append(components_rates[0, 0])
+                    #output_file.write(str(components_rates[0, 0])+"\n")
                 else:
-                    rates_diff = np.absolute(
-                        components_rates[:, 0]-prev_rates[-1])
-                    current_rate = components_rates[np.argmin(rates_diff), 0]
-                    prev_rates.append(current_rate)
-                    if current_rate < minRate or current_rate > maxRate:
-                        print("DANGER")
-                    output_file.write(str(current_rate)+"\n")
+                    #prev_avg = sum(prev_rates)/len(prev_rates)
+                    lowest_uncertainty = components_rates[0, 0]
+                    print("best uncertainty", lowest_uncertainty)
+                    highest_variance = components_rates[components_rates[:, 3].argsort()[
+                        ::-1]][0, 0]
+                    print("best variance", highest_variance)
+                    if np.absolute(lowest_uncertainty-prev_rates[-1]) < np.absolute(highest_variance-prev_rates[-1]):
+                        current_rate = lowest_uncertainty
+                    else:
+                        current_rate = highest_variance
+
+                    # rates_diff = np.absolute(
+                    #     components_rates[:, 0]-prev_avg)
+                    # current_rate = components_rates[np.argmin(rates_diff), 0]
+
+                prev_rates.append(current_rate)
+                print(current_rate)
+                if current_rate < minRate or current_rate > maxRate:
+                    print("DANGER")
+                output_file.write(str(current_rate)+"\n")
+
                 disp = disp[2:, :]
                 calculated += 1
 
@@ -387,7 +395,17 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
 
             output = cv.add(frame, mask)
             old_gray = frame_gray.copy()
-            p0 = p1
+
+            color = (0, 255, 0)
+            for k, (new, old) in enumerate(zip(p1, p0)):
+
+                a, b = new.ravel()
+                c, d = old.ravel()
+                mask = cv.line(mask, (int(b), int(a)),
+                               (int(d), int(c)), color, 2)
+                frame = cv.circle(frame, (int(a), int(b)), 5, color, -1)
+                p0 = p1
+
             cv.imshow("sparse optical flow", output)
 
             if cv.waitKey(10) & 0xFF == ord('q'):
@@ -398,13 +416,14 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
     cv.destroyAllWindows()
 
 
-feature_params = dict(maxCorners=50, qualityLevel=0.05,
-                      minDistance=30, blockSize=3)
-
+# feature_params = dict(maxCorners=50, qualityLevel=0.05,
+#                       minDistance=30, blockSize=3)
+feature_params = dict(maxCorners=100, qualityLevel=0.05,
+                      minDistance=20, blockSize=3)
 lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
     cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03))
 
 # cap = cv.VideoCapture(
 #     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\16.avi",
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\23.avi",
                feature_params, lk_params, "results.txt", 30)
