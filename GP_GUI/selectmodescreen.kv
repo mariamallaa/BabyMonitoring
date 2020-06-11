@@ -1,0 +1,34 @@
+#:import Animation kivy.animation.Animation
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+<SelectModeScreen>:
+    primary_color: 1, 0, 0, 1
+    secondary_color: 1, 0, 0, 1
+    tertiary_color: 1, 0, 0, 1
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "baby.jpg"
+    FloatLayout:
+        ThemedButton:
+            id: playing_mode_selected
+            size_hint: .9, .05
+            pos_hint: {"top": .3, "center_x": .5}
+            text: "[u]Playing[/u]"
+            on_press: 
+                root.parent.transition = SlideTransition(direction='left')
+                root.parent.current = "playing_screen"
+        ThemedButton:
+            id: sleeping_mode_selected
+            size_hint: .9, .05
+            pos_hint: {"top": .225, "center_x": .5}
+            text: "[u]Sleeping[/u]"
+            on_press: 
+                root.parent.transition = SlideTransition(direction='left')
+                root.parent.current = "sleeping_screen"
+
+        
+        
+            
+           
