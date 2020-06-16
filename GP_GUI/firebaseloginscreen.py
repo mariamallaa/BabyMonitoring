@@ -94,16 +94,16 @@ class FirebaseLoginScreen(Screen, EventDispatcher):
         if os.path.exists(self.refresh_token_file):
             self.load_saved_account()
 
-    def sign_up(self, email, password,BabyAge):
+    def sign_up(self, email, password):
         """If you don't want to use Firebase, just overwrite this method and
         do whatever you need to do to sign the user up with their email and
         password.
         """
         if self.debug:
-            print("Attempting to create a new account: ", email, password,BabyAge)
+            print("Attempting to create a new account: ", email, password)
         signup_url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + self.web_api_key
         signup_payload = dumps(
-            {"email": email, "password": password, "babyage" : BabyAge,"returnSecureToken": "true"})
+            {"email": email, "password": password, "returnSecureToken": "true"})
 
         UrlRequest(signup_url, req_body=signup_payload,
                    on_success=self.successful_login,

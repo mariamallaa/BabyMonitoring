@@ -3,9 +3,9 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 import cv2 as cv
 import numpy as np
+from collections import namedtuple
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
-
 
 def getImageDifference(first, second):
     return cv.absdiff(first, second)
@@ -32,7 +32,6 @@ class PlayingScreen(Screen):
         DangerZone_pt2= (780,500)
 
         video_capture = cv.VideoCapture(0)
-        count = 0
         fgbg = cv.createBackgroundSubtractorMOG2()
         old_fg = 0
         output= 0

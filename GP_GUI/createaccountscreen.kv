@@ -19,13 +19,6 @@
             hint_text: "Email"
 
         ThemedInput:
-            id: BabyAge
-            size_hint: .9 ,.1
-            pos_hint: {"center_x": .5, "top": .575}
-            hint_text: "Your baby's age"
-
-
-        ThemedInput:
             id: password
             size_hint: .9 ,.1
             pos_hint: {"center_x": .5, "top": .45}
@@ -39,7 +32,7 @@
             
             on_release:
                 # Need to refer to the FirebaseLoginScreen
-                root.parent.parent.sign_up(email.text, password.text,BabyAge.text)
+                root.parent.parent.sign_up(email.text, password.text)
                 Animation(opacity=0, duration=0.5).start(message)
                 sign_in_button.opacity = 0
                 sign_in_button.disabled = True
