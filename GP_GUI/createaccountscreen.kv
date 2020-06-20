@@ -2,10 +2,15 @@
     primary_color: utils.get_color_from_hex("#EE682A")
     secondary_color: utils.get_color_from_hex("#060809")
     tertiary_color: (.25, .25, .25, 1)
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "logo3.jpg"
     FloatLayout:
         ThemedButton:
-            size_hint: .4, .05
-            pos_hint: {"center_x": .25, "top": .225}
+            size_hint: .3, .05
+            pos_hint: {"center_x": .1, "top": .95}
             text: "[u]Back[/u]"
             on_release:
                 root.parent.transition = SlideTransition(direction="right")
@@ -14,13 +19,13 @@
 
         ThemedInput:
             id: email
-            size_hint: .9 ,.1
-            pos_hint: {"center_x": .5, "top": .7}
+            size_hint: .6 ,.1
+            pos_hint: {"center_x": .5, "top": .560}
             hint_text: "Email"
 
         ThemedInput:
             id: password
-            size_hint: .9 ,.1
+            size_hint: .6 ,.1
             pos_hint: {"center_x": .5, "top": .45}
             hint_text: "Password"
             password: True
@@ -28,7 +33,7 @@
         ThemedButton:
             text: "[u]Create Account[/u]"
             size_hint: .4 ,.05
-            pos_hint: {"center_x": .75, "top": .325}
+            pos_hint: {"center_x": .5, "top": .3}
             
             on_release:
                 # Need to refer to the FirebaseLoginScreen

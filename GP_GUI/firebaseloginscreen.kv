@@ -5,11 +5,7 @@
     primary_color: 1, 0, 0, 1
     secondary_color: 1, 0, 0, 1
     tertiary_color: 1, 0, 0, 1
-    canvas.before:
-        Rectangle:
-            size: self.size
-            pos: self.pos
-            source: "baby.jpg"
+    
 
     on_sign_up_msg:
         create_account_screen.ids.message.text = self.sign_up_msg

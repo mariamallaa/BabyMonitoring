@@ -1,4 +1,20 @@
+
 <ThemedButton@ButtonBehavior+Label>:
+    markup: True
+    opacity: 1 if self.state == 'normal' else .8
+
+    bg_color: (98/255,98/255,88/255,1)
+    #color: app.login_secondary_color
+
+    canvas.before:
+        Color:
+            rgba: self.bg_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: 10,
+
+<ThemedButton1@ButtonBehavior+Label>:
     markup: True
     opacity: 1 if self.state == 'normal' else .8
 
@@ -35,8 +51,8 @@
     hint_text: ""
     password: False
     bg_color: (0,0,0,0)#app.login_primary_color
-    highlight_color1: (0,0,0,1)#app.login_secondary_color
-    highlight_color2: (0,0,0,1)#app.login_tertiary_color
+    highlight_color1: (98/255,98/255,88/255,1)#app.login_secondary_color
+    highlight_color2:  (98/255,98/255,88/255,1)#app.login_tertiary_color
     
 
     canvas.before:
@@ -61,7 +77,7 @@
 
         canvas.before:
             Color:
-                rgba: self.bottom_color if self.bottom_color else (0,0,0,1)
+                rgba: self.bottom_color if self.bottom_color else (98/255,98/255,88/255,1)
             Rectangle:
                 size: (self.size[0], self.size[1]/15.)
                 pos: self.pos
@@ -77,7 +93,7 @@
         text: "  " + root.hint_text
         size_hint: None, None
         size: self.texture_size
-        animated_center_y: .5
-        animated_x: .95
+        animated_center_y: .3
+        animated_x: .3
         pos_hint: {"center_y": self.animated_center_y, "right": self.animated_x}
 
