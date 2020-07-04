@@ -60,9 +60,6 @@ file1.close()
 ########################################################################################
 
 
-fgbg = cv.createBackgroundSubtractorMOG2()
-old_fg = 0
-output= 0
 #camera = cv.VideoCapture(0)
 '''
 while(1):
@@ -72,13 +69,14 @@ while(1):
     if not ret:
         break
 '''
-def Danger_zone(frame):
-    fgmask = fgbg.apply(frame)
-    output = cv.GaussianBlur(fgmask, (21, 21), 0)
+def Danger_zone(frame,old_fg,fgmask,output):
     
-    if old_fg is None:
-        old_fg = fgmask
-        return
+    
+    
+    #output= 0
+    print("in Danger Zone function")
+    
+    
 
     diff = cv.absdiff(old_fg,output)
 
@@ -107,9 +105,9 @@ def Danger_zone(frame):
             cv.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
         print(iou)
         
-        if(iou>=0.5):
+        if(iou>=0.4):
 
-            Danger_zone=frame[int(boundingboxpts[1]):int(boundingboxpts[3]),int(boundingboxpts[0]):int(boundingboxpts[2])]
+            #Danger_zone=frame[int(boundingboxpts[1]):int(boundingboxpts[3]),int(boundingboxpts[0]):int(boundingboxpts[2])]
             #show_images([Danger_zone])
             #dimensions=yoloboxes(Danger_zone,m,class_names)
             dimensions=get_face_BB(Danger_zone)
@@ -125,12 +123,13 @@ def Danger_zone(frame):
         old_fg  = diff
     
     draw = frame & maskRGB
-
+    '''
     cv.imshow('Main',frame)
-
+    
     k = cv.waitKey(30) & 0xff
     if k == 27:
         return
-
+    '''
+    return frame
 cap.release()
 cv.destroyAllWindows()

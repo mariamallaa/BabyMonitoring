@@ -1,12 +1,15 @@
 import numpy as np
 import argparse
 import cv2
-
+from commonfunctions import *
 prototxt='C:/Users/Mariam Alaa/Documents/GitHub/BabyMonitoringIntegration/weights/deploy.prototxt.txt'
 caffemodel='C:/Users/Mariam Alaa/Documents/GitHub/BabyMonitoringIntegration/weights/res10_300x300_ssd_iter_140000.caffemodel'
 def get_face_BB(image):
     net = cv2.dnn.readNetFromCaffe(prototxt, caffemodel)
     (h, w) = image.shape[:2]
+    #print("probbbbbbbbb")
+    #show_images([image])
+
     blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0,
 	    (300, 300), (104.0, 177.0, 123.0))
     print("[INFO] computing object detections...")
@@ -14,11 +17,12 @@ def get_face_BB(image):
     detections = net.forward()
     # loop over the detections
     dimensions=[]
+    #print(detections)
     for i in range(0, detections.shape[2]):
         # extract the confidence (i.e., probability) associated with the
         # prediction
         confidence = detections[0, 0, i, 2]
-
+        #print(confidence)
         # filter out weak detections by ensuring the `confidence` is
         # greater than the minimum confidence
         if confidence > 0.5:
@@ -36,6 +40,7 @@ def get_face_BB(image):
             cv2.putText(image, text, (startX, y),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
             dimensions.append([startX,startY,endX,endY])
+    #print(dimensions)
     return dimensions
 
 
