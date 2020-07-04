@@ -78,7 +78,7 @@ def Danger_zone(frame):
     
     if old_fg is None:
         old_fg = fgmask
-        continue
+        return
 
     diff = cv.absdiff(old_fg,output)
 
@@ -130,7 +130,7 @@ def Danger_zone(frame):
 
     k = cv.waitKey(30) & 0xff
     if k == 27:
-        break
+        return
 
 cap.release()
 cv.destroyAllWindows()
