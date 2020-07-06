@@ -7,14 +7,15 @@ from collections import namedtuple
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from Danger_Zone_integrated import *
-from bounding_box import *
+
 
 class PlayingScreen(Screen):
    def on_enter(self,**kwargs):
         fgbg = cv.createBackgroundSubtractorMOG2()
-        define_BB("D:\\GP\\GPTest\\9.mp4")
+        
+        bbpts=init_BB("karma rotated.mp4")
         #print("hellllllooooooooooooooooooooooooooo")
-        cap = cv.VideoCapture("D:\\GP\\GPTest\\9.mp4")
+        cap = cv.VideoCapture("karma rotated.mp4")
         print("camera open")
         old_fg = 0
         while(1):
@@ -29,7 +30,7 @@ class PlayingScreen(Screen):
                 old_fg = fgmask
                 continue
             
-            frame= Danger_zone(frame,old_fg,fgmask,output)
+            frame= Danger_zone(frame,old_fg,fgmask,output,False,bbpts)
             cv.imshow('Main',frame)
             
             k = cv.waitKey(30) & 0xff
