@@ -375,8 +375,8 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
 
 
             #####################################
-            if(face_dimensions==[] or face_dimensions_old==[]):
-                #is_face_same(face_dimensions_old,face_dimensions
+            if(face_dimensions==[] or face_dimensions_old==[] or is_face_same(face_dimensions_old,face_dimensions)):
+                #
                 frames_count += 1
                 
                 frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
