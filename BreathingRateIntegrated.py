@@ -207,6 +207,7 @@ def motion_detection(old_frame, curr_frame):
     _, diff = cv.threshold(diff, 50, 255, cv.THRESH_BINARY)
     diff = cv.medianBlur(diff, 3)
     if np.sum(diff):
+        print("motion detected")
         return True
 
     return False
@@ -244,7 +245,7 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
 
     p0 = cv.goodFeaturesToTrack(old_gray, mask=None, **feature_params)
 
-    #p0 = np.flip(p0, axis=2)
+    p0 = np.flip(p0, axis=2)
 
     signals = []
     disp = []
@@ -261,82 +262,84 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
         ret, frame = cap.read()
         if(ret == False):
             break
-        if not motion_detection(motion_old, frame):
-            if(frameId % math.floor(frameRate) == 0 or frameId % math.floor(frameRate) == math.floor(frameRate/2)):
+        # if not motion_detection(motion_old, frame):
+        # start if
+        if(frameId % math.floor(frameRate) == 0 or frameId % math.floor(frameRate) == math.floor(frameRate/2)):
 
-                frames_count += 1
-                frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+            frames_count += 1
+            frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
-                p1, st, err = cv.calcOpticalFlowPyrLK(
-                    old_gray, frame_gray, p0, None, **lk_params)
+            # p1, st, err = cv.calcOpticalFlowPyrLK(
+            #     old_gray, frame_gray, p0, None, **lk_params)
 
-                # p1 = optical_flow_harris(frame_gray, old_gray, p0)
-                # p1 = np.asarray(p1)
+            p1 = optical_flow_harris(frame_gray, old_gray, p0)
+            p1 = np.asarray(p1)
 
-                if frames_count == 1:
-                    disp.append(calcdisplacement(
-                        signals, currentframe, p1))
-                    disp = np.asarray(disp)
+            if frames_count == 1:
+                disp.append(calcdisplacement(
+                    signals, currentframe, p1))
+                disp = np.asarray(disp)
+            else:
+                disp = np.vstack((disp, calcdisplacement(
+                    signals, currentframe, p1)))
+            if frames_count >= 60 and frames_count % 2 == 0:
+
+                components_rates = get_rates(
+                    disp, age)
+
+                if frames_count == 60:
+                    components_rates = components_rates[components_rates[:, 0] >= minRate]
+                    components_rates = components_rates[components_rates[:, 3].argsort()[
+                        ::-1]]
+                    current_rate = components_rates[0, 0]
+
                 else:
-                    disp = np.vstack((disp, calcdisplacement(
-                        signals, currentframe, p1)))
-                if frames_count >= 60 and frames_count % 2 == 0:
 
-                    components_rates = get_rates(
-                        disp, age)
+                    window_length = min(3, len(prev_rates))
+                    window_avg = sum(
+                        prev_rates[-window_length:])/window_length
+                    lowest_uncertainty = components_rates[0, 0]
+                    print("best uncertainty", lowest_uncertainty)
+                    highest_variance = components_rates[components_rates[:, 3].argsort()[
+                        ::-1]][0, 0]
+                    print("best variance", highest_variance)
 
-                    if frames_count == 60:
-                        components_rates = components_rates[components_rates[:, 0] >= minRate]
-                        components_rates = components_rates[components_rates[:, 3].argsort()[
-                            ::-1]]
-                        current_rate = components_rates[0, 0]
-
+                    # if np.absolute(lowest_uncertainty-prev_rates[-1]) < np.absolute(highest_variance-prev_rates[-1]):
+                    if np.absolute(lowest_uncertainty-window_avg) < np.absolute(highest_variance-window_avg):
+                        current_rate = lowest_uncertainty
                     else:
+                        current_rate = highest_variance
 
-                        window_length = min(3, len(prev_rates))
-                        window_avg = sum(
-                            prev_rates[-window_length:])/window_length
-                        lowest_uncertainty = components_rates[0, 0]
-                        print("best uncertainty", lowest_uncertainty)
-                        highest_variance = components_rates[components_rates[:, 3].argsort()[
-                            ::-1]][0, 0]
-                        print("best variance", highest_variance)
+                prev_rates.append(current_rate)
+                print(current_rate)
+                if current_rate < minRate or current_rate > maxRate:
+                    print("DANGER")
+                output_file.write(str(current_rate)+"\n")
 
-                        # if np.absolute(lowest_uncertainty-prev_rates[-1]) < np.absolute(highest_variance-prev_rates[-1]):
-                        if np.absolute(lowest_uncertainty-window_avg) < np.absolute(highest_variance-window_avg):
-                            current_rate = lowest_uncertainty
-                        else:
-                            current_rate = highest_variance
+                disp = disp[2:, :]
+                calculated += 1
 
-                    prev_rates.append(current_rate)
-                    print(current_rate)
-                    if current_rate < minRate or current_rate > maxRate:
-                        print("DANGER")
-                    output_file.write(str(current_rate)+"\n")
+            currentframe += 1
 
-                    disp = disp[2:, :]
-                    calculated += 1
+            output = cv.add(frame, mask)
+            #output = frame_gray-old_gray
+            old_gray = frame_gray.copy()
 
-                currentframe += 1
+            # color = (0, 255, 0)
+            # for k, (new, old) in enumerate(zip(p1, p0)):
 
-                #output = cv.add(frame, mask)
-                output = frame_gray-old_gray
-                old_gray = frame_gray.copy()
+            #     a, b = new.ravel()
+            #     c, d = old.ravel()
+            #     mask = cv.line(mask, (int(a), int(b)),
+            #                    (int(c), int(d)), color, 2)
+            #     frame = cv.circle(frame, (int(b), int(a)), 5, color, -1)
+            #     p0 = p1
 
-                # color = (0, 255, 0)
-                # for k, (new, old) in enumerate(zip(p1, p0)):
+            cv.imshow("sparse optical flow", output)
 
-                #     a, b = new.ravel()
-                #     c, d = old.ravel()
-                #     mask = cv.line(mask, (int(a), int(b)),
-                #                    (int(c), int(d)), color, 2)
-                #     frame = cv.circle(frame, (int(b), int(a)), 5, color, -1)
-                #     p0 = p1
-
-                cv.imshow("sparse optical flow", output)
-
-                if cv.waitKey(10) & 0xFF == ord('q'):
-                    break
+            if cv.waitKey(10) & 0xFF == ord('q'):
+                break
+        # end if
         motion_old = frame
     print(prev_rates)
     cap.release()
@@ -351,5 +354,5 @@ lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
 
 # cap = cv.VideoCapture(
 #     "C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\4.avi")
-breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\movement in 1st 30s.mp4",
-               feature_params, lk_params, "results.txt", 0.5)
+breathing_rate("C:\\Users\\Maram\\Desktop\\GP2\\labeled dataset\\test\\face and neck.mp4",
+               feature_params, lk_params, "results.txt", 2.5)
