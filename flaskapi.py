@@ -15,7 +15,7 @@ lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(
 
 
 breathing_module = breathing_rate(feature_params, lk_params)
-#breathing_rate(feature_params, lk_params, 2.5)
+# breathing_rate(feature_params, lk_params, 2.5)
 
 
 def dict_factory(cursor, row):
@@ -43,16 +43,17 @@ def new_frame():
     frame = cv.imdecode(img_as_np, flags=1)
     # print(frame.shape)
 
-    #cv.imwrite("frame.jpg", frame)
+    # cv.imwrite("frame.jpg", frame)
     breathing_module.estimate_breathing_rate(frame)
 
     return "received"
 
 
-@app.route('/breathing', methods=['POST'])
-def breathing():
-    print(request.form)
-    return "ok"
+@app.route('/get-breathing-rate', methods=['GET'])
+def get_rate():
+    rate, state = breathing_module.get_breathing_rate()
+
+    return {"rate": rate, "state": state}
 
 
 app.run()

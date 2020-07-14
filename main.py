@@ -28,6 +28,9 @@ while(ret):
         encoded_frame = cv.imencode(".jpg", frame)[1]
         requests.post("http://127.0.0.1:5000/newframe",
                       data={"Frame": base64.b64encode(encoded_frame)})
+        response = requests.get("http://127.0.0.1:5000/get-breathing-rate")
+        print(response.text)
+
         cv.imshow("sparse optical flow", frame)
 
         if cv.waitKey(10) & 0xFF == ord('q'):

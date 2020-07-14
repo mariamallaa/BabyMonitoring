@@ -20,6 +20,7 @@ class breathing_rate:
         self.signals = []
         self.disp = []
         self.prev_rates = []
+        self.state = None
 
     def set_age(self, age):
         self.age = age
@@ -139,6 +140,12 @@ class breathing_rate:
 
         return False
 
+    def get_breathing_rate(self):
+        if len(self.prev_rates) == 0:
+            return None, None
+        else:
+            return self.prev_rates[-1], self.state
+
     def estimate_breathing_rate(self, frame):
         print("Received frame", self.age)
         if self.frames_count == 0:
@@ -200,6 +207,9 @@ class breathing_rate:
                 print(current_rate)
                 if current_rate < self.min_rate or current_rate > self.max_rate:
                     print("DANGER")
+                    self.state="Danger"
+                else:
+                    self.state="Normal"
 
                 self.disp = self.disp[2:, :]
 
