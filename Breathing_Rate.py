@@ -19,7 +19,7 @@ import scipy.ndimage
 from scipy import signal
 import math
 from Danger_Zone_integrated import *
-
+from RegressionModel import *
 
 
 def optical_flow_harris(nxt, prev, p0):
@@ -326,7 +326,10 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
     frameId = cap.get(1)  # current frame number
     frameRate = cap.get(5)  # frame rate
     ret, old_frame = cap.read()
-    face_dimensions_old=get_face_BB(old_frame)
+    #yolo
+    #face_dimensions_old=get_face_BB(old_frame)
+    #regressionmodel
+    face_dimensions_old=detectface_RM(old_frame)
     ######################################################3
     old_fg = 0
     fgmask = fgbg.apply(old_frame)
@@ -370,7 +373,10 @@ def breathing_rate(video, feature_params, lk_params, results_file, age):
             ######################################
             fgmask = fgbg.apply(frame)
             output = cv.GaussianBlur(fgmask, (21, 21), 0)
-            face_dimensions=get_face_BB(frame)
+            #yolo
+            #face_dimensions=get_face_BB(frame)
+            #regressionmodel
+            face_dimensions=detectface_RM(frame)
             Danger_zone(frame,old_fg,fgmask,output,True,bb_pts)
 
 

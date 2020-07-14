@@ -6,6 +6,7 @@ import pygame
 from commonfunctions import *
 from yolo_Face_Detector import *
 from bounding_box  import * 
+from RegressionModel import *
 
 pygame.mixer.init()
 pygame.mixer.music.load('D:\\GP\\GPTest\\hello-hello-female-romantic-voice-40646-50093.mp3')
@@ -80,7 +81,10 @@ def Danger_zone(frame,old_fg,fgmask,output,safezone,boundingboxpts):
                 print("Dangeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer")
                 #pygame.mixer.music.play(-1)
         elif(iou<=0.2 and  safezone):
-            dimensions=get_face_BB(danger_zone)
+            #yolo
+            #dimensions=get_face_BB(danger_zone)
+            #regressionmodel
+            dimensions=detectface_RM(danger_zone)
             #print(dimensions)
             '''
             if(dimensions==[]):
