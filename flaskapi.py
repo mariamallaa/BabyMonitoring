@@ -73,15 +73,20 @@ def upload_file():
 
         Face_covered_module.detect_covered(frame)
     # cFv.imwrite("frame.jpg", frame)
+    breathing_module.estimate_breathing_rate(frame)
+    '''
     if(Face_covered_module.is_face_same()):
         breathing_module.estimate_breathing_rate(frame)
     else:
         print("stop breathing rate module")
+    '''
+    Face_covered_module.set_oldface()
     cv.rectangle(frame, point1, point2, (0, 255, 0), 2)
     
     cv.imshow("image", frame)
 
     cv.waitKey(0)
+
     return "SUCCESS"
 
 def dict_factory(cursor, row):

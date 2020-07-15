@@ -172,8 +172,7 @@ class breathing_rate:
                     self.signals, self.frames_count, new_interest_pts))
                 self.disp = np.asarray(self.disp)
             else:
-                self.disp = np.vstack((self.disp, self.calcdisplacement(
-                    self.signals, self.frames_count, new_interest_pts)))
+                self.disp = np.vstack((self.disp, self.calcdisplacement(self.signals, self.frames_count, new_interest_pts)))
             if self.frames_count >= 60 and self.frames_count % 2 == 0:
 
                 components_rates = self.get_rates(
@@ -193,8 +192,7 @@ class breathing_rate:
                         self.prev_rates[-window_length:])/window_length
                     lowest_uncertainty = components_rates[0, 0]
                     #print("best uncertainty", lowest_uncertainty)
-                    highest_variance = components_rates[components_rates[:, 3].argsort()[
-                        ::-1]][0, 0]
+                    highest_variance = components_rates[components_rates[:, 3].argsort()[::-1]][0, 0]
                     #print("best variance", highest_variance)
 
                     # if np.absolute(lowest_uncertainty-self.prev_rates[-1]) < np.absolute(highest_variance-self.prev_rates[-1]):
@@ -213,5 +211,7 @@ class breathing_rate:
 
                 self.disp = self.disp[2:, :]
 
+
             self.old_gray = frame_gray.copy()
+            self.old_interest_points=new_interest_pts
             self.frames_count += 1

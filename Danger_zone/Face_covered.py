@@ -33,6 +33,12 @@ class CoverFace:
                 self.countframes=0
                 self.iscovered=True
         else:
+            if(self.face_dimensions_old!=[]):
+                boxA=np.asarray(self.face_dimensions)
+                boxB=np.asarray(self.face_dimensions_old)
+                diff = cv.absdiff(boxA, boxB)
+                self.sum=np.sum(diff)
+
             self.countframes=0
         self.face_dimensions_old=self.face_dimensions
         return self.iscovered
@@ -43,17 +49,21 @@ class CoverFace:
 
     def is_face_same(self):
         if(self.face_dimensions!=[] and self.face_dimensions_old!=[]):
-            boxA=np.asarray(self.face_dimensions)
-            boxB=np.asarray(self.face_dimensions_old)
-            diff = cv.absdiff(boxA, boxB)
             print("Difffff")
-            print(np.sum(diff))
-            if(np.sum(diff)<8):
+            print(self.sum)
+            if(self.sum<100):
                 return True
             else:
                 return False
         else:
+            print(self.face_dimensions)
+            print(self.face_dimensions_old)
+            print("no face")
             return True
+    
+#    def set_oldface(self):
+#        self.face_dimensions_old=self.face_dimensions
+
         
 #    def detect_motion(self,frame):
 
