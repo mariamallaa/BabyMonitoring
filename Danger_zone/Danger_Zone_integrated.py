@@ -47,7 +47,8 @@ class DangerZone:
         self.isDanger=False
     def setDangerZone(self,dangerzone):
         self.boundingboxpts=dangerzone
-
+    def getDangerZone(self):
+        return self.boundingboxpts
     def init_BB(self):
         #define_BB(frame)
         file1 = open("myfile.txt","r")#write mode 

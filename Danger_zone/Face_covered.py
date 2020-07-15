@@ -3,16 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 from Danger_zone.RegressionModel import *
+import numpy as np
 
-def is_face_same(boxA,boxB):
-    print(boxA,boxB)
-    boxA=np.asarray(boxA)
-    boxB=np.asarray(boxB)
-    diff = cv.absdiff(boxA, boxB)
-    if(np.sum(diff)<8):
-        return True
-    else:
-        return False
+
 
 
 
@@ -33,6 +26,7 @@ class CoverFace:
     def detect_covered(self,frame):
         self.iscovered=False
         self.face_dimensions=detectface_RM(frame)
+
         if(self.face_dimensions==[]):
             self.countframes+=1
             if(self.countframes==4):
@@ -46,6 +40,20 @@ class CoverFace:
 
     def Is_Covered(self):
         return self.iscovered
+
+    def is_face_same(self):
+        if(self.face_dimensions!=[] and self.face_dimensions_old!=[]):
+            boxA=np.asarray(self.face_dimensions)
+            boxB=np.asarray(self.face_dimensions_old)
+            diff = cv.absdiff(boxA, boxB)
+            print("Difffff")
+            print(np.sum(diff))
+            if(np.sum(diff)<8):
+                return True
+            else:
+                return False
+        else:
+            return True
         
 #    def detect_motion(self,frame):
 

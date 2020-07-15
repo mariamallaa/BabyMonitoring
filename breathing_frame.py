@@ -78,7 +78,7 @@ class breathing_rate:
 
     def get_rates(self, disp):
         disp2 = disp.transpose()
-        print(disp2.shape)
+        #print(disp2.shape)
         f_s = 2
         differences = []
         for i in range(disp2.shape[0]):
@@ -135,7 +135,7 @@ class breathing_rate:
         _, diff = cv.threshold(diff, 50, 255, cv.THRESH_BINARY)
         diff = cv.medianBlur(diff, 3)
         if np.sum(diff):
-            print("motion detected")
+            #print("motion detected")
             return True
 
         return False
@@ -147,7 +147,7 @@ class breathing_rate:
             return self.prev_rates[-1], self.state
 
     def estimate_breathing_rate(self, frame):
-        print("Received frame", self.age)
+        #print("Received frame", self.age)
         if self.frames_count == 0:
             self.old_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
             self.old_interest_points = cv.goodFeaturesToTrack(
@@ -192,10 +192,10 @@ class breathing_rate:
                     window_avg = sum(
                         self.prev_rates[-window_length:])/window_length
                     lowest_uncertainty = components_rates[0, 0]
-                    print("best uncertainty", lowest_uncertainty)
+                    #print("best uncertainty", lowest_uncertainty)
                     highest_variance = components_rates[components_rates[:, 3].argsort()[
                         ::-1]][0, 0]
-                    print("best variance", highest_variance)
+                    #print("best variance", highest_variance)
 
                     # if np.absolute(lowest_uncertainty-self.prev_rates[-1]) < np.absolute(highest_variance-self.prev_rates[-1]):
                     if np.absolute(lowest_uncertainty-window_avg) < np.absolute(highest_variance-window_avg):
@@ -204,9 +204,9 @@ class breathing_rate:
                         current_rate = highest_variance
 
                 self.prev_rates.append(current_rate)
-                print(current_rate)
+                #print(current_rate)
                 if current_rate < self.min_rate or current_rate > self.max_rate:
-                    print("DANGER")
+                    #print("DANGER")
                     self.state="Danger"
                 else:
                     self.state="Normal"

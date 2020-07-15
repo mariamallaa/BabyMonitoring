@@ -3,7 +3,7 @@ import base64
 import webbrowser
 import cv2
 import PIL.Image
-from commonfunctions import *
+
 app = flask.Flask(import_name="FlaskUpload")
 cam_width = 0
 cam_height = 0
