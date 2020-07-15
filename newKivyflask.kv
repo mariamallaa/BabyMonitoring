@@ -1,0 +1,31 @@
+<cameraTest>:
+    orientation: "vertical"
+    Camera:
+        id: camera
+        size_hint_y: 18
+        resolution: (1280, 720)
+        play: True
+        x:0
+        y:0
+        canvas.before:
+            PushMatrix:
+            Rotate:
+                angle: 0
+                origin: 0, 0
+        canvas.after:
+            PopMatrix:
+    TextInput:
+        text: "192.168.43.231"
+        id: ip_address
+        size_hint_y: 1
+    Button:
+        id: capture
+        text: "Capture"
+        size_hint_y: 1
+        on_press: app.capture()
+    Button:
+        id: cam_size
+        text: "Configure Server"
+        size_hint_y: 1
+        on_press: app.cam_size()
+

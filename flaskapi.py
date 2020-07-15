@@ -71,7 +71,7 @@ def get_rate():
 '''
 
 @app.route('/get-stats', methods=['GET'])
-def get_rate():
+def get_state():
     rate, state = breathing_module.get_breathing_rate()
     indanger=Danger_zone_module.Is_Danger()
     iscovered=False
