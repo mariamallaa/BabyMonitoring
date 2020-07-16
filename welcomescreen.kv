@@ -1,0 +1,22 @@
+<WelcomeScreen>:
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "logo4.jpg"
+    FloatLayout:
+        ThemedButton:
+            id: log_in_button
+            size_hint: .4, .05
+            pos_hint: {"top": .55, "center_x": .25}
+            text: "[u]Sign In[/u]"
+            on_release:
+                root.parent.current = "sign_in_screen"
+
+        ThemedButton:
+            id: create_account_button
+            size_hint: .4, .05
+            pos_hint: {"top": .55, "center_x": .75}
+            text: "[u]Create Account[/u]"
+            on_release:
+                root.parent.current = "create_account_screen"
