@@ -1,0 +1,38 @@
+#:import Animation kivy.animation.Animation
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+<CameraScreen>:
+    BoxLayout:  
+        orientation: 'vertical'
+        Camera:
+            id: camera
+            #size_hint_y: 18
+            resolution: (1280, 720)
+            on_touch_down: self.on_touch_down(args[1].pos)
+            on_touch_up: self.on_touch_up(args[1].pos)
+            play: True
+            x:0
+            y:0
+            
+        BoxLayout:
+            TextInput:
+                text: "127.0.0.1:5000"
+                id: ip_address
+                #size_hint_y: 1
+            Button:
+                id: capture
+                text: "Capture"
+                #size_hint_y: 1
+            
+                on_press: self.capture()
+            Button:
+                id: cam_size
+                text: "Configure Server"
+                #size_hint_y: 1
+            
+                on_press: self.cam_size()
+            #Button:
+                #   id: stats
+                #  text:"getstats"
+                # size_hint_y: 1
+                #on_press: self.getstat()
