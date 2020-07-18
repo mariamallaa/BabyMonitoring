@@ -112,8 +112,10 @@ def initiate_age():
 @app.route("/setup-bb", methods=["POST"])
 def initiate_bb():
     data = request.form 
-    dangerzone=[int(data["x0"]),int(data["y0"]),int(data["x1"]),int(data["y1"])]
+    #dangerzone=[int(data["x0"]),int(data["y0"]),int(data["x1"]),int(data["y1"])]
+    dangerzone=[0,0,cam_width,cam_height]
     Danger_zone_module.setDangerZone(dangerzone)
+    print(dangerzone)
     return "ok"
 
 @app.route("/newframe", methods=["POST"])
