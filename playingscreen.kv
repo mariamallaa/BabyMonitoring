@@ -1,0 +1,21 @@
+#:import Animation kivy.animation.Animation
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+<PlayingScreen>:
+    primary_color: 1, 0, 0, 1
+    secondary_color: 1, 0, 0, 1
+    tertiary_color: 1, 0, 0, 1
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "logo4.jpeg"
+    FloatLayout:
+        ThemedButton:
+            id: playing_mode_selected
+            size_hint: .3, .1
+            pos_hint: {"top": .95, "center_x": .2}
+            text: "[u]Change Mode[/u]"
+            on_press: 
+                root.parent.transition = SlideTransition(direction='right')
+                root.parent.current = "select_mode_screen"

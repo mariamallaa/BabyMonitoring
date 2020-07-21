@@ -1,23 +1,15 @@
 from kivy.app import App
-from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
+from kivy import utils
+import certifi
+import os
 
-Builder.load_file('main.kv')
-
-class CameraClick(BoxLayout):
-    def capture(self):
-        '''
-        Function to capture the images and give them the names
-        according to their captured time and date.
-        '''
-        
-        print("Hello")
-
-
-class TestCamera(App):
-
+class MainApp(App):
+        #login_primary_color = utils.get_color_from_hex("#ABCDEF")#(1, 0, 0, 1)
+        #login_secondary_color = utils.get_color_from_hex("#060809")#(1, 1, 0, 1)
+        #login_tertiary_color = utils.get_color_from_hex("#434343")#(0,0, 1, 1)
     def build(self):
-        return CameraClick()
+        self.title ="SafeAndSound"
+      
 
 
-TestCamera().run()
+MainApp().run()
