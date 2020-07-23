@@ -12,38 +12,35 @@ from kivy.properties import BooleanProperty
 import requests
 #sm = ScreenManager()
 
+
 class SleepingScreen(Screen):
 
-    age_right=BooleanProperty(False)
+    age_right = BooleanProperty(False)
+
     def __init__(self, **kwargs):
         super(SleepingScreen, self).__init__(**kwargs)
-        self.label = Label(text=" ",color=(1,0,0,1), font_size=(20),size_hint=(0.2,0.1), pos_hint={"center_x":0.5, "center_y":0.9})
+        self.label = Label(text=" ", color=(1, 0, 0, 1), font_size=(
+            20), size_hint=(0.2, 0.1), pos_hint={"center_x": 0.5, "center_y": 0.9})
         self.add_widget(self.label)
-        
-    def on_age_right(self,*args):
+
+    def on_age_right(self, *args):
         print("right age!")
-    def check_user_input(self,age):
-    
+
+    def check_user_input(self, age):
+
         if age == '':
-            self.label.text= "Please re-enter !"
+            self.label.text = "Please re-enter !"
             return self.__init__()
 
         elif age.isdigit() == False:
-            self.label.text= "Please re-enter !"
+            self.label.text = "Please re-enter !"
             return self.__init__()
-        
-        else :
-            self.age_right=True
-            url = 'http://' + "127.0.0.1:5000"+'/setup-age'
-            requests.post(url,data={'Age':age})
 
-    #def StartCamera(self,age):
+        else:
+            self.age_right = True
+            url = 'http://' + "safenandsound.herokuapp.com/"+'/setup-age'
+            requests.post(url, data={'Age': age})
+
+    # def StartCamera(self,age):
      #   sm.add_widget(Camera)
       #  sm.current = "Camera"
-        
-
-
-    
-
-    
-        
