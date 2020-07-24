@@ -4,18 +4,51 @@
     primary_color: 1, 0, 0, 1
     secondary_color: 1, 0, 0, 1
     tertiary_color: 1, 0, 0, 1
-
     canvas.before:
         Rectangle:
             size: self.size
             pos: self.pos
             source: "logo4.jpeg"
-    FloatLayout:
-        ThemedButton:
-            id: playing_mode_selected
-            size_hint: .4, .1
-            pos_hint: {"top": .95, "center_x": .2}
-            text: "[u]Change Mode[/u]"
-            on_press: 
-                root.parent.transition = SlideTransition(direction='right')
-                root.parent.current = "select_mode_screen"
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:  
+            orientation: 'vertical'
+            Camera:
+                id: camera
+                resolution: (1280, 720)
+                size_hint: 1, 1
+                on_touch_down: self.on_touch_down(self.to_parent(*args[1].pos))
+                on_touch_up: self.on_touch_up(self.to_parent(*args[1].pos))
+                play: True
+                x:0
+                y:0
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: 270
+                        origin: self.center
+                canvas.after:
+                    PopMatrix       
+        BoxLayout:
+            orientation: 'vertical'
+            ThemedInput:
+                text: "192.168.1.102:8080"
+                id: ip_address
+                size_hint: .35, .25
+                pos_hint: {"top": .7, "center_x": .5}
+            FloatLayout:
+                ThemedButton:
+                    id: capture
+                    text: "Capture"
+                    size_hint: .45, .15
+                    pos_hint: {"top": .7, "center_x": .25}
+		            on_press:
+			            root.capture()
+                ThemedButton:
+                    id: camsize
+                    text: "Configure Server"
+                    size_hint: .45 , .15
+                    pos_hint: {"top": .7, "center_x": .75}
+		            on_press:
+			            root.cam_size()
+                    
