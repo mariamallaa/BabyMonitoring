@@ -9,6 +9,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
+from kivy.graphics.vertex_instructions import Line
 
 class CameraScreen(Screen):
     def __init__(self, **kwargs):
@@ -62,18 +63,37 @@ class CameraScreen(Screen):
             print(response.text)
         except requests.exceptions.ConnectionError:
             self.ids['capture'].text = "Connection Error! Make Sure Server is Active."
-
+    
     def on_touch_down(self, touch):
-        self.danger_zone_coordinates=[]
         print(touch)
-        self.danger_zone_coordinates.append([int(touch.pos[0]),int(touch.pos[1])])
+        touch.apply_transform_2d(self.to_local)
+        print(touch)
+        #self.danger_zone_coordinates=[]
+        print("touch")
+        print(touch)
+        self.danger_zone_coordinates.append([touch.spos[0],touch.spos[1]])
         return super(CameraScreen, self).on_touch_down(touch)
+    '''
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            self.canvas.clear()
 
- 
+            # calculate touch minus position of ModalView
+            touch_in_modal = (touch.x - self.pos[0], touch.y - self.pos[1])
+            print('touch : ' + str(touch.pos) + ', touch in modal: ' + str(touch_in_modal))
+            self.danger_zone_coordinates=[]
+            print(touch)
+            self.danger_zone_coordinates.append([int(touch_in_modal[0]),int(touch_in_modal[1])])
+        return super(CameraScreen, self).on_touch_down(touch)
+    '''
     def on_touch_up(self, touch):
-        self.danger_zone_coordinates.append([int(touch.pos[0]),int(touch.pos[1])])
+        print(touch)
+        touch.apply_transform_2d(self.to_local)
+        print(touch)
+        self.danger_zone_coordinates.append([touch.spos[0],touch.spos[1]])
         print("RELEASED!",self.danger_zone_coordinates)
         self.cam_size()
+        #self.capture()
         return super(CameraScreen, self).on_touch_up(touch)
         
     def getstat(self):

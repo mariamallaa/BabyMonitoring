@@ -34,7 +34,7 @@ class SleepingScreen(Screen):
         
         else :
             self.age_right=True
-            url = 'http://' + "127.0.0.1:5000"+'/setup-age'
+            url = 'http://' + "192.168.1.102:8080"+'/setup-age'
             requests.post(url,data={'Age':age})
 
     #def StartCamera(self,age):

@@ -60,7 +60,7 @@ class DangerZone:
         return boundingboxpts
 
     def Danger_zone(self,frame,safezone):
-        print("detect danger zoneee")
+        #print("detect danger zoneee")
         self.isDanger=False
         self.fgmask = self.fgbg.apply(frame)
         self.output = cv.GaussianBlur(self.fgmask, (21, 21), 0)
@@ -95,11 +95,11 @@ class DangerZone:
                 #dimensions=get_face_BB(Contour_zone)
                 #regressionmodel
                 dimensions=detectface_RM(Contour_zone)
-                print("dimensionsssssssss")
-                print(dimensions)
+                #print("dimensionsssssssss")
+                #print(dimensions)
                 if(dimensions!=[]):
                     croppedframe2= Contour_zone[dimensions[0][1]:dimensions[0][3],dimensions[0][0]:dimensions[0][2]]
-                    show_images([croppedframe2])
+                    #show_images([croppedframe2])
                     self.isDanger=True
                     #pygame.mixer.music.play(-1)
             elif(iou<=0.2 and  safezone):

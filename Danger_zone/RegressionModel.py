@@ -76,7 +76,7 @@ def detectface_RM(frame):
     
     imagenew = np.expand_dims(image2, axis=0)
     imagenew - tf.keras.applications.mobilenet_v2.preprocess_input(imagenew)
-    #print(imagenew)
+    print(imagenew.shape)
     '''
     imagenew = tf.cast(imagenew, tf.float32)
     imagenew = tf.keras.applications.mobilenet_v2.preprocess_input(imagenew)
@@ -87,15 +87,20 @@ def detectface_RM(frame):
     t2 = time.time()
     processing_time = t2 - t1
     height, width, y_f, x_f, score = [a.flatten() for a in np.split(pred, pred.shape[-1], axis=-1)]
-
+    print("shape")
+    print(pred.shape)
     coords = np.arange(pred.shape[0] * pred.shape[1])
+    #print(y_f)
+    #print(x_f)
+    #print(coords)
+    #print(pred.shape[0])
     y = (y_f + coords // pred.shape[0]) / pred.shape[0]
     x = (x_f + coords % pred.shape[1]) / pred.shape[1]
 
     boxes = np.stack([y, x, height, width, score], axis=-1)
     boxes = boxes[np.where(boxes[..., -1] >= SCORE_THRESHOLD)]
     dimensions = draw_outputs(original_image, boxes)
-
+    print(dimensions)
     
     return dimensions
 '''

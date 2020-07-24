@@ -58,14 +58,20 @@ def upload_file():
 
     frame = cv.cvtColor(imwhole, cv.COLOR_RGB2BGR)
     danger_zone_coor=Danger_zone_module.getDangerZone()
-    point1=(cam_width-danger_zone_coor[0],cam_height-danger_zone_coor[1])
-    point2=(cam_width-danger_zone_coor[2],cam_height-danger_zone_coor[3])
+    y1 = (((float(danger_zone_coor[1]) - 0.505) * (1 - 0)) / (1 - 0.505)) + 0
+    y2 = (((float(danger_zone_coor[3]) - 0.505) * (1 - 0)) / (1 - 0.505)) + 0
+    point1=(int(float(danger_zone_coor[0])*cam_width),int(cam_height-(y1*cam_height)))
+    point2=(int(float(danger_zone_coor[2])*cam_width),int(cam_height-(y2*cam_height)))
 
+    print("points")
+    print(point1,point2)
     
     
-
 
     Danger_zone_module.Danger_zone(frame,False)
+    indanger=Danger_zone_module.Is_Danger()
+    print("in danger")
+    print(indanger)
     if(Face_covered_module.return_first_time()):
  
         Face_covered_module.get_first_frame(frame)
@@ -74,20 +80,27 @@ def upload_file():
         Face_covered_module.detect_covered(frame)
     # cFv.imwrite("frame.jpg", frame)
     #breathing_module.estimate_breathing_rate(frame)
-    
+    iscovered=Face_covered_module.Is_Covered()
+    print(iscovered)
     if(Face_covered_module.is_face_same()):
         breathing_module.estimate_breathing_rate(frame)
     else:
         print("stop breathing rate module")
     
-    #Face_covered_module.set_oldface()
-    point1=(0,0)
-    point2=(cam_width,cam_height)
     cv.rectangle(frame, point1, point2, (0, 255, 0), 2)
     
     cv.imshow("image", frame)
 
     cv.waitKey(0)
+    
+    #Face_covered_module.set_oldface()
+    #point1=(0,0)
+    #point2=(cam_width,cam_height)
+    #cv.rectangle(frame, point1, point2, (0, 255, 0), 2)
+    
+    #cv.imshow("image", frame)
+
+    #cv.waitKey(0)
 
     return "SUCCESS"
 
@@ -111,9 +124,15 @@ def initiate_age():
 
 @app.route("/setup-bb", methods=["POST"])
 def initiate_bb():
+    global cam_width
+    global cam_height
     data = request.form 
-    #dangerzone=[int(data["x0"]),int(data["y0"]),int(data["x1"]),int(data["y1"])]
-    dangerzone=[0,0,cam_width,cam_height]
+    y1 = (((float(data["y0"]) - 0.505) * (1 - 0)) / (1 - 0.505)) + 0
+    y2 = (((float(data["y1"]) - 0.505) * (1 - 0)) / (1 - 0.505)) + 0
+    #point1=(int(float(data["x0"])*cam_width),int(cam_height-(y1*cam_height)))
+    #point2=(int(float(data["x1"])*cam_width),int(cam_height-(y2*cam_height)))
+    dangerzone=[int(float(data["x0"])*cam_width),int(cam_height-(y1*cam_height)),int(float(data["x1"])*cam_width),int(cam_height-(y2*cam_height))]
+    #dangerzone=[0,0,cam_width,cam_height]
     Danger_zone_module.setDangerZone(dangerzone)
     print(dangerzone)
     return "ok"
@@ -127,13 +146,15 @@ def new_frame():
     frame = cv.imdecode(img_as_np, flags=1)
     # print(frame.shape)
 
-    Danger_zone_module.Danger_zone(frame,False)
+    #Danger_zone_module.Danger_zone(frame,False)
     if(Face_covered_module.return_first_time()):
         #print("hereeeeeeeeeeeeeeeeee")
         Face_covered_module.get_first_frame(frame)
     else:
         Face_covered_module.detect_covered(frame)
     # cv.imwrite("frame.jpg", frame)
+    iscovered=Face_covered_module.Is_Covered()
+    print(iscovered)
     breathing_module.estimate_breathing_rate(frame)
 
     return "received"
@@ -158,4 +179,4 @@ def get_state():
     return {"rate": rate, "state": state, "indanger":indanger,"iscovered":iscovered}
 
 
-app.run()
+app.run(port=8080,host='0.0.0.0')
