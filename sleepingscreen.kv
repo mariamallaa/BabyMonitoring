@@ -1,0 +1,41 @@
+#:import Animation kivy.animation.Animation
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+# include CustomPopup.kv
+# include CustomPopup CustomPopup.CustomPopup
+<SleepingScreen>:
+    primary_color: 1, 0, 0, 1
+    secondary_color: 1, 0, 0, 1
+    tertiary_color: 1, 0, 0, 1
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "logo4.jpeg"
+    FloatLayout:
+        Popup:
+            size_hint: .5 , .5
+            pos_hint: {"top": .7, "center_x": .5}
+            auto_dismiss: False
+            title: "Enter your Baby's age...."
+            title_color: 0,0,0,1
+            background: 'white.png'
+            
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                
+                ThemedInput:
+                    id: age
+                    input_filter: 'int'
+                    multiline :False
+                
+                ThemedButton:
+                    text: "Start"
+                    on_press: 
+                        root.check_user_input(age.text)
+                ThemedButton:
+                    text: "Change Mode"
+                    on_press: 
+                        root.parent.transition = SlideTransition(direction='right')
+                        root.parent.current = "select_mode_screen"

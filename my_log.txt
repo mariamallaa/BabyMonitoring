@@ -1,0 +1,1352 @@
+# Check configuration tokens
+# Ensure build layout
+# Check configuration tokens
+# Preparing build
+# Check requirements for android
+# Run 'dpkg --version'
+# Cwd None
+Debian 'dpkg' package management program version 1.19.0.5 (amd64).
+This is free software; see the GNU General Public License version 2 or
+later for copying conditions. There is NO warranty.
+# Search for Git (git)
+#  -> found at /usr/bin/git
+# Search for Cython (cython)
+#  -> found at /home/lamees/.local/bin/cython
+# Search for Java compiler (javac)
+#  -> found at /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+# Search for Java keytool (keytool)
+#  -> found at /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/keytool
+# Install platform
+# Run 'git config --get remote.origin.url'
+# Cwd /home/lamees/GUI_ONLY/.buildozer/android/platform/python-for-android
+https://github.com/kivy/python-for-android.git
+# Run 'git branch -vv'
+# Cwd /home/lamees/GUI_ONLY/.buildozer/android/platform/python-for-android
+* master 1b3b0e3f [origin/master] Merge pull request #2225 from kivy/release-2020.06.02
+# Run '/usr/bin/python3 -m pip install -q --user \'appdirs\' \'colorama>=0.3.3\' \'jinja2\' \'six\' \'enum34; python_version<"3.4"\' \'sh>=1.10; sys_platform!="nt"\' \'pep517<0.7.0"\' \'toml\''
+# Cwd None
+# Apache ANT found at /home/lamees/.buildozer/android/platform/apache-ant-1.9.4
+# Android SDK found at /home/lamees/.buildozer/android/platform/android-sdk
+# Recommended android's NDK version by p4a is: 19c
+# Android NDK found at /home/lamees/.buildozer/android/platform/android-ndk-r19c
+# Check application requirements
+# Compile platform
+# Run '/usr/bin/python3 -m pythonforandroid.toolchain create --dist_name=safesound --bootstrap=sdl2 --requirements=python3,kivy==2.0.0rc3,pil,urllib3,chardet,requests,idna,android,jnius,Pyjnius,openssl,certifi>=2018.4.16,json,simplejson --arch armeabi-v7a --copy-libs --color=always --storage-dir="/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a" --ndk-api=21'
+# Cwd /home/lamees/GUI_ONLY/.buildozer/android/platform/python-for-android
+# Build the application #45
+# Copy application source from /home/lamees/GUI_ONLY
+# Create directory /home/lamees/GUI_ONLY/.buildozer/android/app
+# Copy /home/lamees/GUI_ONLY/selectmodescreen.kv
+# Copy /home/lamees/GUI_ONLY/playingscreen.py
+# Copy /home/lamees/GUI_ONLY/loadingpopup.kv
+# Copy /home/lamees/GUI_ONLY/logo3.jpeg
+# Copy /home/lamees/GUI_ONLY/playingscreen.kv
+# Copy /home/lamees/GUI_ONLY/sleepingscreen.py
+# Copy /home/lamees/GUI_ONLY/createaccountscreen.kv
+# Copy /home/lamees/GUI_ONLY/signinscreen.py
+# Copy /home/lamees/GUI_ONLY/selectmodescreen.py
+# Copy /home/lamees/GUI_ONLY/firebaseloginscreen.kv
+# Copy /home/lamees/GUI_ONLY/firebaseloginscreen.py
+# Copy /home/lamees/GUI_ONLY/my_log.txt
+# Copy /home/lamees/GUI_ONLY/main.py
+# Copy /home/lamees/GUI_ONLY/themedwidgets.kv
+# Copy /home/lamees/GUI_ONLY/main.kv
+# Copy /home/lamees/GUI_ONLY/logo3.png
+# Copy /home/lamees/GUI_ONLY/logo4.jpeg
+# Copy /home/lamees/GUI_ONLY/camerascreen.kv
+# Copy /home/lamees/GUI_ONLY/welcomescreen.py
+# Copy /home/lamees/GUI_ONLY/welcomescreen.kv
+# Copy /home/lamees/GUI_ONLY/sleepingscreen.kv
+# Copy /home/lamees/GUI_ONLY/results.txt
+# Copy /home/lamees/GUI_ONLY/signinscreen.kv
+# Copy /home/lamees/GUI_ONLY/createaccountscreen.py
+# Copy /home/lamees/GUI_ONLY/camerascreen.py
+# Create directory /home/lamees/GUI_ONLY/.buildozer/android/app/__pycache__
+# Copy /home/lamees/GUI_ONLY/__pycache__/firebaseloginscreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/signinscreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/welcomescreen.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/sleepingscreen.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/camerascreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/welcomescreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/createaccountscreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/firebaseloginscreen.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/selectmodescreen.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/sleepingscreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/selectmodescreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/playingscreen.cpython-36.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/OpenDialog.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/boundingbox.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/playingscreen.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/createaccountscreen.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/__pycache__/signinscreen.cpython-37.pyc
+# Create directory /home/lamees/GUI_ONLY/.buildozer/android/app/progressspinner
+# Copy /home/lamees/GUI_ONLY/progressspinner/__init__.py
+# Create directory /home/lamees/GUI_ONLY/.buildozer/android/app/progressspinner/__pycache__
+# Copy /home/lamees/GUI_ONLY/progressspinner/__pycache__/__init__.cpython-37.pyc
+# Copy /home/lamees/GUI_ONLY/progressspinner/__pycache__/__init__.cpython-36.pyc
+# Package the application
+# project.properties updated
+# Gradle project detected, copy files /home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/src/main/java
+# Run '/usr/bin/python3 -m pythonforandroid.toolchain apk --debug --bootstrap=sdl2 --dist_name safesound --name SafeAndSound --version 0.1 --package org.safesound.safesound --minsdk 21 --ndk-api 21 --private /home/lamees/GUI_ONLY/.buildozer/android/app --permission CAMERA --permission INTERNET --permission ACCESS_NETWORK_STATE --android-entrypoint org.kivy.android.PythonActivity --android-apptheme @android:style/Theme.NoTitleBar --presplash /home/lamees/GUI_ONLY/logo3.png --icon /home/lamees/GUI_ONLY/logo3.png --orientation portrait --window --copy-libs --depend com.google.android.gms:play-services-gcm:11.0.4+ --depend com.google.firebase:firebase-core:16.0.1 --depend com.google.android.gms:play-services-base:16.1.0 --depend com.google.firebase:firebase-messaging:18.0.0 --arch armeabi-v7a --color=always --storage-dir="/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a" --ndk-api=21'
+# Cwd /home/lamees/GUI_ONLY/.buildozer/android/platform/python-for-android
+Listing '/tmp/p4a-extra-env-mh5wqmfe'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/app'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/app/_applibs'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/camerascreen.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/createaccountscreen.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/firebaseloginscreen.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/main.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/playingscreen.py'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/app/progressspinner'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/progressspinner/__init__.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/selectmodescreen.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/signinscreen.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/sitecustomize.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/sleepingscreen.py'...
+Compiling '/home/lamees/GUI_ONLY/.buildozer/android/app/welcomescreen.py'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/modules'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/Kivy-2.0.0rc3-py3.8.egg-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/PIL'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/Pillow-7.0.0-py3.8.egg-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/android'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/bin'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/certifi'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/certifi-2020.6.20.dist-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/chardet'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/chardet/cli'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/chardet-3.0.4.dist-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/idna'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/idna-2.10.dist-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/jnius'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/jnius/src'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/jnius/src/org'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/jnius/src/org/jnius'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/audio'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/camera'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/clipboard'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/gl'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/image'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/spelling'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/text'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/video'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/core/window'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/data'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/data/fonts'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/data/glsl'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/data/images'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/data/keyboards'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/data/logo'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/deps'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/effects'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/extras'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/garden'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/graphics'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/graphics/cgl_backend'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/include'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/input'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/input/postproc'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/input/providers'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/lang'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/lib'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/lib/gstplayer'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/lib/pango'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/lib/vidcore_lite'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/modules'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/network'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/storage'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/gles_compat'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/highlight'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/image-testsuite'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/packaging'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/packaging/pyinstaller_hooks'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/pep8checker'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/theming'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/tools/theming/defaulttheme'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/uix'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/uix/behaviors'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivy/uix/recycleview'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/pkg_resources'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/pkg_resources/_vendor'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/pkg_resources/_vendor/packaging'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/pkg_resources/extern'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/pyjnius-1.2.1-py3.8.egg-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/requests'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/requests-2.24.0.dist-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/setuptools'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/setuptools/_vendor'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/setuptools/_vendor/packaging'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/setuptools/command'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/setuptools/extern'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/setuptools-40.9.0-py3.8.egg-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3/contrib'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3/contrib/_securetransport'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3/packages'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3/packages/backports'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3/packages/ssl_match_hostname'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3/util'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/urllib3-1.25.10.dist-info'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/usr'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/usr/local'...
+Listing '/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/dists/safesound__armeabi-v7a/_python_bundle/_python_bundle/site-packages/usr/local/bin'...
+WARNING: Received a --sdk argument, but this argument is deprecated and does nothing.
+No setup.py/pyproject.toml used, copying full private data into .apk.
+Applying Java source code patches...
+Applying patch: src/patches/SDLActivity.java.patch
+# Android packaging done!
+# APK safesound-0.1-armeabi-v7a-debug.apk available in the bin directory
+# Run '/home/lamees/.buildozer/android/platform/android-sdk/platform-tools/adb devices'
+# Cwd None
+List of devices attached
+5210162cfcc0541d	device
+
+# Deploy on 5210162cfcc0541d
+# Run '/home/lamees/.buildozer/android/platform/android-sdk/platform-tools/adb install -r "/home/lamees/GUI_ONLY/bin/safesound-0.1-armeabi-v7a-debug.apk"'
+# Cwd /home/lamees/.buildozer/android/platform
+Performing Streamed Install
+Success
+# Application pushed.
+# Run on 5210162cfcc0541d
+# Run '/home/lamees/.buildozer/android/platform/android-sdk/platform-tools/adb shell am start -n org.safesound.safesound/org.kivy.android.PythonActivity -a org.kivy.android.PythonActivity'
+# Cwd /home/lamees/.buildozer/android/platform
+Starting: Intent { act=org.kivy.android.PythonActivity cmp=org.safesound.safesound/org.kivy.android.PythonActivity }
+# Application started.
+# Run 'dpkg --version'
+# Cwd None
+Debian 'dpkg' package management program version 1.19.0.5 (amd64).
+This is free software; see the GNU General Public License version 2 or
+later for copying conditions. There is NO warranty.
+# Search for Git (git)
+#  -> found at /usr/bin/git
+# Search for Cython (cython)
+#  -> found at /home/lamees/.local/bin/cython
+# Search for Java compiler (javac)
+#  -> found at /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+# Search for Java keytool (keytool)
+#  -> found at /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/keytool
+# Run '/home/lamees/.buildozer/android/platform/android-sdk/platform-tools/adb logcat *:S python:D'
+# Cwd /home/lamees/.buildozer/android/platform
+--------- beginning of crash
+--------- beginning of main
+07-23 22:59:34.774 11048 11119 I python  : Initializing Python for Android
+07-23 22:59:34.774 11048 11119 I python  : Setting additional env vars from p4a_env_vars.txt
+07-23 22:59:34.778 11048 11119 I python  : Changing directory to the one provided by ANDROID_ARGUMENT
+07-23 22:59:34.778 11048 11119 I python  : /data/user/0/org.safesound.safesound/files/app
+07-23 22:59:34.780 11048 11119 I python  : Preparing to initialize python
+07-23 22:59:34.781 11048 11119 I python  : _python_bundle dir exists
+07-23 22:59:34.781 11048 11119 I python  : calculated paths to be...
+07-23 22:59:34.781 11048 11119 I python  : /data/user/0/org.safesound.safesound/files/app/_python_bundle/stdlib.zip:/data/user/0/org.safesound.safesound/files/app/_python_bundle/modules
+07-23 22:59:34.787 11048 11119 I python  : set wchar paths...
+07-23 22:59:34.948 11048 11119 I python  : Initialized python
+07-23 22:59:34.948 11048 11119 I python  : AND: Init threads
+07-23 22:59:34.950 11048 11119 I python  : testing python print redirection
+07-23 22:59:34.952 11048 11119 I python  : Android path ['.', '/data/user/0/org.safesound.safesound/files/app/_python_bundle/stdlib.zip', '/data/user/0/org.safesound.safesound/files/app/_python_bundle/modules', '/data/user/0/org.safesound.safesound/files/app/_python_bundle/site-packages']
+07-23 22:59:34.952 11048 11119 I python  : os.environ is environ({'PATH': '/sbin:/system/sbin:/system/bin:/system/xbin:/vendor/bin:/vendor/xbin', 'DOWNLOAD_CACHE': '/data/cache', 'ANDROID_BOOTLOGO': '1', 'ANDROID_ROOT': '/system', 'ANDROID_ASSETS': '/system/app', 'ANDROID_DATA': '/data', 'ANDROID_STORAGE': '/storage', 'EXTERNAL_STORAGE': '/sdcard', 'ASEC_MOUNTPOINT': '/mnt/asec', 'BOOTCLASSPATH': '/system/framework/core-oj.jar:/system/framework/core-libart.jar:/system/framework/conscrypt.jar:/system/framework/okhttp.jar:/system/framework/legacy-test.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/apache-xml.jar:/system/framework/org.apache.http.legacy.boot.jar:/system/framework/smartbondingservice.jar:/system/framework/sprengine.jar:/system/framework/android.hidl.base-V1.0-java.jar:/system/framework/android.hidl.manager-V1.0-java.jar:/system/framework/timakeystore.jar:/system/framework/fipstimakeystore.jar:/system/framework/ucmopensslenginehelper.jar:/system/framework/esecomm.jar:/system/framework/SemAudioThumbnail.jar:/system/framework/knoxsdk.jar:/system/framework/sec_edm.jar:/system/framework/sagearpolicymanager.jar:/system/framework/sec_sdp_sdk.jar:/system/framework/sec_sdp_hidden_sdk.jar:/system/framework/knoxvpnuidtag.jar', 'SYSTEMSERVERCLASSPATH': '/system/framework/services.jar:/system/framework/ethernet-service.jar:/system/framework/wifi-service.jar:/system/framework/samsung-services.jar:/system/framework/hqm.jar:/system/framework/dmf.jar:/system/framework/ssrm.jar', 'MC_AUTH_TOKEN_PATH': '/efs', 'KNOX_STORAGE': '/data/knox/ext_sdcard', 'ENC_EMULATED_STORAGE_TARGET': '/storage/enc_emulated', 'ANDROID_SOCKET_zygote_secondary': '8', 'ANDROID_ENTRYPOINT': 'main.pyc', 'ANDROID_ARGUMENT': '/data/user/0/org.safesound.safesound/files/app', 'ANDROID_APP_PATH': '/data/user/0/org.safesound.safesound/files/app', 'ANDROID_PRIVATE': '/data/user/0/org.safesound.safesound/files', 'ANDROID_UNPACK': '/data/user/0/org.safesound.safesound/files/app', 'PYTHONHOME': '/data/user/0/org.safesound.safesound/files/app', 'PYTHONPATH': '/data/user/0/org.safesound.safesound/files/app:/data/user/0/org.safesound.safesound/files/app/lib', 'PYTHONOPTIMIZE': '2', 'P4A_BOOTSTRAP': 'SDL2', 'PYTHON_NAME': 'python', 'P4A_IS_WINDOWED': 'True', 'P4A_ORIENTATION': 'portrait', 'P4A_NUMERIC_VERSION': 'None', 'P4A_MINSDK': '21', 'LC_CTYPE': 'C.UTF-8'})
+07-23 22:59:34.952 11048 11119 I python  : Android kivy bootstrap done. __name__ is __main__
+07-23 22:59:34.952 11048 11119 I python  : AND: Ran string
+07-23 22:59:34.952 11048 11119 I python  : Run user program, change dir and execute entrypoint
+07-23 22:59:35.280 11048 11119 I python  : [INFO   ] [Logger      ] Record log in /data/user/0/org.safesound.safesound/files/app/.kivy/logs/kivy_20-07-23_4.txt
+07-23 22:59:35.281 11048 11119 I python  : [INFO   ] [Kivy        ] v2.0.0rc3, git-Unknown, 20200723
+07-23 22:59:35.282 11048 11119 I python  : [INFO   ] [Kivy        ] Installed at "/data/user/0/org.safesound.safesound/files/app/_python_bundle/site-packages/kivy/__init__.pyc"
+07-23 22:59:35.282 11048 11119 I python  : [INFO   ] [Python      ] v3.8.1 (default, Jul 23 2020, 21:43:53) 
+07-23 22:59:35.282 11048 11119 I python  : [Clang 8.0.2 (https://android.googlesource.com/toolchain/clang 40173bab62ec7462
+07-23 22:59:35.283 11048 11119 I python  : [INFO   ] [Python      ] Interpreter at ""
+07-23 22:59:37.392 11048 11119 I python  : [INFO   ] [Factory     ] 185 symbols loaded
+07-23 22:59:38.136 11048 11119 I python  : [INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer, img_gif ignored)
+07-23 22:59:40.308 11048 11119 I python  : [INFO   ] [Window      ] Provider: sdl2
+07-23 22:59:40.377 11048 11119 I python  : [INFO   ] [GL          ] Using the "OpenGL ES 2" graphics system
+07-23 22:59:40.379 11048 11119 I python  : [INFO   ] [GL          ] Backend used <sdl2>
+07-23 22:59:40.380 11048 11119 I python  : [INFO   ] [GL          ] OpenGL version <b'OpenGL ES 3.2 v1.r22p0-01rel0.64db91edb722d5e51b7cc73cec18b716'>
+07-23 22:59:40.380 11048 11119 I python  : [INFO   ] [GL          ] OpenGL vendor <b'ARM'>
+07-23 22:59:40.381 11048 11119 I python  : [INFO   ] [GL          ] OpenGL renderer <b'Mali-T830'>
+07-23 22:59:40.381 11048 11119 I python  : [INFO   ] [GL          ] OpenGL parsed version: 3, 2
+07-23 22:59:40.382 11048 11119 I python  : [INFO   ] [GL          ] Texture max size <8192>
+07-23 22:59:40.383 11048 11119 I python  : [INFO   ] [GL          ] Texture max units <16>
+07-23 22:59:40.449 11048 11119 I python  : [INFO   ] [Window      ] auto add sdl2 input provider
+07-23 22:59:40.451 11048 11119 I python  : [INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+07-23 22:59:40.524 11048 11119 I python  : [INFO   ] [Text        ] Provider: sdl2
+07-23 22:59:40.826 11048 11119 I python  : [INFO   ] [Camera      ] Provider: android
+07-23 22:59:41.183 11048 11119 I python  : [ERROR  ] 
+07-23 22:59:41.183 11048 11119 I python  : Traceback (most recent call last):
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 472, in execute_directives
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/app/sleepingscreen.py", line 12, in <module>
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/__init__.py", line 121, in <module>
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/packages.py", line 7, in <module>
+07-23 22:59:41.183 11048 11119 I python  : ModuleNotFoundError: No module named 'idna'
+07-23 22:59:41.183 11048 11119 I python  : 
+07-23 22:59:41.183 11048 11119 I python  : During handling of the above exception, another exception occurred:
+07-23 22:59:41.183 11048 11119 I python  : 
+07-23 22:59:41.183 11048 11119 I python  : Traceback (most recent call last):
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 474, in execute_directives
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/app/sleepingscreen.py", line 12, in <module>
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/__init__.py", line 121, in <module>
+07-23 22:59:41.183 11048 11119 I python  :   File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/packages.py", line 7, in <module>
+07-23 22:59:41.183 11048 11119 I python  : ModuleNotFoundError: No module named 'idna'
+07-23 22:59:41.184 11048 11119 I python  :  Traceback (most recent call last):
+07-23 22:59:41.184 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 472, in execute_directives
+07-23 22:59:41.185 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/app/sleepingscreen.py", line 12, in <module>
+07-23 22:59:41.185 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/__init__.py", line 121, in <module>
+07-23 22:59:41.186 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/packages.py", line 7, in <module>
+07-23 22:59:41.186 11048 11119 I python  :  ModuleNotFoundError: No module named 'idna'
+07-23 22:59:41.187 11048 11119 I python  :  
+07-23 22:59:41.187 11048 11119 I python  :  During handling of the above exception, another exception occurred:
+07-23 22:59:41.187 11048 11119 I python  :  
+07-23 22:59:41.187 11048 11119 I python  :  Traceback (most recent call last):
+07-23 22:59:41.188 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 474, in execute_directives
+07-23 22:59:41.188 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/app/sleepingscreen.py", line 12, in <module>
+07-23 22:59:41.189 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/__init__.py", line 121, in <module>
+07-23 22:59:41.189 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/requests/packages.py", line 7, in <module>
+07-23 22:59:41.190 11048 11119 I python  :  ModuleNotFoundError: No module named 'idna'
+07-23 22:59:41.190 11048 11119 I python  :  
+07-23 22:59:41.190 11048 11119 I python  :  During handling of the above exception, another exception occurred:
+07-23 22:59:41.190 11048 11119 I python  :  
+07-23 22:59:41.191 11048 11119 I python  :  Traceback (most recent call last):
+07-23 22:59:41.191 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/app/main.py", line 15, in <module>
+07-23 22:59:41.191 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/app.py", line 949, in run
+07-23 22:59:41.192 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/app.py", line 918, in _run_prepare
+07-23 22:59:41.192 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/app.py", line 691, in load_kv
+07-23 22:59:41.193 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/builder.py", line 306, in load_file
+07-23 22:59:41.193 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/builder.py", line 373, in load_string
+07-23 22:59:41.194 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 402, in __init__
+07-23 22:59:41.195 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 508, in parse
+07-23 22:59:41.195 11048 11119 I python  :    File "/home/lamees/GUI_ONLY/.buildozer/android/platform/build-armeabi-v7a/build/python-installs/safesound/kivy/lang/parser.py", line 483, in execute_directives
+07-23 22:59:41.196 11048 11119 I python  :  kivy.lang.parser.ParserException: Parser: File "/data/data/org.safesound.safesound/files/app/main.kv", line 9:
+07-23 22:59:41.196 11048 11119 I python  :  ...
+07-23 22:59:41.197 11048 11119 I python  :        7:#:include camerascreen.kv
+07-23 22:59:41.197 11048 11119 I python  :        8:#:import PlayingScreen playingscreen.PlayingScreen
+07-23 22:59:41.197 11048 11119 I python  :  >>    9:#:import SleepingScreen sleepingscreen.SleepingScreen
+07-23 22:59:41.197 11048 11119 I python  :       10:#:import CameraScreen camerascreen.CameraScreen
+07-23 22:59:41.198 11048 11119 I python  :       11:#:import utils kivy.utils
+07-23 22:59:41.198 11048 11119 I python  :  ...
+07-23 22:59:41.198 11048 11119 I python  :  Unable to import package 'sleepingscreen.SleepingScreen'
+07-23 22:59:41.198 11048 11119 I python  : Python for android ended.
+--------- beginning of system
+07-23 23:11:20.287 15404 17192 I python  : Initializing Python for Android
+07-23 23:11:20.287 15404 17192 I python  : Setting additional env vars from p4a_env_vars.txt
+07-23 23:11:20.293 15404 17192 I python  : Changing directory to the one provided by ANDROID_ARGUMENT
+07-23 23:11:20.293 15404 17192 I python  : /data/user/0/org.safesound.safesound/files/app
+07-23 23:11:20.301 15404 17192 I python  : Preparing to initialize python
+07-23 23:11:20.301 15404 17192 I python  : _python_bundle dir exists
+07-23 23:11:20.301 15404 17192 I python  : calculated paths to be...
+07-23 23:11:20.301 15404 17192 I python  : /data/user/0/org.safesound.safesound/files/app/_python_bundle/stdlib.zip:/data/user/0/org.safesound.safesound/files/app/_python_bundle/modules
+07-23 23:11:20.316 15404 17192 I python  : set wchar paths...
+07-23 23:11:20.571 15404 17192 I python  : Initialized python
+07-23 23:11:20.571 15404 17192 I python  : AND: Init threads
+07-23 23:11:20.575 15404 17192 I python  : testing python print redirection
+07-23 23:11:20.577 15404 17192 I python  : Android path ['.', '/data/user/0/org.safesound.safesound/files/app/_python_bundle/stdlib.zip', '/data/user/0/org.safesound.safesound/files/app/_python_bundle/modules', '/data/user/0/org.safesound.safesound/files/app/_python_bundle/site-packages']
+07-23 23:11:20.578 15404 17192 I python  : os.environ is environ({'PATH': '/sbin:/system/sbin:/system/bin:/system/xbin:/vendor/bin:/vendor/xbin', 'DOWNLOAD_CACHE': '/data/cache', 'ANDROID_BOOTLOGO': '1', 'ANDROID_ROOT': '/system', 'ANDROID_ASSETS': '/system/app', 'ANDROID_DATA': '/data', 'ANDROID_STORAGE': '/storage', 'EXTERNAL_STORAGE': '/sdcard', 'ASEC_MOUNTPOINT': '/mnt/asec', 'BOOTCLASSPATH': '/system/framework/core-oj.jar:/system/framework/core-libart.jar:/system/framework/conscrypt.jar:/system/framework/okhttp.jar:/system/framework/legacy-test.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/apache-xml.jar:/system/framework/org.apache.http.legacy.boot.jar:/system/framework/smartbondingservice.jar:/system/framework/sprengine.jar:/system/framework/android.hidl.base-V1.0-java.jar:/system/framework/android.hidl.manager-V1.0-java.jar:/system/framework/timakeystore.jar:/system/framework/fipstimakeystore.jar:/system/framework/ucmopensslenginehelper.jar:/system/framework/esecomm.jar:/system/framework/SemAudioThumbnail.jar:/system/framework/knoxsdk.jar:/system/framework/sec_edm.jar:/system/framework/sagearpolicymanager.jar:/system/framework/sec_sdp_sdk.jar:/system/framework/sec_sdp_hidden_sdk.jar:/system/framework/knoxvpnuidtag.jar', 'SYSTEMSERVERCLASSPATH': '/system/framework/services.jar:/system/framework/ethernet-service.jar:/system/framework/wifi-service.jar:/system/framework/samsung-services.jar:/system/framework/hqm.jar:/system/framework/dmf.jar:/system/framework/ssrm.jar', 'MC_AUTH_TOKEN_PATH': '/efs', 'KNOX_STORAGE': '/data/knox/ext_sdcard', 'ENC_EMULATED_STORAGE_TARGET': '/storage/enc_emulated', 'ANDROID_SOCKET_zygote_secondary': '8', 'ANDROID_ENTRYPOINT': 'main.pyc', 'ANDROID_ARGUMENT': '/data/user/0/org.safesound.safesound/files/app', 'ANDROID_APP_PATH': '/data/user/0/org.safesound.safesound/files/app', 'ANDROID_PRIVATE': '/data/user/0/org.safesound.safesound/files', 'ANDROID_UNPACK': '/data/user/0/org.safesound.safesound/files/app', 'PYTHONHOME': '/data/user/0/org.safesound.safesound/files/app', 'PYTHONPATH': '/data/user/0/org.safesound.safesound/files/app:/data/user/0/org.safesound.safesound/files/app/lib', 'PYTHONOPTIMIZE': '2', 'P4A_BOOTSTRAP': 'SDL2', 'PYTHON_NAME': 'python', 'P4A_IS_WINDOWED': 'True', 'P4A_ORIENTATION': 'portrait', 'P4A_NUMERIC_VERSION': 'None', 'P4A_MINSDK': '21', 'LC_CTYPE': 'C.UTF-8'})
+07-23 23:11:20.578 15404 17192 I python  : Android kivy bootstrap done. __name__ is __main__
+07-23 23:11:20.578 15404 17192 I python  : AND: Ran string
+07-23 23:11:20.578 15404 17192 I python  : Run user program, change dir and execute entrypoint
+07-23 23:11:20.972 15404 17192 I python  : [WARNING] [Config      ] Older configuration version detected (0 instead of 21)
+07-23 23:11:20.972 15404 17192 I python  : [WARNING] [Config      ] Upgrading configuration in progress.
+07-23 23:11:20.986 15404 17192 I python  : [INFO   ] [Logger      ] Record log in /data/user/0/org.safesound.safesound/files/app/.kivy/logs/kivy_20-07-23_0.txt
+07-23 23:11:20.987 15404 17192 I python  : [INFO   ] [Kivy        ] v2.0.0rc3, git-Unknown, 20200723
+07-23 23:11:20.987 15404 17192 I python  : [INFO   ] [Kivy        ] Installed at "/data/user/0/org.safesound.safesound/files/app/_python_bundle/site-packages/kivy/__init__.pyc"
+07-23 23:11:20.987 15404 17192 I python  : [INFO   ] [Python      ] v3.8.1 (default, Jul 23 2020, 22:50:06) 
+07-23 23:11:20.987 15404 17192 I python  : [Clang 8.0.2 (https://android.googlesource.com/toolchain/clang 40173bab62ec7462
+07-23 23:11:20.988 15404 17192 I python  : [INFO   ] [Python      ] Interpreter at ""
+07-23 23:11:22.893 15404 17192 I python  : [INFO   ] [Factory     ] 185 symbols loaded
+07-23 23:11:23.781 15404 17192 I python  : [INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer, img_gif ignored)
+07-23 23:11:24.170 15404 17192 I python  : [INFO   ] [Window      ] Provider: sdl2
+07-23 23:11:24.232 15404 17192 I python  : [INFO   ] [GL          ] Using the "OpenGL ES 2" graphics system
+07-23 23:11:24.235 15404 17192 I python  : [INFO   ] [GL          ] Backend used <sdl2>
+07-23 23:11:24.236 15404 17192 I python  : [INFO   ] [GL          ] OpenGL version <b'OpenGL ES 3.2 v1.r22p0-01rel0.64db91edb722d5e51b7cc73cec18b716'>
+07-23 23:11:24.237 15404 17192 I python  : [INFO   ] [GL          ] OpenGL vendor <b'ARM'>
+07-23 23:11:24.239 15404 17192 I python  : [INFO   ] [GL          ] OpenGL renderer <b'Mali-T830'>
+07-23 23:11:24.240 15404 17192 I python  : [INFO   ] [GL          ] OpenGL parsed version: 3, 2
+07-23 23:11:24.241 15404 17192 I python  : [INFO   ] [GL          ] Texture max size <8192>
+07-23 23:11:24.241 15404 17192 I python  : [INFO   ] [GL          ] Texture max units <16>
+07-23 23:11:24.315 15404 17192 I python  : [INFO   ] [Window      ] auto add sdl2 input provider
+07-23 23:11:24.320 15404 17192 I python  : [INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+07-23 23:11:24.407 15404 17192 I python  : [INFO   ] [Text        ] Provider: sdl2
+07-23 23:11:24.719 15404 17192 I python  : [INFO   ] [Camera      ] Provider: android
+07-23 23:11:25.263 15404 17192 I python  : [INFO   ] [GL          ] NPOT texture support is available
+07-23 23:11:25.270 15404 17192 I python  : [WARNING] [GL          ] Unpack subimage support is not available
+07-23 23:11:32.692 15404 17192 I python  : [WARNING] [Base        ] Unknown <android> provider
+07-23 23:11:32.693 15404 17192 I python  : [INFO   ] [Base        ] Start application main loop
+07-23 23:12:20.625 15404 17192 I python  : Logged in successfully (<Screen name='firebase_login_screen'>, True)
+07-23 23:12:27.117 15404 17192 I python  : right age!
+07-23 23:12:38.130 15404 17192 I python  : <SDL2MotionEvent spos=(0.3126734495162964, 0.8886055797338486) pos=(337.6873254776001, 1650.1405615657568)>
+07-23 23:12:38.772 15404 17192 I python  : RELEASED! [[337, 1650], [662, 1209]]
+07-23 23:12:38.773 15404 17192 I python  : cam size
+07-23 23:12:38.878 15404 17192 I python  : setting up BB
+07-23 23:12:45.212 15404 17192 I python  : <SDL2MotionEvent spos=(0.42196130752563477, 0.24535417556762695) pos=(455.71821212768555, 455.62270402908325)>
+07-23 23:12:45.305 15404 17192 I python  : RELEASED! [[455, 455], [460, 449]]
+07-23 23:12:45.305 15404 17192 I python  : cam size
+07-23 23:12:45.388 15404 17192 I python  : setting up BB
+07-23 23:12:45.718 15404 17192 I python  : Uploading image 1
+07-23 23:12:45.719 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:45.719 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:45.879 15404 17192 I python  : {
+07-23 23:12:45.879 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:45.879 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:45.879 15404 17192 I python  :   "rate": null, 
+07-23 23:12:45.879 15404 17192 I python  :   "state": null
+07-23 23:12:45.879 15404 17192 I python  : }
+07-23 23:12:45.879 15404 17192 I python  : 
+07-23 23:12:46.216 15404 17192 I python  : Uploading image 2
+07-23 23:12:46.217 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:46.217 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:46.339 15404 17192 I python  : {
+07-23 23:12:46.339 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:46.339 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:46.339 15404 17192 I python  :   "rate": null, 
+07-23 23:12:46.339 15404 17192 I python  :   "state": null
+07-23 23:12:46.339 15404 17192 I python  : }
+07-23 23:12:46.339 15404 17192 I python  : 
+07-23 23:12:46.711 15404 17192 I python  : Uploading image 3
+07-23 23:12:46.712 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:46.712 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:46.876 15404 17192 I python  : {
+07-23 23:12:46.876 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:46.876 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:46.876 15404 17192 I python  :   "rate": null, 
+07-23 23:12:46.876 15404 17192 I python  :   "state": null
+07-23 23:12:46.876 15404 17192 I python  : }
+07-23 23:12:46.876 15404 17192 I python  : 
+07-23 23:12:47.213 15404 17192 I python  : Uploading image 4
+07-23 23:12:47.213 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:47.213 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:47.381 15404 17192 I python  : {
+07-23 23:12:47.381 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:47.381 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:47.381 15404 17192 I python  :   "rate": null, 
+07-23 23:12:47.381 15404 17192 I python  :   "state": null
+07-23 23:12:47.381 15404 17192 I python  : }
+07-23 23:12:47.381 15404 17192 I python  : 
+07-23 23:12:47.716 15404 17192 I python  : Uploading image 5
+07-23 23:12:47.716 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:47.716 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:47.928 15404 17192 I python  : {
+07-23 23:12:47.929 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:47.929 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:47.929 15404 17192 I python  :   "rate": null, 
+07-23 23:12:47.929 15404 17192 I python  :   "state": null
+07-23 23:12:47.929 15404 17192 I python  : }
+07-23 23:12:47.929 15404 17192 I python  : 
+07-23 23:12:48.223 15404 17192 I python  : Uploading image 6
+07-23 23:12:48.223 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:48.224 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:48.980 15404 17192 I python  : {
+07-23 23:12:48.980 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:48.980 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:48.980 15404 17192 I python  :   "rate": null, 
+07-23 23:12:48.980 15404 17192 I python  :   "state": null
+07-23 23:12:48.980 15404 17192 I python  : }
+07-23 23:12:48.980 15404 17192 I python  : 
+07-23 23:12:52.569 15404 17813 I python  : {
+07-23 23:12:52.569 15404 17813 I python  :   "indanger": false, 
+07-23 23:12:52.569 15404 17813 I python  :   "iscovered": false, 
+07-23 23:12:52.569 15404 17813 I python  :   "rate": null, 
+07-23 23:12:52.569 15404 17813 I python  :   "state": null
+07-23 23:12:52.569 15404 17813 I python  : }
+07-23 23:12:52.569 15404 17813 I python  : 
+07-23 23:12:52.656 15404 17192 I python  : Uploading image 7
+07-23 23:12:52.661 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:52.661 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:52.839 15404 17816 I python  : {
+07-23 23:12:52.839 15404 17816 I python  :   "indanger": false, 
+07-23 23:12:52.839 15404 17816 I python  :   "iscovered": false, 
+07-23 23:12:52.839 15404 17816 I python  :   "rate": null, 
+07-23 23:12:52.839 15404 17816 I python  :   "state": null
+07-23 23:12:52.839 15404 17816 I python  : }
+07-23 23:12:52.839 15404 17816 I python  : 
+07-23 23:12:52.841 15404 17192 I python  : {
+07-23 23:12:52.841 15404 17192 I python  :   "indanger": false, 
+07-23 23:12:52.841 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:52.841 15404 17192 I python  :   "rate": null, 
+07-23 23:12:52.841 15404 17192 I python  :   "state": null
+07-23 23:12:52.841 15404 17192 I python  : }
+07-23 23:12:52.841 15404 17192 I python  : 
+07-23 23:12:55.370 15404 17192 I python  : Uploading image 8
+07-23 23:12:55.392 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:55.392 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:55.909 15404 17814 I python  : {
+07-23 23:12:55.909 15404 17814 I python  :   "indanger": true, 
+07-23 23:12:55.909 15404 17814 I python  :   "iscovered": false, 
+07-23 23:12:55.909 15404 17814 I python  :   "rate": null, 
+07-23 23:12:55.909 15404 17814 I python  :   "state": null
+07-23 23:12:55.909 15404 17814 I python  : }
+07-23 23:12:55.910 15404 17814 I python  : 
+07-23 23:12:55.912 15404 17817 I python  : {
+07-23 23:12:55.912 15404 17817 I python  :   "indanger": true, 
+07-23 23:12:55.912 15404 17817 I python  :   "iscovered": false, 
+07-23 23:12:55.912 15404 17817 I python  :   "rate": null, 
+07-23 23:12:55.912 15404 17817 I python  :   "state": null
+07-23 23:12:55.912 15404 17817 I python  : }
+07-23 23:12:55.912 15404 17817 I python  : 
+07-23 23:12:55.979 15404 17192 I python  : {
+07-23 23:12:55.979 15404 17192 I python  :   "indanger": true, 
+07-23 23:12:55.979 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:55.979 15404 17192 I python  :   "rate": null, 
+07-23 23:12:55.979 15404 17192 I python  :   "state": null
+07-23 23:12:55.979 15404 17192 I python  : }
+07-23 23:12:55.979 15404 17192 I python  : 
+07-23 23:12:56.141 15404 17192 I python  : Uploading image 9
+07-23 23:12:56.141 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:56.142 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:56.269 15404 17192 I python  : {
+07-23 23:12:56.269 15404 17192 I python  :   "indanger": true, 
+07-23 23:12:56.269 15404 17192 I python  :   "iscovered": false, 
+07-23 23:12:56.269 15404 17192 I python  :   "rate": null, 
+07-23 23:12:56.269 15404 17192 I python  :   "state": null
+07-23 23:12:56.269 15404 17192 I python  : }
+07-23 23:12:56.269 15404 17192 I python  : 
+07-23 23:12:56.279 15404 17815 I python  : {
+07-23 23:12:56.279 15404 17815 I python  :   "indanger": true, 
+07-23 23:12:56.279 15404 17815 I python  :   "iscovered": false, 
+07-23 23:12:56.279 15404 17815 I python  :   "rate": null, 
+07-23 23:12:56.279 15404 17815 I python  :   "state": null
+07-23 23:12:56.279 15404 17815 I python  : }
+07-23 23:12:56.279 15404 17815 I python  : 
+07-23 23:12:56.528 15404 17818 I python  : {
+07-23 23:12:56.528 15404 17818 I python  :   "indanger": true, 
+07-23 23:12:56.528 15404 17818 I python  :   "iscovered": false, 
+07-23 23:12:56.528 15404 17818 I python  :   "rate": null, 
+07-23 23:12:56.528 15404 17818 I python  :   "state": null
+07-23 23:12:56.528 15404 17818 I python  : }
+07-23 23:12:56.528 15404 17818 I python  : 
+07-23 23:12:56.627 15404 17192 I python  : Uploading image 10
+07-23 23:12:56.627 15404 17192 I python  : Image Size  1280 720
+07-23 23:12:56.629 15404 17192 I python  : Image corner  0 928.5
+07-23 23:12:59.187 15404 17820 I python  : {
+07-23 23:12:59.187 15404 17820 I python  :   "indanger": true, 
+07-23 23:12:59.187 15404 17820 I python  :   "iscovered": false, 
+07-23 23:12:59.187 15404 17820 I python  :   "rate": null, 
+07-23 23:12:59.187 15404 17820 I python  :   "state": null
+07-23 23:12:59.187 15404 17820 I python  : }
+07-23 23:12:59.187 15404 17820 I python  : 
+07-23 23:13:00.115 15404 17192 I python  : {
+07-23 23:13:00.116 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:00.117 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:00.117 15404 17192 I python  :   "rate": null, 
+07-23 23:13:00.117 15404 17192 I python  :   "state": null
+07-23 23:13:00.117 15404 17192 I python  : }
+07-23 23:13:00.117 15404 17192 I python  : 
+07-23 23:13:00.473 15404 17192 I python  : Uploading image 11
+07-23 23:13:00.473 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:00.482 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:00.679 15404 17192 I python  : {
+07-23 23:13:00.679 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:00.679 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:00.679 15404 17192 I python  :   "rate": null, 
+07-23 23:13:00.679 15404 17192 I python  :   "state": null
+07-23 23:13:00.679 15404 17192 I python  : }
+07-23 23:13:00.679 15404 17192 I python  : 
+07-23 23:13:00.954 15404 17192 I python  : Uploading image 12
+07-23 23:13:00.955 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:00.955 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:03.543 15404 17192 I python  : {
+07-23 23:13:03.544 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:03.544 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:03.544 15404 17192 I python  :   "rate": null, 
+07-23 23:13:03.544 15404 17192 I python  :   "state": null
+07-23 23:13:03.544 15404 17192 I python  : }
+07-23 23:13:03.544 15404 17192 I python  : 
+07-23 23:13:03.546 15404 17822 I python  : {
+07-23 23:13:03.546 15404 17822 I python  :   "indanger": false, 
+07-23 23:13:03.546 15404 17822 I python  :   "iscovered": true, 
+07-23 23:13:03.546 15404 17822 I python  :   "rate": null, 
+07-23 23:13:03.546 15404 17822 I python  :   "state": null
+07-23 23:13:03.546 15404 17822 I python  : }
+07-23 23:13:03.546 15404 17822 I python  : 
+07-23 23:13:03.553 15404 17823 I python  : {
+07-23 23:13:03.553 15404 17823 I python  :   "indanger": false, 
+07-23 23:13:03.553 15404 17823 I python  :   "iscovered": true, 
+07-23 23:13:03.553 15404 17823 I python  :   "rate": null, 
+07-23 23:13:03.553 15404 17823 I python  :   "state": null
+07-23 23:13:03.553 15404 17823 I python  : }
+07-23 23:13:03.553 15404 17823 I python  : 
+07-23 23:13:03.953 15404 17192 I python  : Uploading image 13
+07-23 23:13:03.953 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:03.964 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:04.395 15404 17192 I python  : {
+07-23 23:13:04.396 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:04.396 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:04.396 15404 17192 I python  :   "rate": null, 
+07-23 23:13:04.396 15404 17192 I python  :   "state": null
+07-23 23:13:04.396 15404 17192 I python  : }
+07-23 23:13:04.396 15404 17192 I python  : 
+07-23 23:13:06.425 15404 17825 I python  : {
+07-23 23:13:06.425 15404 17825 I python  :   "indanger": false, 
+07-23 23:13:06.425 15404 17825 I python  :   "iscovered": false, 
+07-23 23:13:06.425 15404 17825 I python  :   "rate": null, 
+07-23 23:13:06.425 15404 17825 I python  :   "state": null
+07-23 23:13:06.425 15404 17825 I python  : }
+07-23 23:13:06.425 15404 17825 I python  : 
+07-23 23:13:06.458 15404 17824 I python  : {
+07-23 23:13:06.458 15404 17824 I python  :   "indanger": false, 
+07-23 23:13:06.458 15404 17824 I python  :   "iscovered": false, 
+07-23 23:13:06.458 15404 17824 I python  :   "rate": null, 
+07-23 23:13:06.458 15404 17824 I python  :   "state": null
+07-23 23:13:06.458 15404 17824 I python  : }
+07-23 23:13:06.458 15404 17824 I python  : 
+07-23 23:13:06.461 15404 17192 I python  : Uploading image 14
+07-23 23:13:06.461 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:06.469 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:06.635 15404 17192 I python  : {
+07-23 23:13:06.636 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:06.636 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:06.636 15404 17192 I python  :   "rate": null, 
+07-23 23:13:06.636 15404 17192 I python  :   "state": null
+07-23 23:13:06.636 15404 17192 I python  : }
+07-23 23:13:06.636 15404 17192 I python  : 
+07-23 23:13:09.786 15404 17192 I python  : Uploading image 15
+07-23 23:13:09.788 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:09.789 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:09.940 15404 17826 I python  : {
+07-23 23:13:09.940 15404 17826 I python  :   "indanger": false, 
+07-23 23:13:09.940 15404 17826 I python  :   "iscovered": false, 
+07-23 23:13:09.940 15404 17826 I python  :   "rate": null, 
+07-23 23:13:09.940 15404 17826 I python  :   "state": null
+07-23 23:13:09.940 15404 17826 I python  : }
+07-23 23:13:09.940 15404 17826 I python  : 
+07-23 23:13:09.942 15404 17192 I python  : {
+07-23 23:13:09.942 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:09.942 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:09.942 15404 17192 I python  :   "rate": null, 
+07-23 23:13:09.942 15404 17192 I python  :   "state": null
+07-23 23:13:09.942 15404 17192 I python  : }
+07-23 23:13:09.943 15404 17192 I python  : 
+07-23 23:13:10.069 15404 17192 I python  : Uploading image 16
+07-23 23:13:10.069 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:10.069 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:10.158 15404 17192 I python  : {
+07-23 23:13:10.158 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:10.158 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:10.158 15404 17192 I python  :   "rate": null, 
+07-23 23:13:10.158 15404 17192 I python  :   "state": null
+07-23 23:13:10.158 15404 17192 I python  : }
+07-23 23:13:10.158 15404 17192 I python  : 
+07-23 23:13:14.840 15404 17829 I python  : {
+07-23 23:13:14.840 15404 17829 I python  :   "indanger": false, 
+07-23 23:13:14.840 15404 17829 I python  :   "iscovered": true, 
+07-23 23:13:14.840 15404 17829 I python  :   "rate": null, 
+07-23 23:13:14.840 15404 17829 I python  :   "state": null
+07-23 23:13:14.840 15404 17829 I python  : }
+07-23 23:13:14.840 15404 17829 I python  : 
+07-23 23:13:14.844 15404 17827 I python  : {
+07-23 23:13:14.844 15404 17827 I python  :   "indanger": false, 
+07-23 23:13:14.844 15404 17827 I python  :   "iscovered": true, 
+07-23 23:13:14.844 15404 17827 I python  :   "rate": null, 
+07-23 23:13:14.844 15404 17827 I python  :   "state": null
+07-23 23:13:14.844 15404 17827 I python  : }
+07-23 23:13:14.844 15404 17827 I python  : 
+07-23 23:13:14.934 15404 17192 I python  : Uploading image 17
+07-23 23:13:14.937 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:14.938 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:15.086 15404 17192 I python  : {
+07-23 23:13:15.086 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:15.086 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:15.086 15404 17192 I python  :   "rate": null, 
+07-23 23:13:15.086 15404 17192 I python  :   "state": null
+07-23 23:13:15.086 15404 17192 I python  : }
+07-23 23:13:15.086 15404 17192 I python  : 
+07-23 23:13:15.379 15404 17192 I python  : Uploading image 18
+07-23 23:13:15.379 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:15.380 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:15.415 15404 17830 I python  : {
+07-23 23:13:15.415 15404 17830 I python  :   "indanger": false, 
+07-23 23:13:15.415 15404 17830 I python  :   "iscovered": false, 
+07-23 23:13:15.415 15404 17830 I python  :   "rate": null, 
+07-23 23:13:15.415 15404 17830 I python  :   "state": null
+07-23 23:13:15.415 15404 17830 I python  : }
+07-23 23:13:15.415 15404 17830 I python  : 
+07-23 23:13:15.506 15404 17192 I python  : {
+07-23 23:13:15.506 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:15.506 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:15.506 15404 17192 I python  :   "rate": null, 
+07-23 23:13:15.506 15404 17192 I python  :   "state": null
+07-23 23:13:15.506 15404 17192 I python  : }
+07-23 23:13:15.506 15404 17192 I python  : 
+07-23 23:13:15.670 15404 17831 I python  : {
+07-23 23:13:15.670 15404 17831 I python  :   "indanger": false, 
+07-23 23:13:15.670 15404 17831 I python  :   "iscovered": false, 
+07-23 23:13:15.670 15404 17831 I python  :   "rate": null, 
+07-23 23:13:15.670 15404 17831 I python  :   "state": null
+07-23 23:13:15.670 15404 17831 I python  : }
+07-23 23:13:15.670 15404 17831 I python  : 
+07-23 23:13:17.962 15404 17192 I python  : Uploading image 19
+07-23 23:13:17.963 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:17.964 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:18.150 15404 17192 I python  : {
+07-23 23:13:18.150 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:18.150 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:18.150 15404 17192 I python  :   "rate": null, 
+07-23 23:13:18.150 15404 17192 I python  :   "state": null
+07-23 23:13:18.150 15404 17192 I python  : }
+07-23 23:13:18.150 15404 17192 I python  : 
+07-23 23:13:18.454 15404 17192 I python  : Uploading image 20
+07-23 23:13:18.455 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:18.455 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:18.598 15404 17192 I python  : {
+07-23 23:13:18.598 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:18.598 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:18.598 15404 17192 I python  :   "rate": null, 
+07-23 23:13:18.598 15404 17192 I python  :   "state": null
+07-23 23:13:18.598 15404 17192 I python  : }
+07-23 23:13:18.598 15404 17192 I python  : 
+07-23 23:13:20.862 15404 17192 I python  : Uploading image 21
+07-23 23:13:20.862 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:20.862 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:20.960 15404 17833 I python  : {
+07-23 23:13:20.960 15404 17833 I python  :   "indanger": false, 
+07-23 23:13:20.960 15404 17833 I python  :   "iscovered": false, 
+07-23 23:13:20.960 15404 17833 I python  :   "rate": null, 
+07-23 23:13:20.960 15404 17833 I python  :   "state": null
+07-23 23:13:20.960 15404 17833 I python  : }
+07-23 23:13:20.960 15404 17833 I python  : 
+07-23 23:13:20.969 15404 17834 I python  : {
+07-23 23:13:20.969 15404 17834 I python  :   "indanger": false, 
+07-23 23:13:20.969 15404 17834 I python  :   "iscovered": false, 
+07-23 23:13:20.969 15404 17834 I python  :   "rate": null, 
+07-23 23:13:20.969 15404 17834 I python  :   "state": null
+07-23 23:13:20.970 15404 17834 I python  : }
+07-23 23:13:20.970 15404 17834 I python  : 
+07-23 23:13:21.074 15404 17192 I python  : {
+07-23 23:13:21.074 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:21.074 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:21.074 15404 17192 I python  :   "rate": null, 
+07-23 23:13:21.074 15404 17192 I python  :   "state": null
+07-23 23:13:21.074 15404 17192 I python  : }
+07-23 23:13:21.074 15404 17192 I python  : 
+07-23 23:13:21.211 15404 17192 I python  : Uploading image 22
+07-23 23:13:21.211 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:21.211 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:21.339 15404 17192 I python  : {
+07-23 23:13:21.339 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:21.339 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:21.339 15404 17192 I python  :   "rate": null, 
+07-23 23:13:21.339 15404 17192 I python  :   "state": null
+07-23 23:13:21.339 15404 17192 I python  : }
+07-23 23:13:21.339 15404 17192 I python  : 
+07-23 23:13:21.712 15404 17192 I python  : Uploading image 23
+07-23 23:13:21.712 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:21.713 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:21.824 15404 17835 I python  : {
+07-23 23:13:21.824 15404 17835 I python  :   "indanger": false, 
+07-23 23:13:21.824 15404 17835 I python  :   "iscovered": false, 
+07-23 23:13:21.824 15404 17835 I python  :   "rate": null, 
+07-23 23:13:21.824 15404 17835 I python  :   "state": null
+07-23 23:13:21.824 15404 17835 I python  : }
+07-23 23:13:21.824 15404 17835 I python  : 
+07-23 23:13:21.830 15404 17192 I python  : {
+07-23 23:13:21.830 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:21.830 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:21.830 15404 17192 I python  :   "rate": null, 
+07-23 23:13:21.830 15404 17192 I python  :   "state": null
+07-23 23:13:21.830 15404 17192 I python  : }
+07-23 23:13:21.830 15404 17192 I python  : 
+07-23 23:13:23.620 15404 17192 I python  : Uploading image 24
+07-23 23:13:23.622 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:23.622 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:23.620 15404 17192 I python  : Uploading image 24
+07-23 23:13:23.622 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:23.622 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:23.837 15404 17192 I python  : {
+07-23 23:13:23.837 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:23.837 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:23.837 15404 17192 I python  :   "rate": null, 
+07-23 23:13:23.837 15404 17192 I python  :   "state": null
+07-23 23:13:23.837 15404 17192 I python  : }
+07-23 23:13:23.837 15404 17192 I python  : 
+07-23 23:13:24.050 15404 17192 I python  : Uploading image 25
+07-23 23:13:24.050 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:24.050 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:24.236 15404 17192 I python  : {
+07-23 23:13:24.236 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:24.236 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:24.236 15404 17192 I python  :   "rate": null, 
+07-23 23:13:24.236 15404 17192 I python  :   "state": null
+07-23 23:13:24.236 15404 17192 I python  : }
+07-23 23:13:24.236 15404 17192 I python  : 
+07-23 23:13:24.555 15404 17192 I python  : Uploading image 26
+07-23 23:13:24.555 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:24.555 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:24.746 15404 17192 I python  : {
+07-23 23:13:24.746 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:24.746 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:24.746 15404 17192 I python  :   "rate": null, 
+07-23 23:13:24.746 15404 17192 I python  :   "state": null
+07-23 23:13:24.746 15404 17192 I python  : }
+07-23 23:13:24.746 15404 17192 I python  : 
+07-23 23:13:24.776 15404 17836 I python  : {
+07-23 23:13:24.776 15404 17836 I python  :   "indanger": false, 
+07-23 23:13:24.776 15404 17836 I python  :   "iscovered": false, 
+07-23 23:13:24.776 15404 17836 I python  :   "rate": null, 
+07-23 23:13:24.776 15404 17836 I python  :   "state": null
+07-23 23:13:24.776 15404 17836 I python  : }
+07-23 23:13:24.776 15404 17836 I python  : 
+07-23 23:13:30.630 15404 17838 I python  : {
+07-23 23:13:30.632 15404 17838 I python  :   "indanger": false, 
+07-23 23:13:30.632 15404 17838 I python  :   "iscovered": false, 
+07-23 23:13:30.632 15404 17838 I python  :   "rate": null, 
+07-23 23:13:30.632 15404 17838 I python  :   "state": null
+07-23 23:13:30.632 15404 17838 I python  : }
+07-23 23:13:30.632 15404 17838 I python  : 
+07-23 23:13:30.634 15404 17840 I python  : {
+07-23 23:13:30.634 15404 17840 I python  :   "indanger": false, 
+07-23 23:13:30.634 15404 17840 I python  :   "iscovered": false, 
+07-23 23:13:30.634 15404 17840 I python  :   "rate": null, 
+07-23 23:13:30.634 15404 17840 I python  :   "state": null
+07-23 23:13:30.634 15404 17840 I python  : }
+07-23 23:13:30.634 15404 17840 I python  : 
+07-23 23:13:30.648 15404 17842 I python  : {
+07-23 23:13:30.648 15404 17842 I python  :   "indanger": false, 
+07-23 23:13:30.648 15404 17842 I python  :   "iscovered": false, 
+07-23 23:13:30.648 15404 17842 I python  :   "rate": null, 
+07-23 23:13:30.648 15404 17842 I python  :   "state": null
+07-23 23:13:30.648 15404 17842 I python  : }
+07-23 23:13:30.648 15404 17842 I python  : 
+07-23 23:13:30.650 15404 17837 I python  : {
+07-23 23:13:30.650 15404 17837 I python  :   "indanger": false, 
+07-23 23:13:30.650 15404 17837 I python  :   "iscovered": false, 
+07-23 23:13:30.650 15404 17837 I python  :   "rate": null, 
+07-23 23:13:30.650 15404 17837 I python  :   "state": null
+07-23 23:13:30.650 15404 17837 I python  : }
+07-23 23:13:30.650 15404 17837 I python  : 
+07-23 23:13:30.783 15404 17192 I python  : Uploading image 27
+07-23 23:13:30.783 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:30.784 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:30.938 15404 17192 I python  : {
+07-23 23:13:30.938 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:30.938 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:30.938 15404 17192 I python  :   "rate": null, 
+07-23 23:13:30.939 15404 17192 I python  :   "state": null
+07-23 23:13:30.939 15404 17192 I python  : }
+07-23 23:13:30.939 15404 17192 I python  : 
+07-23 23:13:31.273 15404 17192 I python  : Uploading image 28
+07-23 23:13:31.273 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:31.273 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:31.406 15404 17192 I python  : {
+07-23 23:13:31.406 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:31.406 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:31.406 15404 17192 I python  :   "rate": null, 
+07-23 23:13:31.406 15404 17192 I python  :   "state": null
+07-23 23:13:31.406 15404 17192 I python  : }
+07-23 23:13:31.406 15404 17192 I python  : 
+07-23 23:13:31.459 15404 17845 I python  : {
+07-23 23:13:31.459 15404 17845 I python  :   "indanger": false, 
+07-23 23:13:31.459 15404 17845 I python  :   "iscovered": true, 
+07-23 23:13:31.459 15404 17845 I python  :   "rate": null, 
+07-23 23:13:31.459 15404 17845 I python  :   "state": null
+07-23 23:13:31.459 15404 17845 I python  : }
+07-23 23:13:31.459 15404 17845 I python  : 
+07-23 23:13:31.460 15404 17839 I python  : {
+07-23 23:13:31.460 15404 17839 I python  :   "indanger": false, 
+07-23 23:13:31.460 15404 17839 I python  :   "iscovered": true, 
+07-23 23:13:31.460 15404 17839 I python  :   "rate": null, 
+07-23 23:13:31.461 15404 17839 I python  :   "state": null
+07-23 23:13:31.461 15404 17839 I python  : }
+07-23 23:13:31.461 15404 17839 I python  : 
+07-23 23:13:31.766 15404 17192 I python  : Uploading image 29
+07-23 23:13:31.766 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:31.768 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:32.173 15404 17192 I python  : {
+07-23 23:13:32.173 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:32.173 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:32.173 15404 17192 I python  :   "rate": null, 
+07-23 23:13:32.173 15404 17192 I python  :   "state": null
+07-23 23:13:32.173 15404 17192 I python  : }
+07-23 23:13:32.173 15404 17192 I python  : 
+07-23 23:13:33.217 15404 17192 I python  : Uploading image 30
+07-23 23:13:33.217 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:33.218 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:33.486 15404 17192 I python  : {
+07-23 23:13:33.486 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:33.486 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:33.486 15404 17192 I python  :   "rate": null, 
+07-23 23:13:33.486 15404 17192 I python  :   "state": null
+07-23 23:13:33.486 15404 17192 I python  : }
+07-23 23:13:33.486 15404 17192 I python  : 
+07-23 23:13:33.656 15404 17192 I python  : Uploading image 31
+07-23 23:13:33.656 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:33.656 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:34.032 15404 17192 I python  : {
+07-23 23:13:34.032 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:34.032 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:34.032 15404 17192 I python  :   "rate": null, 
+07-23 23:13:34.032 15404 17192 I python  :   "state": null
+07-23 23:13:34.032 15404 17192 I python  : }
+07-23 23:13:34.032 15404 17192 I python  : 
+07-23 23:13:34.155 15404 17192 I python  : Uploading image 32
+07-23 23:13:34.155 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:34.155 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:36.215 15404 17192 I python  : {
+07-23 23:13:36.215 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:36.215 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:36.215 15404 17192 I python  :   "rate": null, 
+07-23 23:13:36.215 15404 17192 I python  :   "state": null
+07-23 23:13:36.215 15404 17192 I python  : }
+07-23 23:13:36.215 15404 17192 I python  : 
+07-23 23:13:36.588 15404 17846 I python  : {
+07-23 23:13:36.589 15404 17846 I python  :   "indanger": false, 
+07-23 23:13:36.589 15404 17846 I python  :   "iscovered": false, 
+07-23 23:13:36.589 15404 17846 I python  :   "rate": null, 
+07-23 23:13:36.589 15404 17846 I python  :   "state": null
+07-23 23:13:36.589 15404 17846 I python  : }
+07-23 23:13:36.589 15404 17846 I python  : 
+07-23 23:13:36.590 15404 17847 I python  : {
+07-23 23:13:36.590 15404 17847 I python  :   "indanger": false, 
+07-23 23:13:36.590 15404 17847 I python  :   "iscovered": false, 
+07-23 23:13:36.590 15404 17847 I python  :   "rate": null, 
+07-23 23:13:36.590 15404 17847 I python  :   "state": null
+07-23 23:13:36.590 15404 17847 I python  : }
+07-23 23:13:36.590 15404 17847 I python  : 
+07-23 23:13:36.626 15404 17848 I python  : {
+07-23 23:13:36.626 15404 17848 I python  :   "indanger": false, 
+07-23 23:13:36.626 15404 17848 I python  :   "iscovered": false, 
+07-23 23:13:36.626 15404 17848 I python  :   "rate": null, 
+07-23 23:13:36.626 15404 17848 I python  :   "state": null
+07-23 23:13:36.626 15404 17848 I python  : }
+07-23 23:13:36.626 15404 17848 I python  : 
+07-23 23:13:36.805 15404 17192 I python  : Uploading image 33
+07-23 23:13:36.805 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:36.805 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:36.984 15404 17192 I python  : {
+07-23 23:13:36.984 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:36.984 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:36.984 15404 17192 I python  :   "rate": null, 
+07-23 23:13:36.984 15404 17192 I python  :   "state": null
+07-23 23:13:36.984 15404 17192 I python  : }
+07-23 23:13:36.984 15404 17192 I python  : 
+07-23 23:13:37.284 15404 17192 I python  : Uploading image 34
+07-23 23:13:37.284 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:37.287 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:39.337 15404 17850 I python  : {
+07-23 23:13:39.339 15404 17852 I python  : {
+07-23 23:13:39.339 15404 17852 I python  :   "indanger": false, 
+07-23 23:13:39.339 15404 17852 I python  :   "iscovered": false, 
+07-23 23:13:39.339 15404 17852 I python  :   "rate": null, 
+07-23 23:13:39.339 15404 17852 I python  :   "state": null
+07-23 23:13:39.339 15404 17852 I python  : }
+07-23 23:13:39.339 15404 17852 I python  : 
+07-23 23:13:39.344 15404 17850 I python  :   "indanger": false, 
+07-23 23:13:39.344 15404 17850 I python  :   "iscovered": false, 
+07-23 23:13:39.344 15404 17850 I python  :   "rate": null, 
+07-23 23:13:39.344 15404 17850 I python  :   "state": null
+07-23 23:13:39.344 15404 17850 I python  : }
+07-23 23:13:39.344 15404 17850 I python  : 
+07-23 23:13:39.350 15404 17192 I python  : {
+07-23 23:13:39.350 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:39.350 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:39.350 15404 17192 I python  :   "rate": null, 
+07-23 23:13:39.350 15404 17192 I python  :   "state": null
+07-23 23:13:39.350 15404 17192 I python  : }
+07-23 23:13:39.350 15404 17192 I python  : 
+07-23 23:13:39.352 15404 17849 I python  : {
+07-23 23:13:39.352 15404 17849 I python  :   "indanger": false, 
+07-23 23:13:39.352 15404 17849 I python  :   "iscovered": false, 
+07-23 23:13:39.352 15404 17849 I python  :   "rate": null, 
+07-23 23:13:39.352 15404 17849 I python  :   "state": null
+07-23 23:13:39.352 15404 17849 I python  : }
+07-23 23:13:39.352 15404 17849 I python  : 
+07-23 23:13:39.559 15404 17192 I python  : Uploading image 35
+07-23 23:13:39.559 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:39.559 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:39.718 15404 17192 I python  : {
+07-23 23:13:39.718 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:39.718 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:39.718 15404 17192 I python  :   "rate": null, 
+07-23 23:13:39.718 15404 17192 I python  :   "state": null
+07-23 23:13:39.718 15404 17192 I python  : }
+07-23 23:13:39.718 15404 17192 I python  : 
+07-23 23:13:40.044 15404 17192 I python  : Uploading image 36
+07-23 23:13:40.044 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:40.044 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:41.130 15404 17192 I python  : {
+07-23 23:13:41.130 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:41.130 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:41.130 15404 17192 I python  :   "rate": null, 
+07-23 23:13:41.130 15404 17192 I python  :   "state": null
+07-23 23:13:41.130 15404 17192 I python  : }
+07-23 23:13:41.130 15404 17192 I python  : 
+07-23 23:13:41.601 15404 17853 I python  : {
+07-23 23:13:41.601 15404 17853 I python  :   "indanger": false, 
+07-23 23:13:41.601 15404 17853 I python  :   "iscovered": false, 
+07-23 23:13:41.601 15404 17853 I python  :   "rate": null, 
+07-23 23:13:41.601 15404 17853 I python  :   "state": null
+07-23 23:13:41.601 15404 17853 I python  : }
+07-23 23:13:41.601 15404 17853 I python  : 
+07-23 23:13:41.699 15404 17192 I python  : Uploading image 37
+07-23 23:13:41.699 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:41.699 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:41.859 15404 17192 I python  : {
+07-23 23:13:41.859 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:41.859 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:41.860 15404 17192 I python  :   "rate": null, 
+07-23 23:13:41.860 15404 17192 I python  :   "state": null
+07-23 23:13:41.860 15404 17192 I python  : }
+07-23 23:13:41.860 15404 17192 I python  : 
+07-23 23:13:42.130 15404 17192 I python  : Uploading image 38
+07-23 23:13:42.130 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:42.133 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:43.354 15404 17854 I python  : {
+07-23 23:13:43.354 15404 17854 I python  :   "indanger": false, 
+07-23 23:13:43.354 15404 17854 I python  :   "iscovered": false, 
+07-23 23:13:43.354 15404 17854 I python  :   "rate": null, 
+07-23 23:13:43.354 15404 17854 I python  :   "state": null
+07-23 23:13:43.354 15404 17854 I python  : }
+07-23 23:13:43.354 15404 17854 I python  : 
+07-23 23:13:43.356 15404 17855 I python  : {
+07-23 23:13:43.356 15404 17855 I python  :   "indanger": false, 
+07-23 23:13:43.356 15404 17855 I python  :   "iscovered": false, 
+07-23 23:13:43.356 15404 17855 I python  :   "rate": null, 
+07-23 23:13:43.356 15404 17855 I python  :   "state": null
+07-23 23:13:43.356 15404 17855 I python  : }
+07-23 23:13:43.356 15404 17855 I python  : 
+07-23 23:13:43.359 15404 17192 I python  : {
+07-23 23:13:43.359 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:43.359 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:43.359 15404 17192 I python  :   "rate": null, 
+07-23 23:13:43.359 15404 17192 I python  :   "state": null
+07-23 23:13:43.359 15404 17192 I python  : }
+07-23 23:13:43.359 15404 17192 I python  : 
+07-23 23:13:43.701 15404 17192 I python  : Uploading image 39
+07-23 23:13:43.701 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:43.707 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:43.886 15404 17192 I python  : {
+07-23 23:13:43.886 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:43.886 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:43.887 15404 17192 I python  :   "rate": null, 
+07-23 23:13:43.887 15404 17192 I python  :   "state": null
+07-23 23:13:43.887 15404 17192 I python  : }
+07-23 23:13:43.887 15404 17192 I python  : 
+07-23 23:13:44.178 15404 17192 I python  : Uploading image 40
+07-23 23:13:44.180 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:44.352 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:45.542 15404 17856 I python  : {
+07-23 23:13:45.543 15404 17856 I python  :   "indanger": false, 
+07-23 23:13:45.543 15404 17856 I python  :   "iscovered": true, 
+07-23 23:13:45.543 15404 17856 I python  :   "rate": null, 
+07-23 23:13:45.543 15404 17856 I python  :   "state": null
+07-23 23:13:45.543 15404 17856 I python  : }
+07-23 23:13:45.543 15404 17856 I python  : 
+07-23 23:13:45.560 15404 17192 I python  : {
+07-23 23:13:45.560 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:45.560 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:45.560 15404 17192 I python  :   "rate": null, 
+07-23 23:13:45.560 15404 17192 I python  :   "state": null
+07-23 23:13:45.560 15404 17192 I python  : }
+07-23 23:13:45.560 15404 17192 I python  : 
+07-23 23:13:45.715 15404 17857 I python  : {
+07-23 23:13:45.715 15404 17857 I python  :   "indanger": false, 
+07-23 23:13:45.715 15404 17857 I python  :   "iscovered": true, 
+07-23 23:13:45.715 15404 17857 I python  :   "rate": null, 
+07-23 23:13:45.715 15404 17857 I python  :   "state": null
+07-23 23:13:45.715 15404 17857 I python  : }
+07-23 23:13:45.716 15404 17857 I python  : 
+07-23 23:13:45.789 15404 17192 I python  : Uploading image 41
+07-23 23:13:45.790 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:45.794 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:45.945 15404 17192 I python  : {
+07-23 23:13:45.945 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:45.945 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:45.945 15404 17192 I python  :   "rate": null, 
+07-23 23:13:45.945 15404 17192 I python  :   "state": null
+07-23 23:13:45.945 15404 17192 I python  : }
+07-23 23:13:45.945 15404 17192 I python  : 
+07-23 23:13:46.200 15404 17192 I python  : Uploading image 42
+07-23 23:13:46.200 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:46.200 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:46.434 15404 17192 I python  : {
+07-23 23:13:46.434 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:46.434 15404 17192 I python  :   "iscovered": true, 
+07-23 23:13:46.435 15404 17192 I python  :   "rate": null, 
+07-23 23:13:46.435 15404 17192 I python  :   "state": null
+07-23 23:13:46.435 15404 17192 I python  : }
+07-23 23:13:46.435 15404 17192 I python  : 
+07-23 23:13:47.947 15404 17858 I python  : {
+07-23 23:13:47.949 15404 17859 I python  : {
+07-23 23:13:47.950 15404 17859 I python  :   "indanger": false, 
+07-23 23:13:47.950 15404 17859 I python  :   "iscovered": false, 
+07-23 23:13:47.950 15404 17859 I python  :   "rate": null, 
+07-23 23:13:47.950 15404 17859 I python  :   "state": null
+07-23 23:13:47.950 15404 17859 I python  : }
+07-23 23:13:47.950 15404 17859 I python  : 
+07-23 23:13:47.950 15404 17858 I python  :   "indanger": false, 
+07-23 23:13:47.951 15404 17858 I python  :   "iscovered": false, 
+07-23 23:13:47.951 15404 17858 I python  :   "rate": null, 
+07-23 23:13:47.951 15404 17858 I python  :   "state": null
+07-23 23:13:47.951 15404 17858 I python  : }
+07-23 23:13:47.951 15404 17858 I python  : 
+07-23 23:13:47.958 15404 17192 I python  : Uploading image 43
+07-23 23:13:47.958 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:47.958 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:48.158 15404 17192 I python  : {
+07-23 23:13:48.158 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:48.158 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:48.158 15404 17192 I python  :   "rate": null, 
+07-23 23:13:48.158 15404 17192 I python  :   "state": null
+07-23 23:13:48.158 15404 17192 I python  : }
+07-23 23:13:48.158 15404 17192 I python  : 
+07-23 23:13:48.436 15404 17192 I python  : Uploading image 44
+07-23 23:13:48.436 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:48.439 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:49.741 15404 17862 I python  : {
+07-23 23:13:49.741 15404 17862 I python  :   "indanger": true, 
+07-23 23:13:49.741 15404 17862 I python  :   "iscovered": false, 
+07-23 23:13:49.741 15404 17862 I python  :   "rate": null, 
+07-23 23:13:49.741 15404 17862 I python  :   "state": null
+07-23 23:13:49.741 15404 17862 I python  : }
+07-23 23:13:49.741 15404 17862 I python  : 
+07-23 23:13:49.820 15404 17192 I python  : {
+07-23 23:13:49.820 15404 17192 I python  :   "indanger": true, 
+07-23 23:13:49.820 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:49.821 15404 17192 I python  :   "rate": null, 
+07-23 23:13:49.821 15404 17192 I python  :   "state": null
+07-23 23:13:49.821 15404 17192 I python  : }
+07-23 23:13:49.821 15404 17192 I python  : 
+07-23 23:13:49.834 15404 17863 I python  : {
+07-23 23:13:49.834 15404 17863 I python  :   "indanger": true, 
+07-23 23:13:49.834 15404 17863 I python  :   "iscovered": false, 
+07-23 23:13:49.834 15404 17863 I python  :   "rate": null, 
+07-23 23:13:49.834 15404 17863 I python  :   "state": null
+07-23 23:13:49.834 15404 17863 I python  : }
+07-23 23:13:49.834 15404 17863 I python  : 
+07-23 23:13:49.902 15404 17192 I python  : Uploading image 45
+07-23 23:13:49.903 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:49.903 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:50.010 15404 17192 I python  : {
+07-23 23:13:50.010 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:50.010 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:50.010 15404 17192 I python  :   "rate": null, 
+07-23 23:13:50.010 15404 17192 I python  :   "state": null
+07-23 23:13:50.010 15404 17192 I python  : }
+07-23 23:13:50.011 15404 17192 I python  : 
+07-23 23:13:50.398 15404 17192 I python  : Uploading image 46
+07-23 23:13:50.399 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:50.399 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:51.691 15404 17192 I python  : {
+07-23 23:13:51.691 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:51.691 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:51.691 15404 17192 I python  :   "rate": null, 
+07-23 23:13:51.691 15404 17192 I python  :   "state": null
+07-23 23:13:51.691 15404 17192 I python  : }
+07-23 23:13:51.691 15404 17192 I python  : 
+07-23 23:13:51.762 15404 17865 I python  : {
+07-23 23:13:51.762 15404 17865 I python  :   "indanger": false, 
+07-23 23:13:51.762 15404 17865 I python  :   "iscovered": false, 
+07-23 23:13:51.762 15404 17865 I python  :   "rate": null, 
+07-23 23:13:51.762 15404 17865 I python  :   "state": null
+07-23 23:13:51.762 15404 17865 I python  : }
+07-23 23:13:51.762 15404 17865 I python  : 
+07-23 23:13:51.766 15404 17864 I python  : {
+07-23 23:13:51.767 15404 17864 I python  :   "indanger": false, 
+07-23 23:13:51.767 15404 17864 I python  :   "iscovered": false, 
+07-23 23:13:51.767 15404 17864 I python  :   "rate": null, 
+07-23 23:13:51.767 15404 17864 I python  :   "state": null
+07-23 23:13:51.767 15404 17864 I python  : }
+07-23 23:13:51.767 15404 17864 I python  : 
+07-23 23:13:52.277 15404 17192 I python  : Uploading image 47
+07-23 23:13:52.277 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:52.278 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:52.485 15404 17192 I python  : {
+07-23 23:13:52.485 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:52.485 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:52.485 15404 17192 I python  :   "rate": null, 
+07-23 23:13:52.485 15404 17192 I python  :   "state": null
+07-23 23:13:52.485 15404 17192 I python  : }
+07-23 23:13:52.485 15404 17192 I python  : 
+07-23 23:13:52.769 15404 17192 I python  : Uploading image 48
+07-23 23:13:52.770 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:52.770 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:52.895 15404 17867 I python  : {
+07-23 23:13:52.895 15404 17867 I python  :   "indanger": false, 
+07-23 23:13:52.896 15404 17867 I python  :   "iscovered": false, 
+07-23 23:13:52.896 15404 17867 I python  :   "rate": null, 
+07-23 23:13:52.896 15404 17867 I python  :   "state": null
+07-23 23:13:52.896 15404 17867 I python  : }
+07-23 23:13:52.896 15404 17867 I python  : 
+07-23 23:13:52.907 15404 17192 I python  : {
+07-23 23:13:52.907 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:52.907 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:52.907 15404 17192 I python  :   "rate": null, 
+07-23 23:13:52.907 15404 17192 I python  :   "state": null
+07-23 23:13:52.907 15404 17192 I python  : }
+07-23 23:13:52.907 15404 17192 I python  : 
+07-23 23:13:55.758 15404 17192 I python  : Uploading image 49
+07-23 23:13:55.759 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:55.770 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:55.806 15404 17866 I python  : {
+07-23 23:13:55.806 15404 17866 I python  :   "indanger": false, 
+07-23 23:13:55.806 15404 17866 I python  :   "iscovered": false, 
+07-23 23:13:55.806 15404 17866 I python  :   "rate": null, 
+07-23 23:13:55.806 15404 17866 I python  :   "state": null
+07-23 23:13:55.806 15404 17866 I python  : }
+07-23 23:13:55.806 15404 17866 I python  : 
+07-23 23:13:55.966 15404 17192 I python  : {
+07-23 23:13:55.967 15404 17192 I python  :   "indanger": true, 
+07-23 23:13:55.967 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:55.967 15404 17192 I python  :   "rate": null, 
+07-23 23:13:55.967 15404 17192 I python  :   "state": null
+07-23 23:13:55.967 15404 17192 I python  : }
+07-23 23:13:55.967 15404 17192 I python  : 
+07-23 23:13:56.224 15404 17192 I python  : Uploading image 50
+07-23 23:13:56.225 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:56.225 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:56.345 15404 17192 I python  : {
+07-23 23:13:56.345 15404 17192 I python  :   "indanger": true, 
+07-23 23:13:56.345 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:56.345 15404 17192 I python  :   "rate": null, 
+07-23 23:13:56.345 15404 17192 I python  :   "state": null
+07-23 23:13:56.345 15404 17192 I python  : }
+07-23 23:13:56.345 15404 17192 I python  : 
+07-23 23:13:59.683 15404 17868 I python  : {
+07-23 23:13:59.688 15404 17868 I python  :   "indanger": false, 
+07-23 23:13:59.688 15404 17868 I python  :   "iscovered": false, 
+07-23 23:13:59.688 15404 17868 I python  :   "rate": null, 
+07-23 23:13:59.688 15404 17868 I python  :   "state": null
+07-23 23:13:59.688 15404 17868 I python  : }
+07-23 23:13:59.688 15404 17868 I python  : 
+07-23 23:13:59.690 15404 17869 I python  : {
+07-23 23:13:59.690 15404 17869 I python  :   "indanger": false, 
+07-23 23:13:59.690 15404 17869 I python  :   "iscovered": false, 
+07-23 23:13:59.691 15404 17869 I python  :   "rate": null, 
+07-23 23:13:59.691 15404 17869 I python  :   "state": null
+07-23 23:13:59.691 15404 17869 I python  : }
+07-23 23:13:59.691 15404 17869 I python  : 
+07-23 23:13:59.724 15404 17870 I python  : {
+07-23 23:13:59.724 15404 17870 I python  :   "indanger": false, 
+07-23 23:13:59.724 15404 17870 I python  :   "iscovered": false, 
+07-23 23:13:59.724 15404 17870 I python  :   "rate": null, 
+07-23 23:13:59.724 15404 17870 I python  :   "state": null
+07-23 23:13:59.724 15404 17870 I python  : }
+07-23 23:13:59.724 15404 17870 I python  : 
+07-23 23:13:59.752 15404 17192 I python  : Uploading image 51
+07-23 23:13:59.752 15404 17192 I python  : Image Size  1280 720
+07-23 23:13:59.752 15404 17192 I python  : Image corner  0 928.5
+07-23 23:13:59.883 15404 17192 I python  : {
+07-23 23:13:59.883 15404 17192 I python  :   "indanger": false, 
+07-23 23:13:59.883 15404 17192 I python  :   "iscovered": false, 
+07-23 23:13:59.883 15404 17192 I python  :   "rate": null, 
+07-23 23:13:59.883 15404 17192 I python  :   "state": null
+07-23 23:13:59.883 15404 17192 I python  : }
+07-23 23:13:59.883 15404 17192 I python  : 
+07-23 23:14:00.187 15404 17872 I python  : {
+07-23 23:14:00.187 15404 17872 I python  :   "indanger": false, 
+07-23 23:14:00.187 15404 17872 I python  :   "iscovered": false, 
+07-23 23:14:00.187 15404 17872 I python  :   "rate": null, 
+07-23 23:14:00.187 15404 17872 I python  :   "state": null
+07-23 23:14:00.187 15404 17872 I python  : }
+07-23 23:14:00.187 15404 17872 I python  : 
+07-23 23:14:00.245 15404 17192 I python  : Uploading image 52
+07-23 23:14:00.246 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:00.246 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:00.355 15404 17192 I python  : {
+07-23 23:14:00.355 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:00.355 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:00.355 15404 17192 I python  :   "rate": null, 
+07-23 23:14:00.355 15404 17192 I python  :   "state": null
+07-23 23:14:00.355 15404 17192 I python  : }
+07-23 23:14:00.355 15404 17192 I python  : 
+07-23 23:14:03.953 15404 17192 I python  : Uploading image 53
+07-23 23:14:04.020 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:04.032 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:04.379 15404 17192 I python  : {
+07-23 23:14:04.379 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:04.380 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:04.380 15404 17192 I python  :   "rate": null, 
+07-23 23:14:04.380 15404 17192 I python  :   "state": null
+07-23 23:14:04.380 15404 17192 I python  : }
+07-23 23:14:04.380 15404 17192 I python  : 
+07-23 23:14:04.409 15404 17873 I python  : {
+07-23 23:14:04.409 15404 17873 I python  :   "indanger": false, 
+07-23 23:14:04.409 15404 17873 I python  :   "iscovered": false, 
+07-23 23:14:04.409 15404 17873 I python  :   "rate": null, 
+07-23 23:14:04.409 15404 17873 I python  :   "state": null
+07-23 23:14:04.409 15404 17873 I python  : }
+07-23 23:14:04.409 15404 17873 I python  : 
+07-23 23:14:04.411 15404 17874 I python  : {
+07-23 23:14:04.411 15404 17874 I python  :   "indanger": false, 
+07-23 23:14:04.411 15404 17874 I python  :   "iscovered": false, 
+07-23 23:14:04.411 15404 17874 I python  :   "rate": null, 
+07-23 23:14:04.411 15404 17874 I python  :   "state": null
+07-23 23:14:04.411 15404 17874 I python  : }
+07-23 23:14:04.411 15404 17874 I python  : 
+07-23 23:14:04.612 15404 17192 I python  : Uploading image 54
+07-23 23:14:04.612 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:04.612 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:04.759 15404 17192 I python  : {
+07-23 23:14:04.759 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:04.759 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:04.759 15404 17192 I python  :   "rate": null, 
+07-23 23:14:04.759 15404 17192 I python  :   "state": null
+07-23 23:14:04.759 15404 17192 I python  : }
+07-23 23:14:04.760 15404 17192 I python  : 
+07-23 23:14:04.986 15404 17876 I python  : {
+07-23 23:14:04.986 15404 17876 I python  :   "indanger": false, 
+07-23 23:14:04.986 15404 17876 I python  :   "iscovered": false, 
+07-23 23:14:04.987 15404 17876 I python  :   "rate": null, 
+07-23 23:14:04.987 15404 17876 I python  :   "state": null
+07-23 23:14:04.987 15404 17876 I python  : }
+07-23 23:14:04.987 15404 17876 I python  : 
+07-23 23:14:04.987 15404 17876 I python  : 
+07-23 23:14:05.085 15404 17192 I python  : Uploading image 55
+07-23 23:14:05.085 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:05.090 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:08.092 15404 17192 I python  : {
+07-23 23:14:08.092 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:08.092 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:08.092 15404 17192 I python  :   "rate": null, 
+07-23 23:14:08.093 15404 17192 I python  :   "state": null
+07-23 23:14:08.093 15404 17192 I python  : }
+07-23 23:14:08.093 15404 17192 I python  : 
+07-23 23:14:08.398 15404 17192 I python  : Uploading image 56
+07-23 23:14:08.398 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:08.401 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:08.416 15404 17877 I python  : {
+07-23 23:14:08.416 15404 17877 I python  :   "indanger": false, 
+07-23 23:14:08.416 15404 17877 I python  :   "iscovered": false, 
+07-23 23:14:08.416 15404 17877 I python  :   "rate": null, 
+07-23 23:14:08.416 15404 17877 I python  :   "state": null
+07-23 23:14:08.416 15404 17877 I python  : }
+07-23 23:14:08.416 15404 17877 I python  : 
+07-23 23:14:08.540 15404 17192 I python  : {
+07-23 23:14:08.540 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:08.540 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:08.540 15404 17192 I python  :   "rate": null, 
+07-23 23:14:08.540 15404 17192 I python  :   "state": null
+07-23 23:14:08.540 15404 17192 I python  : }
+07-23 23:14:08.540 15404 17192 I python  : 
+07-23 23:14:08.551 15404 17878 I python  : {
+07-23 23:14:08.551 15404 17878 I python  :   "indanger": false, 
+07-23 23:14:08.551 15404 17878 I python  :   "iscovered": false, 
+07-23 23:14:08.551 15404 17878 I python  :   "rate": null, 
+07-23 23:14:08.551 15404 17878 I python  :   "state": null
+07-23 23:14:08.551 15404 17878 I python  : }
+07-23 23:14:08.551 15404 17878 I python  : 
+07-23 23:14:10.988 15404 17192 I python  : Uploading image 57
+07-23 23:14:10.992 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:10.992 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:11.246 15404 17192 I python  : {
+07-23 23:14:11.246 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:11.246 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:11.246 15404 17192 I python  :   "rate": null, 
+07-23 23:14:11.246 15404 17192 I python  :   "state": null
+07-23 23:14:11.246 15404 17192 I python  : }
+07-23 23:14:11.246 15404 17192 I python  : 
+07-23 23:14:11.333 15404 17192 I python  : Uploading image 58
+07-23 23:14:11.333 15404 17192 I python  : Image Size  1280 720
+07-23 23:14:11.333 15404 17192 I python  : Image corner  0 928.5
+07-23 23:14:11.445 15404 17192 I python  : {
+07-23 23:14:11.446 15404 17192 I python  :   "indanger": false, 
+07-23 23:14:11.446 15404 17192 I python  :   "iscovered": false, 
+07-23 23:14:11.446 15404 17192 I python  :   "rate": null, 
+07-23 23:14:11.446 15404 17192 I python  :   "state": null
+07-23 23:14:11.446 15404 17192 I python  : }
+07-23 23:14:11.446 15404 17192 I python  : 
+07-23 23:14:11.707 15404 17880 I python  : {
+07-23 23:14:11.707 15404 17880 I python  :   "indanger": false, 
+07-23 23:14:11.707 15404 17880 I python  :   "iscovered": false, 
+07-23 23:14:11.707 15404 17880 I python  :   "rate": null, 
+07-23 23:14:11.707 15404 17880 I python  :   "state": null
+07-23 23:14:11.707 15404 17880 I python  : }
+07-23 23:14:11.707 15404 17880 I python  : 
