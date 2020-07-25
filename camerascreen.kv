@@ -1,6 +1,6 @@
 #:import Animation kivy.animation.Animation
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
-
+#:import MyCamera corecamera.MyCamera
 <CameraScreen>:
     canvas.before:
         Rectangle:
@@ -11,14 +11,12 @@
         orientation: 'vertical'
         BoxLayout:  
             orientation: 'vertical'
-            Camera:
+            MyCamera:
                 id: camera
-                resolution: (1280, 720)
                 size_hint: 1, 1
+                resolution: (1280, 720)
                 on_touch_down: self.on_touch_down(args[1].pos)
                 on_touch_up: self.on_touch_up(args[1].pos)
-                play: False
-                
                 x:0
                 y:0
                 canvas.before:

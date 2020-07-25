@@ -1,4 +1,4 @@
-'''
+
 import kivy.app
 import requests
 import kivy.clock
@@ -93,17 +93,8 @@ class CameraScreen(Screen):
                 print(response.text)
             except requests.exceptions.ConnectionError:
                 self.ids['capture'].text = "Connection Error! Make Sure Server is Active."
-    def on_enter(self):
-        self.ids['camera'].play = False
-'''
-from kivy.app import App
-from kivy.uix.screenmanager import Screen
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
 
-class CameraScreen(Screen):
-    pass
+
 
     
        

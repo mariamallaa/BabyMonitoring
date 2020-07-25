@@ -11,5 +11,5 @@ class MainApp(App):
         self.title ="SafeAndSound"
       
 
-if __name__ == "__main__":
-    MainApp().run()
+
+MainApp().run()
