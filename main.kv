@@ -1,13 +1,11 @@
 #:include firebaseloginscreen.kv
-#:include selectmodescreen.kv
-#:import SelectModeScreen selectmodescreen.SelectModeScreen
+
 #:import FirebaseLoginScreen firebaseloginscreen.FirebaseLoginScreen
-#:include sleepingscreen.kv
-#:include playingscreen.kv
-#:include camerascreen.kv
-#:import PlayingScreen playingscreen.PlayingScreen
-#:import SleepingScreen sleepingscreen.SleepingScreen
-#:import CameraScreen camerascreen.CameraScreen
+
+#:include MotherScreen.kv
+
+#:import MotherScreen MotherScreen.MotherScreen
+
 #:import utils kivy.utils
 ScreenManager:
     id:screen_manager
@@ -24,20 +22,8 @@ ScreenManager:
             # Get the important user info
             app.user_localId = self.localId
             app.user_idToken = self.idToken
-            screen_manager.current = screen_manager.current = "select_mode_screen"
+            screen_manager.current = screen_manager.current = "mother_screen"
 
-    SelectModeScreen:
-        id: select_mode_screen
-        name: "select_mode_screen"
-
-    PlayingScreen:
-        id: playing_screen
-        name: "playing_screen"
-    SleepingScreen:
-        id: sleeping_screen
-        name:"sleeping_screen"
-        on_age_right:
-            screen_manager.current= screen_manager.current="camera_screen"
-    CameraScreen:
-        id: camera_screen
-        name: "camera_screen"
+    MotherScreen:
+        id: mother_screen
+        name: "mother_screen"

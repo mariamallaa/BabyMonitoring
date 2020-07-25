@@ -1,7 +1,7 @@
 #:import Animation kivy.animation.Animation
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
 
-<CameraScreen>:
+<MotherScreen>:
     canvas.before:
         Rectangle:
             size: self.size
@@ -17,7 +17,7 @@
                 size_hint: 1, 1
                 on_touch_down: self.on_touch_down(args[1].pos)
                 on_touch_up: self.on_touch_up(args[1].pos)
-                play: False
+                play: True
                 
                 x:0
                 y:0

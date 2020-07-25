@@ -1,4 +1,4 @@
-'''
+
 import kivy.app
 import requests
 import kivy.clock
@@ -7,9 +7,9 @@ import urllib3
 from kivy.uix.screenmanager import Screen
 from kivy.app import App
 
-class CameraScreen(Screen):
+class MotherScreen(Screen):
     def __init__(self, **kwargs):
-        super(CameraScreen, self).__init__(**kwargs)
+        super(MotherScreen, self).__init__(**kwargs)
         self.num_images = 0
         self.danger_zone_coordinates=[]
    
@@ -69,7 +69,7 @@ class CameraScreen(Screen):
         print("touch")
         print(touch)
         self.danger_zone_coordinates.append([touch.spos[0], touch.spos[1]])
-        return super(CameraScreen, self).on_touch_down(touch)
+        return super(MotherScreen, self).on_touch_down(touch)
  
     def on_touch_up(self, touch):
         print(touch)
@@ -79,7 +79,7 @@ class CameraScreen(Screen):
         print("RELEASED!", self.danger_zone_coordinates)
         self.cam_size()
         # self.capture()
-        return super(CameraScreen, self).on_touch_up(touch)
+        return super(MotherScreen, self).on_touch_up(touch)
 
     def getstat(self):
         while True:
@@ -95,15 +95,8 @@ class CameraScreen(Screen):
                 self.ids['capture'].text = "Connection Error! Make Sure Server is Active."
     def on_enter(self):
         self.ids['camera'].play = False
-'''
-from kivy.app import App
-from kivy.uix.screenmanager import Screen
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
 
-class CameraScreen(Screen):
-    pass
+
 
     
        
