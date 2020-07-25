@@ -1,0 +1,32 @@
+#:import Animation kivy.animation.Animation
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import MyCamera corecamera.MyCamera
+<CameraScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:  
+            orientation: 'vertical'
+            Video:
+                id: camera
+                size_hint: 1, 1
+                resolution: (640, 480)
+                on_touch_down: print(args[1])
+                on_touch_up: print(args[1])
+                x:0
+                y:0
+                source: '6.avi'
+                state: "play"
+        BoxLayout:
+            orientation: 'vertical'
+            ThemedButton:
+                id: capture
+                text: "Capture"
+                #size_hint: .3, .07
+                #pos_hint: {"top": .1, "center_x": .25}
+                on_press:
+                    root.capture() 
+            ThemedButton:
+                id:stats
+                text:"none"
+                #size_hint: .3, .07
+                #pos_hint: {"top": .1, "center_x": .75}
