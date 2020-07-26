@@ -11,7 +11,7 @@
         ThemedButton:
             size_hint: .3, .05
             pos_hint: {"center_x": .1, "top": .95}
-            text: "[u]Back[/u]"
+            text: "Back"
             on_release:
                 root.parent.transition = SlideTransition(direction="right")
                 root.parent.current = root.parent.current = "welcome_screen"
@@ -31,7 +31,7 @@
             password: True
 
         ThemedButton:
-            text: "[u]Reset Password[/u]"
+            text: "Reset Password"
             size_hint: .4 ,.05
             pos_hint: {"center_x": .75, "top": .225}
             
@@ -45,7 +45,7 @@
 
 
         ThemedButton:
-            text: "[u]Sign In[/u]"
+            text: "Sign In"
             size_hint: .4 ,.05
             pos_hint: {"center_x": .5, "top": .3}
             on_release:
@@ -66,7 +66,7 @@
 
         ThemedButton:
             id: sign_in_button
-            text: "[u]Sign up[/u]"
+            text: "Sign up"
             size_hint: .2 ,.05
             pos_hint: {"right": .85, "center_y": .1}
             opacity: 0

@@ -6,8 +6,14 @@ import threading
 import urllib3
 from kivy.uix.screenmanager import Screen
 from kivy.app import App
+from kivy.properties import StringProperty
+import json
+from kivy.core.audio import SoundLoader
 
+sound = SoundLoader.load('alarm.mp3')
 class CameraScreen(Screen):
+
+    breathingrate = StringProperty()
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
         self.num_images = 0
@@ -50,6 +56,18 @@ class CameraScreen(Screen):
         url = 'http://' + '192.168.1.102:8080'+ '/'
         response = requests.get(url+"get-stats")
         print(response.text)
+        parsed_data = json.loads(response.text)
+        breathingrate=parsed_data['rate']
+        if(breathingrate!=None):
+            self.ids['stats'].text="Breathing Rate:  "+str(int(breathingrate))
+        else:
+            self.ids['stats'].text="Breathing Rate:  "
+
+        if sound:
+            print("indangeeeeeeeeeeeer")
+            print(parsed_data['indanger'])
+            if(parsed_data['indanger']==True or parsed_data['iscovered']==True or  parsed_data['state']=='Danger'):
+                sound.play()
         files = {'media': pixels_data}
         t = threading.Thread(target=self.send_files_server, args=(files, url))
         t.start()
@@ -90,14 +108,21 @@ class CameraScreen(Screen):
 
             try:
                 text = "Trying to Establish a Connection..."
+                print("updating")
                 response = requests.get(url+"get-stats")
                 print(response.text)
+                parsed_data = json.loads(response.text)
+                breathingrate=parsed_data['rate']
+                #print(parsed_data['image'])
+                self.clear_widgets(self.ids["stats"])
+                stats = ThemedButton(text=breathingrate)
+                self.add_widget(stats)
                 self.ids['stats'].text=response.text
-                return self.__init__()
+
             except requests.exceptions.ConnectionError:
                 text = "Connection Error! Make Sure Server is Active."
 
 
 
-    
-       
+
+             
